@@ -1,3 +1,31 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "prettier"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier",
+    "plugin:@tanstack/query/recommended",
+    "plugin:react/recommended", // React 관련 규칙 추가
+    "plugin:react-hooks/recommended", // React hooks 관련 규칙 추가
+    "plugin:@typescript-eslint/recommended", // TypeScript 규칙 추가
+    "eslint-config-prettier" // Prettier와 충돌하지 않게 설정
+  ],
+  "plugins": [
+    "react", // React 플러그인 추가
+    "react-hooks", // React hooks 플러그인 추가
+    "@typescript-eslint" // TypeScript 플러그인 추가
+  ],
+  "rules": {
+    // 추가적인 ESLint 규칙 설정
+    "react/react-in-jsx-scope": "off", // React 17 이후 React import 필요 없음
+    "react/prop-types": "off", // Prop-types 사용 안 할 경우 비활성화
+    "react-hooks/rules-of-hooks": "error", // React hooks 규칙 설정
+    "react-hooks/exhaustive-deps": "warn", // useEffect 관련 dependencies 설정
+    "@typescript-eslint/no-unused-vars": "warn", // TypeScript에서 사용되지 않는 변수 경고
+    "prettier/prettier": "error" // Prettier 규칙을 ESLint 오류로 표시
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // 자동으로 React 버전 감지
+    }
+  }
 }
