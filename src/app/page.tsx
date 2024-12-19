@@ -3,7 +3,9 @@ import Navbar from './components/Navbar';
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Navbar />
+      </div>
       <div className="flex h-screen items-center justify-center bg-gradient-to-r from-gray-900 to-purple-800 text-white">
         <div className="px-4 text-center">
           <h1 className="mb-6 text-5xl font-bold md:text-6xl">

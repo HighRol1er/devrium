@@ -6,13 +6,14 @@ import { AuthModal } from './AuthModal';
 
 export default function Navbar() {
   return (
-    <div className="flex items-center justify-between py-5">
+    <div className="mx-auto flex h-14 max-w-full items-center justify-between border-b bg-muted/40 px-4 py-5 sm:px-6 lg:px-8">
       <Link href="/" className="flex items-center gap-2">
         <Image src={Logo} alt="logo" className="size-10" />
-        <h4 className="text-3xl font-semibold">
+        <h4 className="text-2xl font-semibold">
           <span className="text-primary">Dev'</span>rium
         </h4>
       </Link>
+      <div> search bar</div>
       <AuthModal />
     </div>
   );
