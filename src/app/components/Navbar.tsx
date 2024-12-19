@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
   return (
-    <div className="flex py-2 items-center justify-between mx-auto max-w-screen-2xl">
+    <div className="mx-auto flex max-w-screen-2xl items-center justify-between py-2">
       <Link href="/" className="flex items-center gap-2">
-        <Image src={Logo} alt="Deverium logo" className="size-12 " />
+        <Image src={Logo} alt="Deverium logo" className="size-12" />
         <h4 className="text-3xl font-semibold">
           <span className="text-primary">Devrium</span>
         </h4>

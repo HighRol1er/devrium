@@ -2,10 +2,16 @@ import Link from 'next/link';
 import AuthInput from '../components/AuthInput';
 import AuthButton from '../components/AuthButton';
 
+import { useMutation } from '@tanstack/react-query';
+
+// export const useRegisterUser = (0 => {
+//   const
+// })
+
 export default function Signup() {
   return (
     <>
-      <h2 className="text-2xl font-bold text-center text-white">
+      <h2 className="text-center text-2xl font-bold text-white">
         Create an account
       </h2>
       <form className="mt-4 space-y-2">
@@ -27,7 +33,7 @@ export default function Signup() {
           id="password"
           placeholder="Enter your password"
         />
-        <div className="flex justify-end mt-1">
+        <div className="mt-1 flex justify-end">
           <Link href="#" className="text-sm text-purple-400 hover:underline">
             Forgot password?
           </Link>
@@ -35,9 +41,9 @@ export default function Signup() {
 
         <AuthButton text="Sign in" />
       </form>
-      <p className="text-sm text-center text-gray-400 ">
+      <p className="text-center text-sm text-gray-400">
         Already have an account?
-        <Link href="/login" className="text-purple-400 hover:underline pl-2">
+        <Link href="/login" className="pl-2 text-purple-400 hover:underline">
           Sign in
         </Link>
       </p>

@@ -9,96 +9,61 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
+// model == table 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  name      String?
-  password  String?
-  image     String?
-  bio       String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  sessions  Session[] @relation("UserSessions")
-  posts     Post[]    @relation("UserPosts")
-  following Follow[]  @relation("Following")
-  followers Follow[]  @relation("Followers")
-  comments  Comment[] @relation("UserComments")
-  likes     Like[]    @relation("UserLikes")
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+// check user validation
 model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation("UserSessions", fields: [userId], references: [id], onDelete: Cascade)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-model Post {
-  id        String        @id @default(uuid())
-  userId    String
-  title     String
-  content   String
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
-  user      User          @relation("UserPosts", fields: [userId], references: [id], onDelete: Cascade)
-  comments  Comment[]     @relation("PostComments")
-  likes     Like[]        @relation("PostLikes")
-  hashtags  PostHashtag[] @relation("PostHashtags")
-}
-
-model Hashtag {
-  id    String        @id @default(uuid())
-  title String        @unique // 해시태그 제목 (예: #technology, #fashion 등)
-  posts PostHashtag[] @relation("PostHashtags") // 양쪽 모델에 관계 필드 존재 필요
-}
-
-model PostHashtag {
-  postId    String
-  hashtagId String
-  post      Post    @relation("PostHashtags", fields: [postId], references: [id], onDelete: Cascade) // "PostHashtags"로 이름 매칭
-  hashtag   Hashtag @relation("PostHashtags", fields: [hashtagId], references: [id], onDelete: Cascade) // "PostHashtags"로 이름 매칭
-
-  @@id([postId, hashtagId]) // 복합 기본 키 설정
-}
-
-model Comment {
-  id        String   @id @default(uuid())
-  userId    String
-  postId    String
-  content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  user User @relation("UserComments", fields: [userId], references: [id], onDelete: Cascade)
-  post Post @relation("PostComments", fields: [postId], references: [id], onDelete: Cascade)
 }
 
-model Follow {
-  id          String @id @default(uuid())
-  followingId String
-  followerId  String
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
 
-  // User 관계
-  following User @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
-  follower  User @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
-
-  @@unique([followingId, followerId])
-}
-
-model Like {
-  id        String   @id @default(uuid())
-  userId    String
-  postId    String
-  createdAt DateTime @default(now())
-
-  user User @relation("UserLikes", fields: [userId], references: [id], onDelete: Cascade)
-  post Post @relation("PostLikes", fields: [postId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, postId]) // userId와 postId를 복합 유니크 제약
+  @@id([identifier, token])
 }
