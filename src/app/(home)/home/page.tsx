@@ -3,7 +3,7 @@ import { validateUser } from '@/app/lib/hooks';
 import { redirect } from 'next/navigation';
 
 export default async function HomePage() {
-  const session = await validateUser();
+  // const session = await validateUser();
 
   return (
     <div>

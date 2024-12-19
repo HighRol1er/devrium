@@ -17,12 +17,13 @@ datasource db {
 // model == table 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  userName      String?
   email         String    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  posts         Post[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -66,4 +67,22 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // comments  Comment[]    
+  // likes     Like[]        
+  // hashtags  PostHashtag[] 
+  User      User     @relation(fields: [userId], references: [id]) // 외래키 알려주는코드다 .... 
+  // 관계를 맺기 위해서 User의 값을 
+  // 유저테이블의 id를 가지고 있다 
+  // 그러면 유저 테이블의 id를 통해서 user의 모든 정보를 가져올 수 있다.
+  // 여기있는 User가 유저 객체 전체를 참조
+  // fields가 Post 테이블의 userId의 값이고 referendce가 User table에 id
 }

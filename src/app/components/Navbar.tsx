@@ -3,10 +3,14 @@ import Link from 'next/link';
 import Logo from '@/public/logo.png';
 
 import { AuthModal } from './AuthModal';
-import { ThemeToggle } from './ThemeToggle';
 import { Input } from '@/components/ui/input';
+import { ThemeToggle } from './ThemeToggle';
+import { auth } from '../lib/auth';
+import Avatar from './Avatar';
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await auth();
+
   return (
     <div className="mx-auto flex h-14 max-w-full items-center justify-between border-b bg-muted/40 px-4 py-5 sm:px-6 lg:px-8">
       <Link href="/" className="flex items-center gap-2">
@@ -18,8 +22,12 @@ export default function Navbar() {
       <div>
         <Input placeholder="인풋태그임" />
       </div>
-      <div>
-        <AuthModal />
+      <div className="flex gap-2">
+        {session ? (
+          <Avatar imageUrl={session?.user?.image as string} />
+        ) : (
+          <AuthModal />
+        )}
         <ThemeToggle />
       </div>
     </div>

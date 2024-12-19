@@ -14,7 +14,7 @@ export function AuthModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Try for Free</Button>
+        <Button>Log In</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[360px]">
         <DialogHeader className="flex flex-row items-center justify-center gap-2">
