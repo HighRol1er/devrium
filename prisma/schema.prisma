@@ -24,9 +24,23 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  comments      Comment[]
+  likes         Like[]
+  follower      Follow[]  @relation("follower")
+  following     Follow[]  @relation("following")
+  savedPost     Saved[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Follow {
+  follower     User   @relation("follower", fields: [followedById], references: [id])
+  followedById String
+  following    User   @relation("following", fields: [followingId], references: [id])
+  followingId  String
+
+  @@id([followingId, followedById])
 }
 
 model Account {
@@ -69,20 +83,51 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[]
+}
+
+model Saved {
+  id     Int     @id @default(autoincrement())
+  postId Int?
+  userId String?
+  Post   Post?   @relation(fields: [postId], references: [id])
+  User   User?   @relation(fields: [userId], references: [id])
+}
+
 model Post {
+  id         Int       @id @default(autoincrement())
+  userId     String
+  title      String // title이 필요한가? .. content랑 같이 합해서 보내면 되는거 아닌가.. 
+  content    String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  comments   Comment[]
+  likes      Like[]
+  savedBy    Saved[]
+  user       User      @relation(fields: [userId], references: [id])
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  postId    Int
+  timestamp DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id])
+  Post      Post     @relation(fields: [postId], references: [id])
+}
+
+model Comment {
   id        String   @id @default(uuid())
   userId    String
-  title     String
+  postId    Int
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  // comments  Comment[]    
-  // likes     Like[]        
-  // hashtags  PostHashtag[] 
-  User      User     @relation(fields: [userId], references: [id]) // 외래키 알려주는코드다 .... 
-  // 관계를 맺기 위해서 User의 값을 
-  // 유저테이블의 id를 가지고 있다 
-  // 그러면 유저 테이블의 id를 통해서 user의 모든 정보를 가져올 수 있다.
-  // 여기있는 User가 유저 객체 전체를 참조
-  // fields가 Post 테이블의 userId의 값이고 referendce가 User table에 id
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }

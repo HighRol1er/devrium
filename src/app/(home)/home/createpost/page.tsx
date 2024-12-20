@@ -15,7 +15,7 @@ export default function CreatePostPage() {
         <h2 className="mb-4 text-2xl font-semibold">Title</h2>
         <Input
           placeholder="Write your title"
-          className="mb-4 w-full border border-gray-300 p-3 focus:outline-none focus:ring-0"
+          className="mb-4 w-full border border-gray-300 p-3 focus:outline-none focus:ring-[40]"
           style={{ outline: 'none', boxShadow: 'none' }}
         />
         <Textarea
