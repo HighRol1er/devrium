@@ -11,7 +11,7 @@ export default async function HomeLayout({
     <>
       <Navbar />
       {/* <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]"> */}
-      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr_220px] lg:grid-cols-[280px_1fr_280px]">
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr_220px] lg:grid-cols-[280px_1fr_250px]">
         <LeftSidebar />
         <main>{children}</main>
         <RightSidebar />

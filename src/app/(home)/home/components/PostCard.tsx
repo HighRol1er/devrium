@@ -1,9 +1,22 @@
-import { MessageSquareMore, Share, ThumbsUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { MessageSquareMore, Share, ThumbsUp, User2 } from 'lucide-react';
 
 export default function PostCard() {
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
-      <div className="mb-2 text-sm">"r/CryptoTechnology</div>
+      <div className="mb-2 flex items-center space-x-2">
+        <User2 className="h-8 w-8 rounded-full border-b" />
+        <p className="font-semibold">Username</p>
+      </div>
+      {/* <div className="mb-2 text-sm">"r/CryptoTechnology</div> */}
+      <div className="mb-2 flex gap-1 text-sm">
+        <span className="inline-block self-end rounded-full bg-primary/20 px-3 py-1">
+          r/CryptoTechnology
+        </span>
+        <span className="inline-block rounded-full bg-primary/20 px-3 py-1">
+          Question
+        </span>
+      </div>
       <h2 className="mb-2 text-lg font-bold">What is Lorem Ipsum?</h2>
       <p className="mb-4">
         Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -17,18 +30,18 @@ export default function PostCard() {
         of Lorem Ipsum.
       </p>
       <div className="flex space-x-4 text-sm text-gray-400">
-        <div className="flex gap-1">
+        <button className="flex gap-1 hover:text-blue-500">
           <ThumbsUp className="size-4" />
           <p className="">8</p>
-        </div>
-        <div className="flex gap-1">
+        </button>
+        <button className="flex gap-1 hover:text-blue-500">
           <MessageSquareMore className="size-4" />
           <p className="">10</p>
-        </div>
-        <div className="flex gap-1">
+        </button>
+        <button className="flex gap-1 hover:text-blue-500">
           <Share className="size-4" />
           <p className="">Share</p>
-        </div>
+        </button>
       </div>
     </div>
   );

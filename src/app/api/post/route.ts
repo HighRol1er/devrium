@@ -11,6 +11,7 @@ const createPostSchema = z.object({
 });
 type createPostDto = z.infer<typeof createPostSchema>;
 
+// 포스트 생성
 export async function POST(request: NextRequest) {
   /**
    * request는 유저가 보낸 데이터 
@@ -45,6 +46,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// 전체 포스트 조회
 export async function GET() {
   try {
     const posts = await prisma.post.findMany({
