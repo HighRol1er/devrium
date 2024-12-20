@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { ThemeToggle } from './ThemeToggle';
 import { auth } from '../lib/auth';
 import Avatar from './Avatar';
+import { Search } from 'lucide-react';
 
 export default async function Navbar() {
   const session = await auth();
@@ -19,8 +20,9 @@ export default async function Navbar() {
           <span className="text-primary">Dev'</span>rium
         </h4>
       </Link>
-      <div>
-        <Input placeholder="인풋태그임" />
+      <div className="relative flex">
+        <Input placeholder="Search" className="pl-10" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-500" />
       </div>
       <div className="flex gap-2">
         {session ? (
