@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default async function HomePage() {
-  // const session = await validateUser();
+  const session = await validateUser();
 
   return (
     <>
