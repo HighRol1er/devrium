@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { validateUser } from '@/app/lib/hooks';
 
 const prisma = new PrismaClient();
 
@@ -14,7 +15,9 @@ export async function GET() {
       {
         error: 'Failed to get users',
       },
-      { status: 500 }
+      {
+        status: 500,
+      }
     );
   }
 }

@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import Logo from '@/public/logo.png';
 import Image from 'next/image';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
+import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
 const tagNameSchema = z.object({
@@ -16,7 +16,10 @@ const tagNameSchema = z.object({
 
 type TagName = z.infer<typeof tagNameSchema>;
 
-export default function ProfilePage() {
+export default function SetTagNamePage({ params }: { params: { id: string } }) {
+  console.log(params);
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -27,7 +30,21 @@ export default function ProfilePage() {
     },
   });
 
-  const onSubmit: SubmitHandler<TagName> = () => console.log('confirmed');
+  const onSubmit: SubmitHandler<TagName> = async (data) => {
+    try {
+      const response = await fetch(`/api/user/set-tag/${params.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tagName: data.name }),
+      });
+      console.log(response);
+      router.push('/home');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -36,7 +53,7 @@ export default function ProfilePage() {
           <div className="flex justify-center">
             <Image src={Logo} alt="Deverium logo" className="h-16 w-16" />
           </div>
-          <h2 className="text-center font-semibold">Tag Name</h2>
+          <h2 className="text-center font-semibold">@Tag Name</h2>
           <p className="text-center">
             Please choose your Tag Name.
             <div className="font-semibold text-red-500">
