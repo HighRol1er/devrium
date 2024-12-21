@@ -18,6 +18,7 @@ datasource db {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  tagName       String?   @unique
   email         String    @unique
   emailVerified DateTime?
   image         String?
@@ -93,8 +94,8 @@ model Saved {
   id     Int     @id @default(autoincrement())
   postId Int?
   userId String?
-  Post   Post?   @relation(fields: [postId], references: [id])
-  User   User?   @relation(fields: [userId], references: [id])
+  post   Post?   @relation(fields: [postId], references: [id])
+  user   User?   @relation(fields: [userId], references: [id])
 }
 
 model Post {
@@ -109,7 +110,7 @@ model Post {
   likes      Like[]
   savedBy    Saved[]
   user       User      @relation(fields: [userId], references: [id])
-  Category   Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
 }
 
@@ -118,8 +119,8 @@ model Like {
   userId    String
   postId    Int
   timestamp DateTime @default(now())
-  User      User     @relation(fields: [userId], references: [id])
-  Post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
 }
 
 model Comment {

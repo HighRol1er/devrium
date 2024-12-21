@@ -1,27 +1,15 @@
-import { auth } from '@/app/lib/auth';
-import { createPostDto } from '@/app/utils/schema/postSchema';
+import { verifyUserSession } from '@/app/lib/hooks';
+import { createPostRequest } from '@/app/utils/schema/postSchema';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
-// 포스트 생성
-// 카테고리 추가해야함
+/* Create Post  */
 export async function POST(request: NextRequest) {
-  const { title, content, categoryId }: createPostDto = await request.json();
+  const { title, content, categoryId }: createPostRequest =
+    await request.json();
   try {
-    const session = await auth();
-    const userId = session?.user?.id;
-
-    if (!userId) {
-      return NextResponse.json(
-        {
-          error: 'User not authenticated',
-        },
-        {
-          status: 400,
-        }
-      );
-    }
+    const userId = await verifyUserSession();
 
     const createPost = await prisma.post.create({
       data: {
@@ -37,28 +25,23 @@ export async function POST(request: NextRequest) {
     console.error('Error create post', error);
     return NextResponse.json(
       {
-        error: 'Failed to create post',
+        error: 'Failed create post',
       },
       { status: 500 }
     );
   }
 }
 
-// 전체 포스트 조회
+/* Get all posts (Category X) */
 export async function GET() {
   try {
-    // const posts = await prisma.post.findMany({
-    //   include: {
-    //     user: true,
-    //   },
-    // });
     const posts = await prisma.post.findMany();
     return NextResponse.json(posts, { status: 200 });
   } catch (error) {
     console.error('Error get posts');
     return NextResponse.json(
       {
-        error: 'Failed to get posts',
+        error: 'Failed get posts',
       },
       { status: 500 }
     );

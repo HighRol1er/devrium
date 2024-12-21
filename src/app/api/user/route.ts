@@ -12,7 +12,7 @@ export async function GET() {
     console.error('Error get users');
     return NextResponse.json(
       {
-        error: 'Error to get users',
+        error: 'Failed to get users',
       },
       { status: 500 }
     );

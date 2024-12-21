@@ -4,4 +4,4 @@ export const createPostSchema = z.object({
   content: z.string().nonempty('content required'),
   categoryId: z.number(),
 });
-export type createPostDto = z.infer<typeof createPostSchema>;
+export type createPostRequest = z.infer<typeof createPostSchema>;

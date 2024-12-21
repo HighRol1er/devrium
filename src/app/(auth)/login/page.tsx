@@ -5,7 +5,7 @@ import AuthInput from '../components/AuthInput';
 export default function LoginPage() {
   return (
     <>
-      <h2 className="text-2xl font-bold text-center text-white">
+      <h2 className="text-center text-2xl font-bold text-white">
         Sign in to your account
       </h2>
       <form className="mt-4 space-y-2">
@@ -21,7 +21,7 @@ export default function LoginPage() {
           id="password"
           placeholder="Enter your password"
         />
-        <div className="flex justify-end mt-1">
+        <div className="mt-1 flex justify-end">
           <Link href="#" className="text-sm text-purple-400 hover:underline">
             Forgot password?
           </Link>
@@ -29,9 +29,9 @@ export default function LoginPage() {
 
         <AuthButton text="Sign in" />
       </form>
-      <p className="text-sm text-center text-gray-400">
+      <p className="text-center text-sm text-gray-400">
         Don't have an account?
-        <Link href="/signup" className="text-purple-400 hover:underline pl-2">
+        <Link href="/signup" className="pl-2 text-purple-400 hover:underline">
           Create an account
         </Link>
       </p>
