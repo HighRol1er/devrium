@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 // 포스트 생성
 // 카테고리 추가해야함
 export async function POST(request: NextRequest) {
-  const { title, content }: createPostDto = await request.json();
+  const { title, content, categoryId }: createPostDto = await request.json();
   try {
     const session = await auth();
     const userId = session?.user?.id;
@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
         title,
         content,
         userId,
+        categoryId,
       },
     });
 
