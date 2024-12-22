@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 /** Like a post
- * Endpoint: POST /api/likepost/[postId]
+ * Endpoint: POST /api/like/[postId]
  */
 export async function POST(
   req: NextRequest,

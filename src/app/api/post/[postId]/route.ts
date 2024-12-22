@@ -5,23 +5,23 @@ import { UpdatePostRequestDto } from '../type';
 
 const prisma = new PrismaClient();
 /** Update post
- * End point : api/post/[id]
+ * End point : api/post/[postId]
  */
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { postId: string } }
 ) {
-  const { id } = params;
-  console.log(id, typeof id);
+  const { postId } = params;
+  console.log(postId, typeof postId);
   const { updateTitle, updateContent, updateCategoryId }: UpdatePostRequestDto =
     await req.json();
 
   console.log(updateTitle, updateContent, updateCategoryId);
-  const postId = Number(id);
+  const id = Number(postId);
   try {
     const updatePost = await prisma.post.update({
       where: {
-        id: postId,
+        id,
       },
       data: {
         title: updateTitle,
@@ -44,20 +44,20 @@ export async function PUT(
 }
 
 /** Delete post
- * End point : api/post/[id]
+ * End point : api/post/[postId]
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { postId: string } }
 ) {
-  const { id } = params;
+  const { postId } = params;
 
-  const postId = Number(id);
+  const id = Number(postId);
 
   try {
     const deletedPost = await prisma.post.delete({
       where: {
-        id: postId,
+        id,
       },
     });
 

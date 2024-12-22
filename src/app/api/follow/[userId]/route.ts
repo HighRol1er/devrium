@@ -58,7 +58,7 @@ export async function POST(
 }
 
 /** Unfollow user
- * Endpoint: api/unfollow/[userId]
+ * Endpoint: api/follow/[userId]
  */
 export async function DELETE(
   req: NextRequest,
