@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Navbar from './components/Navbar';
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
           </p>
           <div>
             <button className="rounded-full bg-purple-600 px-6 py-3 font-semibold text-white hover:bg-purple-700">
-              Get Obsidian for Windows
+              <Link href="/home">Get home</Link>
             </button>
             <a
               href="#"

@@ -1,4 +1,5 @@
 export interface UpdatePostRequestDto {
-  newTitle: string;
-  newContent: string;
+  updateTitle: string;
+  updateContent: string;
+  updateCategoryId: number;
 }

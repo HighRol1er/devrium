@@ -5,7 +5,7 @@ import PostCard from './components/PostCard';
 
 export default async function HomePage() {
   // ERROR : 이거 함수 실행하면 무한 렌더링 에러 나오네.. // 해결.
-  const session = await validateUser();
+  // const session = await validateUser();
 
   return (
     <>

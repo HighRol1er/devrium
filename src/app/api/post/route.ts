@@ -4,7 +4,9 @@ import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
-/* Create Post  */
+/** Create Post
+ * End point(POST) : api/post
+ */
 export async function POST(request: NextRequest) {
   const { title, content, categoryId }: createPostRequest =
     await request.json();
@@ -23,27 +25,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(createPost, { status: 200 });
   } catch (error) {
     console.error('Error create post', error);
-    return NextResponse.json(
-      {
-        error: 'Failed create post',
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed create post' }, { status: 500 });
   }
 }
 
-/* Get all posts (Category X) */
+/** Get all posts (Category X)
+ * End point(GET): api/post
+ */
 export async function GET() {
   try {
     const posts = await prisma.post.findMany();
+
     return NextResponse.json(posts, { status: 200 });
   } catch (error) {
     console.error('Error get posts');
-    return NextResponse.json(
-      {
-        error: 'Failed get posts',
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed get posts' }, { status: 500 });
   }
 }
