@@ -16,7 +16,11 @@ const tagNameSchema = z.object({
 
 type TagName = z.infer<typeof tagNameSchema>;
 
-export default function SetTagNamePage({ params }: { params: { id: string } }) {
+export default function SetTagNamePage({
+  params,
+}: {
+  params: { userId: string };
+}) {
   console.log(params);
   const router = useRouter();
 
@@ -32,7 +36,7 @@ export default function SetTagNamePage({ params }: { params: { id: string } }) {
 
   const onSubmit: SubmitHandler<TagName> = async (data) => {
     try {
-      const response = await fetch(`/api/user/set-tag/${params.id}`, {
+      const response = await fetch(`/api/user/set-tag/${params.userId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

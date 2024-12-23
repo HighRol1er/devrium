@@ -14,17 +14,20 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { signOut } from '../lib/auth';
 import Link from 'next/link';
-interface AvatarProps {
-  imageUrl: string;
-}
-export default function Avatar({ imageUrl }: AvatarProps) {
+import { User } from 'next-auth';
+// interface AvatarProps {
+//   imageUrl: string;
+//   tagName: string | null;
+//   id: string;
+// }
+export default function Avatar({ image, id }: User) {
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
             <img
-              src={imageUrl}
+              src={image ?? undefined}
               alt="Profile image"
               width={20}
               height={20}
@@ -37,7 +40,7 @@ export default function Avatar({ imageUrl }: AvatarProps) {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild>
-              <Link href="/home/profile">Profile</Link>
+              <Link href={`/profile/${id}`}>Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
           </DropdownMenuGroup>
