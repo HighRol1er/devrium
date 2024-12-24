@@ -1,5 +1,6 @@
 import LeftSidebar from '@/app/(home)/home/components/LeftSidebar';
 import Navbar from '@/app/components/Navbar';
+import RightSidebar from '../(home)/home/components/RightSidebar';
 
 export default async function HomeLayout({
   children,
@@ -12,6 +13,7 @@ export default async function HomeLayout({
       <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr_220px] lg:grid-cols-[280px_1fr_250px]">
         <LeftSidebar />
         <main>{children}</main>
+        <RightSidebar />
       </div>
     </>
   );

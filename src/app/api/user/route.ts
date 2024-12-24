@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { validateUser } from '@/app/lib/hooks';
 
 const prisma = new PrismaClient();
 

@@ -1,4 +1,4 @@
-import { verifyUserSession } from '@/app/lib/hooks';
+import { auth } from '@/app/lib/auth';
 import { createPostRequest } from '@/app/utils/schema/postSchema';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
@@ -11,13 +11,14 @@ export async function POST(request: NextRequest) {
   const { title, content, categoryId }: createPostRequest =
     await request.json();
   try {
-    const userId = await verifyUserSession();
+    const session = await auth();
+    const userId = session?.user.id;
 
     const createPost = await prisma.post.create({
       data: {
         title,
         content,
-        userId,
+        userId: userId as string,
         categoryId,
       },
     });

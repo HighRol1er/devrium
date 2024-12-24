@@ -1,14 +1,21 @@
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-export default function ButtonGroup() {
+interface IButtonGroupProps {
+  userId: string;
+}
+
+export default async function ButtonGroup({ userId }: IButtonGroupProps) {
   return (
     <>
-      <Button
-        variant="ghost"
-        className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
-      >
-        Posts
-      </Button>
+      <Link href={`/profile/${userId}/post`}>
+        <Button
+          variant="ghost"
+          className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
+        >
+          Posts
+        </Button>
+      </Link>
       <Button
         variant="ghost"
         className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"

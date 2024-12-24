@@ -1,26 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { Post } from '@prisma/client';
 import { MessageSquareMore, Share, ThumbsUp, User2 } from 'lucide-react';
 
-interface PostCardProps {
-  userId: string;
-  title: string;
-  content: string;
-  categoryId: number | null;
-  image: string | null;
-  createdAt: string | Date; // 수정
-  updatedAt: string | Date; // 수정
-}
-
-export default function PostCard({
-  userId,
-  title,
-  content,
-  categoryId,
-  image,
-  createdAt,
-  updatedAt,
-}: PostCardProps) {
+export default function MyPostCard() {
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <div className="mb-2 flex items-center space-x-2">
