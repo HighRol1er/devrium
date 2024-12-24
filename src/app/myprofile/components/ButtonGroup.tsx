@@ -16,11 +16,13 @@ export default async function ButtonGroup({ userId }: IButtonGroupProps) {
           Posts
         </Button>
       </Link>
+      <Link href={`/myprofile/${userId}`}></Link>
       <Button
         variant="ghost"
         className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
       >
         Comments
+        <Link href={`/myprofile/${userId}`}></Link>
       </Button>
       <Button
         variant="ghost"
