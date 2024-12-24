@@ -1,12 +1,12 @@
-export interface IUser {
-  id: string;
-  email: string;
-  name: string | null;
-  image: string | null;
-  bio: string | null;
-  // createdAt: Date;
-  // updatedAt: Date;
-}
+// export interface IUser {
+//   id: string;
+//   email: string;
+//   name: string | null;
+//   image: string | null;
+//   bio: string | null;
+//   // createdAt: Date;
+//   // updatedAt: Date;
+// }
 
 export interface RegisterUserReqDto {
   name: string;

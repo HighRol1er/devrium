@@ -2,9 +2,16 @@ import Image from 'next/image';
 import JsLogo from '@/public/js-logo.webp';
 import TsLogo from '@/public/ts-logo.webp';
 import NextLogo from '@/public/next-logo.svg';
+import { IUser } from '@/types/user';
 
-export default async function ProfileSidebar() {
-  // const session = await validateUser();
+interface MyInfo {
+  myInfo: IUser;
+}
+export default async function ProfileSidebar({ myInfo }: MyInfo) {
+  const formattedCreatedAt = new Date(myInfo.createdAt)
+    .toLocaleDateString('en-CA') // 기본적으로 YYYY-MM-DD 형식
+    .replace(/-/g, ' '); // '-'를 ' '로 대체
+
   return (
     <div className="bg-gr hidden h-1/3 w-80 rounded-lg bg-muted/40 bg-gradient-to-b from-muted p-6 shadow-lg md:block">
       <div className="rounded-lg">
@@ -12,10 +19,12 @@ export default async function ProfileSidebar() {
       </div>
       <div className="mt-4">
         <div className="mb-4 grid-rows-2 text-sm">
-          <p>1 Post</p>
-          <p>0 Comment</p>
-          <p>Dec 31, 2023 - Cake day</p>
-          <p>My team</p>
+          <p>{myInfo.posts.length} Post</p>
+          <p>{myInfo.comments.length} Comment</p>
+          <p className="flex gap-2">
+            <span className="font-semibold">Joined </span>
+            {formattedCreatedAt}
+          </p>
         </div>
         <div className="mt-4">
           <h3 className="mb-2 text-lg font-bold">ACHIEVEMENTS</h3>
@@ -48,29 +57,6 @@ export default async function ProfileSidebar() {
           <button className="mt-2 rounded-full bg-muted px-4 py-1 text-sm hover:bg-primary/40">
             View All
           </button>
-        </div>
-        <div className="mt-6">
-          <h3 className="mb-2 text-lg font-bold">SETTINGS</h3>
-          <div className="space-y-2">
-            <button className="flex w-full items-center gap-2 text-left text-sm">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-pink-500 text-xs font-bold">
-                P
-              </span>
-              Profile - Customize your profile
-            </button>
-            <button className="flex w-full items-center gap-2 text-left text-sm">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-xs font-bold">
-                A
-              </span>
-              Avatar - Customize and style
-            </button>
-            <button className="flex w-full items-center gap-2 text-left text-sm">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs font-bold">
-                M
-              </span>
-              Moderation - Moderation Tools
-            </button>
-          </div>
         </div>
         <div className="mt-6">
           <h3 className="mb-2 text-lg font-bold">LINKS</h3>

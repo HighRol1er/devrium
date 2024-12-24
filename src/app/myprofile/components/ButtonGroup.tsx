@@ -8,7 +8,7 @@ interface IButtonGroupProps {
 export default async function ButtonGroup({ userId }: IButtonGroupProps) {
   return (
     <>
-      <Link href={`/profile/${userId}/post`}>
+      <Link href={`/myprofile/${userId}`}>
         <Button
           variant="ghost"
           className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"

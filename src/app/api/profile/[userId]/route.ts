@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, User } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
@@ -7,7 +7,7 @@ export async function GET(
   request: Request,
   { params }: { params: { userId: string } }
 ) {
-  const { userId } = params; // URL에서 사용자 ID 가져오기
+  const { userId } = params;
 
   if (!userId) {
     return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
@@ -22,9 +22,9 @@ export async function GET(
         posts: true,
         comments: true,
         likes: true,
-        follower: true, // follower 관계 데이터
-        following: true, // following 관계 데이터
-        savedPost: true, // savedPost 관계 데이터
+        follower: true,
+        following: true,
+        savedPost: true,
       },
     });
 
