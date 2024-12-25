@@ -1,12 +1,12 @@
+'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { validateUser } from '@/app/lib/hooks';
 import PostCard from './components/PostCard';
+import { useFetchPost } from './_api/fetchPost';
 
-export default async function HomePage() {
-  // ERROR : 이거 함수 실행하면 무한 렌더링 에러 나오네.. // 해결.
-  // const session = await validateUser();
-
+export default function HomePage() {
+  const { data, isLoading, isError } = useFetchPost();
+  console.log(data);
   return (
     <>
       <div className="grid">
