@@ -6,6 +6,13 @@ import {
   HomeIcon,
   LucideProps,
   Settings,
+  UsersRound,
+  SquareTerminal,
+  Medal,
+  Wrench,
+  Trophy,
+  Bot,
+  SquareLibrary,
 } from 'lucide-react';
 import { ForwardRefExoticComponent, RefAttributes } from 'react';
 import Link from 'next/link';
@@ -28,23 +35,54 @@ export const leftMenu: iAppProps[] = [
     href: '/home',
     icon: HomeIcon,
   },
+
   {
     id: 1,
-    name: 'Questions',
-    href: '/home/question',
-    icon: MessageCircleCode,
-  },
-  {
-    id: 2,
     name: 'Bookmark',
     href: '/home/bookmark',
     icon: Bookmark,
   },
   {
-    id: 3,
+    id: 2,
     name: 'Settings',
     href: '/home/settings',
     icon: Settings,
+  },
+  {
+    id: 3,
+    name: 'Top Users',
+    href: '/home/topusers',
+    icon: Trophy,
+  },
+  {
+    id: 4,
+    name: 'Coderium',
+    href: '/home/coderium',
+    icon: SquareTerminal,
+  },
+  {
+    id: 5,
+    name: 'Questions',
+    href: '/home/questions',
+    icon: MessageCircleCode,
+  },
+  {
+    id: 6,
+    name: 'Crew',
+    href: '/home/crew',
+    icon: UsersRound,
+  },
+  {
+    id: 7,
+    name: 'Reference',
+    href: '/home/reference',
+    icon: SquareLibrary,
+  },
+  {
+    id: 8,
+    name: 'Meme',
+    href: '/home/meme',
+    icon: Bot,
   },
 ];
 
@@ -63,7 +101,7 @@ export function LeftSidebarMenu() {
           key={menu.id}
           href={menu.href}
         >
-          <menu.icon className="size-4" />
+          <menu.icon className="size-6" />
           {menu.name}
         </Link>
       ))}
