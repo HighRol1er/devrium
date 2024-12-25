@@ -9,6 +9,7 @@ import {
 } from '@prisma/client';
 
 export interface IUser extends User {
+  name: string;
   follower: Follow[];
   following: Follow[];
   posts: Post[];

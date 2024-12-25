@@ -5,7 +5,7 @@ interface IButtonGroupProps {
   userId: string;
 }
 
-export default async function ButtonGroup({ userId }: IButtonGroupProps) {
+export default function ButtonGroup({ userId }: IButtonGroupProps) {
   return (
     <>
       <Link href={`/myprofile/${userId}`}>

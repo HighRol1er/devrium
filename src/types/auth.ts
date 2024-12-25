@@ -1,31 +1,3 @@
-// export interface IUser {
-//   id: string;
-//   email: string;
-//   name: string | null;
-//   image: string | null;
-//   bio: string | null;
-//   // createdAt: Date;
-//   // updatedAt: Date;
-// }
-
-export interface RegisterUserReqDto {
-  name: string;
-  email: string;
-  password: string;
-}
-
-export interface LoginRequestDto {
-  email: string;
-  password: string;
-}
-
-export interface LoginResponseDto {
-  uid: string;
-  email: string;
-  displayName?: string;
-  accessToken: string;
-}
-
 // Prisma, NextJs 등에서 사용되는 DTO 정의 할 떄 사용
 // DTO : Data Transfer Object
 import { z } from 'zod';

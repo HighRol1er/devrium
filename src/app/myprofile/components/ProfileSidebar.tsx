@@ -2,15 +2,14 @@ import Image from 'next/image';
 import JsLogo from '@/public/js-logo.webp';
 import TsLogo from '@/public/ts-logo.webp';
 import NextLogo from '@/public/next-logo.svg';
-import { IUser } from '@/types/user';
+import { useProfileStore } from '@/store/profileStore';
 
-interface MyInfo {
-  myInfo: IUser;
-}
-export default async function ProfileSidebar({ myInfo }: MyInfo) {
-  const formattedCreatedAt = new Date(myInfo.createdAt)
-    .toLocaleDateString('en-CA') // 기본적으로 YYYY-MM-DD 형식
-    .replace(/-/g, ' '); // '-'를 ' '로 대체
+export default function ProfileSidebar() {
+  const sideProfile = useProfileStore((state) => state.sideProfile);
+
+  const formattedCreatedAt = new Date(sideProfile.createdAt)
+    .toLocaleDateString('en-CA')
+    .replace(/-/g, ' ');
 
   return (
     <div className="bg-gr hidden h-1/3 w-80 rounded-lg bg-muted/40 bg-gradient-to-b from-muted p-6 shadow-lg md:block">
@@ -19,8 +18,8 @@ export default async function ProfileSidebar({ myInfo }: MyInfo) {
       </div>
       <div className="mt-4">
         <div className="mb-4 grid-rows-2 text-sm">
-          <p>{myInfo.posts.length} Post</p>
-          <p>{myInfo.comments.length} Comment</p>
+          <p>{sideProfile.postCount} Post</p>
+          <p>{sideProfile.commentCount} Comment</p>
           <p className="flex gap-2">
             <span className="font-semibold">Joined </span>
             {formattedCreatedAt}

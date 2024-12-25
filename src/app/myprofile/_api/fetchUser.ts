@@ -1,4 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
+import { IUser } from '@/types/user';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 export async function fetchMyProfile(userId: string) {
   const response = await fetch(`http://localhost:3000/api/profile/${userId}`, {
@@ -15,10 +16,9 @@ export async function fetchMyProfile(userId: string) {
   return response.json();
 }
 
-export function useFetchUser(userId: string) {
-  return useQuery({
-    queryKey: ['user', userId],
+export const useFetchMyProfile = (userId: string) => {
+  return useQuery<IUser>({
+    queryKey: ['profile', userId],
     queryFn: () => fetchMyProfile(userId),
-    enabled: !!userId,
   });
-}
+};
