@@ -1,24 +1,20 @@
 import { Post } from '@prisma/client';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 const API_URL = process.env.NEXT_PUBLIC_URL;
 
-export const fetchAllPost = async () => {
-  const response = await fetch(`${API_URL}/post`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+interface FetchPostsResponse {
+  posts: Post[];
+  totalCount: number;
+  currentPage: number;
+}
+
+export const fetchPosts = async ({
+  pageParam = 1,
+}): Promise<FetchPostsResponse> => {
+  const response = await fetch(`${API_URL}/post?page=${pageParam}&pageSize=3`);
   if (!response.ok) {
-    throw new Error(`Error: ${response.statusText}`);
+    throw new Error('Failed to fetch posts');
   }
   return response.json();
-};
-
-export const useFetchPost = () => {
-  return useQuery<Post>({
-    queryKey: ['post'],
-    queryFn: () => fetchAllPost(),
-  });
 };

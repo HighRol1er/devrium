@@ -6,7 +6,7 @@ import ProfileCard from '../components/ProfileCard';
 import ProfileSidebar from '../components/ProfileSidebar';
 import { useFetchMyProfile } from '../_api/fetchUser';
 import { use, useEffect } from 'react';
-import { useProfileStore } from '@/store/profileStore';
+import { useProfileStore } from '@/store/profile/profileStore';
 
 export default function MyProfilePage({
   params,

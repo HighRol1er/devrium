@@ -1,6 +1,6 @@
 import { MessageSquareMore, Share, ThumbsUp, User2 } from 'lucide-react';
 
-export default function PostCard() {
+export default function PostCard({ post }: any) {
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <div className="mb-2 flex items-center space-x-2">

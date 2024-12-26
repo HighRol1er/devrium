@@ -2,7 +2,7 @@ import Image from 'next/image';
 import JsLogo from '@/public/js-logo.webp';
 import TsLogo from '@/public/ts-logo.webp';
 import NextLogo from '@/public/next-logo.svg';
-import { useProfileStore } from '@/store/profileStore';
+import { useProfileStore } from '@/store/profile/profileStore';
 
 export default function ProfileSidebar() {
   const sideProfile = useProfileStore((state) => state.sideProfile);

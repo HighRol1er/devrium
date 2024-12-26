@@ -1,7 +1,7 @@
 import { IUser } from '@/types/user';
 import { PenLine } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
-import { useProfileStore } from '@/store/profileStore';
+import { useProfileStore } from '@/store/profile/profileStore';
 
 export default function ProfileCardProps() {
   const profile = useProfileStore((state) => state.profile);
