@@ -5,6 +5,7 @@ import './globals.css';
 import Footer from './components/Footer';
 import { ThemeProvider } from './components/ThemeProvider';
 import { TanStackProvider } from '@/providers/TanStackProvider';
+import { SessionProvider } from 'next-auth/react';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,7 +39,9 @@ export default function RootLayout({
           // enableSystem
           disableTransitionOnChange
         >
-          <TanStackProvider>{children}</TanStackProvider>
+          <SessionProvider>
+            <TanStackProvider>{children}</TanStackProvider>
+          </SessionProvider>
         </ThemeProvider>
         <Footer />
       </body>

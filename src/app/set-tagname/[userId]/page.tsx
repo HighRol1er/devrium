@@ -7,6 +7,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
+const API_URL = process.env.NEXT_PUBLIC_URL;
+
 const tagNameSchema = z.object({
   name: z
     .string()
@@ -36,13 +38,16 @@ export default function SetTagNamePage({
 
   const onSubmit: SubmitHandler<TagName> = async (data) => {
     try {
-      const response = await fetch(`/api/user/set-tag/${params.userId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ tagName: data.name }),
-      });
+      const response = await fetch(
+        `${API_URL}/api/user/set-tag/${params.userId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ tagName: data.name }),
+        }
+      );
       console.log(response);
       router.push('/home');
     } catch (error) {

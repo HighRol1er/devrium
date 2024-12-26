@@ -12,7 +12,9 @@ interface FetchPostsResponse {
 export const fetchPosts = async ({
   pageParam = 1,
 }): Promise<FetchPostsResponse> => {
-  const response = await fetch(`${API_URL}/post?page=${pageParam}&pageSize=3`);
+  const response = await fetch(
+    `${API_URL}/api/post?page=${pageParam}&pageSize=3`
+  );
   if (!response.ok) {
     throw new Error('Failed to fetch posts');
   }

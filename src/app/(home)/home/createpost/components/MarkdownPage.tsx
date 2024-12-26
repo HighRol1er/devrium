@@ -1,4 +1,3 @@
-import { Input } from '@/components/ui/input';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -7,12 +6,17 @@ import remarkGfm from 'remark-gfm';
 export default function MarkdownPage({ markdown }: { markdown: string }) {
   return (
     <div>
-      <div className="duration-[125ms] overflow-wrap-anywhere max-w-[54rem] break-words text-[1.125rem] leading-[1.7] tracking-[-0.004em] transition-colors ease-in">
+      <div className="text-sm">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
             code({ className, children }) {
+              // const match = /language-(\w+)/.exec(className || '');
               const match = /language-(\w+)/.exec(className || '');
+              const codeContent = String(children || '').trim(); // 빈 값이나 undefined를 방지
+
+              if (!codeContent) return null; // 내용이 없다면 렌더링하지 않음
+              const cleanedContent = codeContent.replace(/\n\s*\n/g, '\n');
               return match ? (
                 // 코드 (```)
                 <SyntaxHighlighter
@@ -20,6 +24,7 @@ export default function MarkdownPage({ markdown }: { markdown: string }) {
                   language={match[1]}
                   PreTag="div"
                 >
+                  {cleanedContent}
                   {String(children)
                     .replace(/\n$/, '')
                     .replace(/\n&nbsp;\n/g, '')
@@ -32,6 +37,7 @@ export default function MarkdownPage({ markdown }: { markdown: string }) {
                   language="textile"
                   PreTag="div"
                 >
+                  {cleanedContent}
                   {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
               );

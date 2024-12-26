@@ -20,6 +20,7 @@ export default function MyProfilePage({
   const setProfile = useProfileStore((state) => state.setProfile);
   const setSideProfile = useProfileStore((state) => state.setSideProfile);
 
+  // 이거 userId 저장하는건 홈에 들어왔을 때 했어야했넹..
   useEffect(() => {
     if (data) {
       setProfile({

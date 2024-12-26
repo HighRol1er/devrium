@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 const API_URL = process.env.NEXT_PUBLIC_URL;
 
 export async function fetchMyProfile(userId: string) {
-  const response = await fetch(`${API_URL}/profile/${userId}`, {
+  const response = await fetch(`${API_URL}/api/profile/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

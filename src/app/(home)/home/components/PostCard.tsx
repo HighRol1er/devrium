@@ -5,7 +5,9 @@ export default function PostCard({ postId }: { postId: number }) {
   const post = usePostStore((state) =>
     state.posts.find((p) => p.id === postId)
   );
-  console.log('post user Image >>>', post?.user.image);
+  // console.log('post user Image >>>', post?.user.image);
+
+  // post 없으면 error.tsx로 이동시키던가 해야할듯
   if (!post) return null;
 
   return (

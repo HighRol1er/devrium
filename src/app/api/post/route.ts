@@ -11,6 +11,9 @@ export async function POST(request: NextRequest) {
   const { title, content, categoryId }: createPostRequest =
     await request.json();
   try {
+    if (!title || !content || !categoryId) {
+      return NextResponse.json({ error: 'Fields required' }, { status: 400 });
+    }
     const session = await auth();
     const userId = session?.user.id;
 
