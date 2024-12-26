@@ -58,6 +58,7 @@ export async function GET(request: NextRequest) {
         user: {
           select: {
             tagName: true,
+            image: true,
           },
         },
       },

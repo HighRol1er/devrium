@@ -1,21 +1,18 @@
 import { create } from 'zustand';
+import { Post } from '@prisma/client';
 
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  categoryId: number;
-  userId: string;
-  image: string | null;
+export interface IPost extends Post {
+  user: {
+    tagName: string | null;
+    image: string | null;
+  };
 }
 
 interface PostState {
-  posts: Post[];
-  setPosts: (newPosts: Post[]) => void;
-  addPost: (post: Post) => void;
-  updatePost: (id: number, updatedPost: Partial<Post>) => void;
+  posts: IPost[];
+  setPosts: (newPosts: IPost[]) => void;
+  addPost: (post: IPost) => void;
+  updatePost: (id: number, updatedPost: Partial<IPost>) => void;
   removePost: (id: number) => void;
 }
 

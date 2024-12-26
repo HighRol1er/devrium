@@ -5,8 +5,9 @@ import { Button } from '@/components/ui/button';
 import PostCard from './components/PostCard';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchPosts } from './_api/fetchPost';
-import { useRef } from 'react';
-import { Post } from '@prisma/client';
+import { useRef, useEffect } from 'react';
+import { IPost } from '@/store/post/postStore';
+import usePostStore from '@/store/post/postStore';
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
@@ -19,6 +20,17 @@ export default function HomePage() {
         return currentPage < totalCount ? currentPage + 1 : undefined;
       },
     });
+  // console.log(data);
+
+  const setPosts = usePostStore((state) => state.setPosts);
+
+  useEffect(() => {
+    if (data?.pages) {
+      const allPosts = data.pages.flatMap((page) => page.posts);
+      setPosts(allPosts);
+    }
+  }, [data, setPosts]);
+
   const observer = useRef<IntersectionObserver | null>(null);
 
   const lastPostRef = (node: HTMLElement | null) => {
@@ -47,7 +59,8 @@ export default function HomePage() {
 
         {data?.pages.map((page, pageIndex) => (
           <div key={pageIndex} className="post-page">
-            {page.posts.map((post: Post, postIndex: number) => {
+            {page.posts.map((post: IPost, postIndex: number) => {
+              // 현재가 마지막 페이지인지 체크
               const isLastPost =
                 pageIndex === data.pages.length - 1 &&
                 postIndex === page.posts.length - 1;
@@ -55,10 +68,10 @@ export default function HomePage() {
               return (
                 <div
                   key={post.id}
-                  ref={isLastPost ? lastPostRef : null} // 마지막 포스트에 ref 연결
+                  ref={isLastPost ? lastPostRef : null}
                   className="post-item"
                 >
-                  <PostCard post={post} />
+                  <PostCard postId={post.id} />
                 </div>
               );
             })}

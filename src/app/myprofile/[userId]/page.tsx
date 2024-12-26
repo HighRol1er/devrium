@@ -47,9 +47,9 @@ export default function MyProfilePage({
       <div className="flex min-h-screen justify-center gap-2 pr-2">
         <div className="w-full border-r bg-muted/40 p-6 shadow-md">
           <ProfileCard />
-          {data?.posts.map((post: Post) => (
+          {/* {data?.posts.map((post: Post) => (
             <PostCard key={post.id} {...post} />
-          ))}
+          ))} */}
         </div>
         <ProfileSidebar />
       </div>

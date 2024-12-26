@@ -1,10 +1,10 @@
-import { Post } from '@prisma/client';
+import { IPost } from '@/store/post/postStore';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 const API_URL = process.env.NEXT_PUBLIC_URL;
 
 interface FetchPostsResponse {
-  posts: Post[];
+  posts: IPost[];
   totalCount: number;
   currentPage: number;
 }
