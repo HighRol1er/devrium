@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import { string } from 'zod';
 
 const API_URL = process.env.NEXT_PUBLIC_URL;
 

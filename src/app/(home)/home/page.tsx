@@ -24,6 +24,7 @@ export default function HomePage() {
 
   const setPosts = usePostStore((state) => state.setPosts);
 
+  // 이부분 솔직히 필요 없을꺼같음 // why? 저장해서 뭐할건데 db에 저장이 되어 있는데.
   useEffect(() => {
     if (data?.pages) {
       const allPosts = data.pages.flatMap((page) => page.posts);

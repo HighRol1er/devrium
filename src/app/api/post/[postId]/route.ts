@@ -4,6 +4,39 @@ import { NextRequest, NextResponse } from 'next/server';
 import { UpdatePostRequestDto } from '../type';
 
 const prisma = new PrismaClient();
+
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { postId: string } }
+) {
+  const { postId } = params;
+  const id = Number(postId);
+
+  try {
+    const getPost = await prisma.post.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!getPost) {
+      return NextResponse.json(
+        {
+          error: 'Post not found',
+        },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(getPost, { status: 200 });
+  } catch (error) {
+    console.error(error, 'Error get post');
+    return NextResponse.json({ error: 'Failed get Post ' }, { status: 500 });
+  }
+}
+
 /** Update post
  * End point : api/post/[postId]
  */
