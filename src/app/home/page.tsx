@@ -20,7 +20,7 @@ export default function HomePage() {
         return currentPage < totalCount ? currentPage + 1 : undefined;
       },
     });
-  // console.log(data);
+  // console.log(data); <genn>
 
   const setPosts = usePostStore((state) => state.setPosts);
 

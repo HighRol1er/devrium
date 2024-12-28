@@ -1,8 +1,16 @@
 'use client';
+
 import { useParams } from 'next/navigation';
 import { useFetchPostDetail } from '../_api/postDetailAPI';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import PostStats from '../../components/PostStats';
+
+/*
+댓글 달기 + 댓글 불러오기 
+zustand 
+// 
+*/
 
 export default function PostDetailPage() {
   const params = useParams();
@@ -29,6 +37,7 @@ export default function PostDetailPage() {
         </div>
         <div className="max-w-2xl">
           <p className="mb-4">{data?.content}</p>
+          <PostStats />
           <hr className="mb-4" />
           <div className="flex flex-col gap-2">
             <Textarea placeholder="Be Gentle!!" className="h-24" />

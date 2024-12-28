@@ -1,12 +1,10 @@
 'use client';
 
-import PostCard from '@/app/(home)/home/components/PostCard';
-import { Post } from '@prisma/client';
+import { useProfileStore } from '@/store/profile/profileStore';
+import { use, useEffect } from 'react';
+import { useFetchMyProfile } from '../_api/fetchUser';
 import ProfileCard from '../components/ProfileCard';
 import ProfileSidebar from '../components/ProfileSidebar';
-import { useFetchMyProfile } from '../_api/fetchUser';
-import { use, useEffect } from 'react';
-import { useProfileStore } from '@/store/profile/profileStore';
 
 export default function MyProfilePage({
   params,
@@ -14,6 +12,7 @@ export default function MyProfilePage({
   params: Promise<{ userId: string }>;
 }) {
   const { userId } = use(params);
+  //
 
   const { data, isLoading, isError } = useFetchMyProfile(userId);
 

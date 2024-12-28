@@ -1,7 +1,7 @@
-import LeftSidebar from '@/app/(home)/home/components/LeftSidebar';
-import Navbar from '@/app/components/Navbar';
-import RightSidebar from '../(home)/home/components/RightSidebar';
+import LeftSidebar from '@/app/home/components/LeftSidebar';
+import RightSidebar from '../home/components/RightSidebar';
 import ProfileCard from './components/ProfileCard';
+import Navbar from '@/components/common/Navbar';
 
 export default async function HomeLayout({
   children,

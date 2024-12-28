@@ -19,7 +19,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-interface iAppProps {
+interface IAppProps {
   id: number;
   name: string;
   href: string;
@@ -28,7 +28,7 @@ interface iAppProps {
   >;
 }
 
-export const leftMenu: iAppProps[] = [
+export const leftMenu: IAppProps[] = [
   {
     id: 0,
     name: 'Home',

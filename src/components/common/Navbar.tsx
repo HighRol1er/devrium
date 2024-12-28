@@ -7,8 +7,8 @@ import { Search } from 'lucide-react';
 import { AuthModal } from './AuthModal';
 import Avatar from './Avatar';
 import { ThemeToggle } from './ThemeToggle';
-import { signOut } from '../lib/auth';
-import { validateUser } from '../lib/authSession';
+// import { signOut } from '@/app/lib/auth';
+import { validateUser } from '@/app/lib/authSession';
 
 export default async function Navbar() {
   const session = await validateUser();

@@ -12,9 +12,9 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { signOut } from '../lib/auth';
 import Link from 'next/link';
 import { User } from 'next-auth';
+import { signOut } from '@/app/lib/auth';
 // interface AvatarProps {
 //   imageUrl: string;
 //   tagName: string | null;

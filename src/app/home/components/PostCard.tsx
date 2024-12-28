@@ -1,8 +1,11 @@
 import usePostStore from '@/store/post/postStore';
 import { MessageSquareMore, Share, ThumbsUp, User2 } from 'lucide-react';
 import Link from 'next/link';
+import PostStats from './PostStats';
 
 // PostCard는 게시글의 본문 내용을 보여주는데 한 몇백자 까지만 보여주도록해야겠음.
+// postId: Interface로 만들어서 컨벤션
+// postCard Props
 
 export default function PostCard({ postId }: { postId: number }) {
   const post = usePostStore((state) =>
@@ -41,20 +44,7 @@ export default function PostCard({ postId }: { postId: number }) {
         </div>
         <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>
         <p className="mb-4">{post?.content}</p>
-        <div className="flex space-x-4 text-sm text-gray-400">
-          <button className="flex gap-1 hover:text-blue-500">
-            <ThumbsUp className="size-4" />
-            <p className="">8</p>
-          </button>
-          <button className="flex gap-1 hover:text-blue-500">
-            <MessageSquareMore className="size-4" />
-            <p className="">10</p>
-          </button>
-          <button className="flex gap-1 hover:text-blue-500">
-            <Share className="size-4" />
-            <p className="">Share</p>
-          </button>
-        </div>
+        <PostStats />
       </Link>
     </div>
   );

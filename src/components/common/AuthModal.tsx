@@ -7,8 +7,8 @@ import {
 } from '@/components/ui/dialog';
 import Image from 'next/image';
 import Logo from '@/public/logo.png';
-import { signIn } from '../lib/auth';
 import { GitHubAuthButton, GoogleAuthButton } from './SubmitBtn';
+import { signIn } from '@/app/lib/auth';
 
 export function AuthModal() {
   return (

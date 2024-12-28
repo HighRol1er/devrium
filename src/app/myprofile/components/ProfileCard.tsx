@@ -1,4 +1,3 @@
-import { IUser } from '@/types/user';
 import { PenLine } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
 import { useProfileStore } from '@/store/profile/profileStore';
