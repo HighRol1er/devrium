@@ -28,7 +28,7 @@ export default function SetTagNamePage({
     },
   });
 
-  const onSubmit: SubmitHandler<TagName> = async (data) => {
+  const onSubmitTagName: SubmitHandler<TagName> = async (data) => {
     const tagName = data.name;
     const userId = params.userId;
     try {
@@ -66,7 +66,7 @@ export default function SetTagNamePage({
               Once set, it cannot be changed.
             </div>
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmitTagName)}>
             <Input
               id="name"
               type="text"

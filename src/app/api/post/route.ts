@@ -1,5 +1,6 @@
 import { auth } from '@/app/lib/auth';
-import { createPostRequest } from '@/app/utils/schema/postSchema';
+// import { createPostRequest } from '@/app/utils/schema/postSchema';
+import { createPostRequest } from '@/types/post';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();

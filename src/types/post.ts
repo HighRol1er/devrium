@@ -6,3 +6,9 @@ export interface IPost extends Post {
     image: string | null;
   };
 }
+
+export interface createPostRequest {
+  title: string;
+  content: string;
+  categoryId: number;
+}
