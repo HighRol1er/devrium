@@ -3,8 +3,8 @@
 import { useProfileStore } from '@/store/profile/profileStore';
 import { use, useEffect } from 'react';
 import { useFetchMyProfile } from '../_api/fetchUser';
-import ProfileCard from '../components/ProfileCard';
-import ProfileSidebar from '../components/ProfileSidebar';
+import ProfileCard from '../../../components/myProfile/ProfileCard';
+import ProfileSidebar from '../../../components/myProfile/ProfileSidebar';
 
 export default function MyProfilePage({
   params,

@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { useFetchPostDetail } from '../_api/postDetailAPI';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import PostStats from '../../components/PostStats';
+import PostStats from '../../../../components/home/PostStats';
 
 /*
 댓글 달기 + 댓글 불러오기 

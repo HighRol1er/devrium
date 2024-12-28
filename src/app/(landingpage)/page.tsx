@@ -13,7 +13,7 @@ export default function Home() {
             Share your thinking.
           </h1>
           <p className="mb-6 text-lg md:text-xl">
-            Devrium is the public and flexible SNS app <br />
+            Devrium is the worldwide SNS platform <br />
             connet with Dev's round the world
           </p>
           <div>

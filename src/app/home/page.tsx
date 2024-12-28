@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import PostCard from './components/PostCard';
+import PostCard from '../../components/home/PostCard';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchPosts } from './_api/fetchPost';
 import { useRef, useEffect } from 'react';
