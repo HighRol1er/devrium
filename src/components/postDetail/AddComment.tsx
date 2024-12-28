@@ -49,7 +49,7 @@ export default function AddComment({ postId }: { postId: string }) {
         <form onSubmit={handleSubmit(onSubmitComment)}>
           <Textarea
             placeholder="Be Gentle!!"
-            className="h-24"
+            className="mb-4 h-24"
             id="comment"
             {...register('comment', { required: 'Comment field is empty' })}
           />

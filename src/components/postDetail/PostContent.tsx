@@ -7,7 +7,7 @@ interface PostContentProps {
 
 export default function PostContent({ data }: PostContentProps) {
   return (
-    <div className="">
+    <div className="max-w-3xl">
       <div className="mb-4 flex items-center">
         <img
           src={data?.user.image as string}

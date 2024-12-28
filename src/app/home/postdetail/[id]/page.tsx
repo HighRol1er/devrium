@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import PostStats from '../../../../components/home/PostStats';
 import PostContent from '@/components/postDetail/PostContent';
 import AddComment from '@/components/postDetail/AddComment';
+import { User } from 'lucide-react';
 
 /*
 댓글 달기 + 댓글 불러오기 
@@ -22,11 +23,13 @@ export default function PostDetailPage() {
   }
   const { data, isLoading, isError } = useFetchPostDetail(postId);
 
+  const comments = data?.comments || [];
+
   console.log(data);
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center">
-      <div className="items-center rounded-md">
+    <div className="mx-auto flex min-h-screen w-full flex-col items-center">
+      <div className="w-full max-w-3xl items-center rounded-md p-4">
         {data && <PostContent data={data} />}
 
         <AddComment postId={postId} />
@@ -34,14 +37,39 @@ export default function PostDetailPage() {
           <h2 className="mb-3 font-semibold">Comments</h2>
           {/* 댓글 달리는 곳 */}
           <div className="mb-2 border-l-4 p-3 shadow-md">
-            <p className="">
-              Not sure if you kept up on news but the Interchain Foundation
-              acquired Skip to form a new entity called Interchain Inc. The goal
-              is to enhance product development and integrate efforts within the
-              Cosmos ecosystem, focusing on upgrading core components and
-              streamlining collaboration. I think 2025 is going to be different
-              for Cosmo.
-            </p>
+            {comments.length > 0 ? (
+              comments.map((comment) => (
+                <div key={comment.id}>
+                  <div className="mb-2 flex gap-2">
+                    {comment.user.image ? (
+                      <img
+                        src={comment.user.image}
+                        alt={comment.user.name}
+                        className="size-8 rounded-full"
+                      />
+                    ) : (
+                      <User />
+                    )}
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold">
+                        {comment.user.name}
+                      </span>
+                      <span className="text-[12px] font-semibold text-gray-400">
+                        @{comment.user.tagName}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600">{comment.content}</p>
+                  <span className="text-xs text-gray-400">
+                    {new Date(comment.createdAt).toLocaleString()}
+                  </span>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">
+                No comments yet. Be the first to comment!
+              </p>
+            )}
           </div>
         </div>
       </div>
