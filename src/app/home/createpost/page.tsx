@@ -8,32 +8,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
-import MarkdownPage from '../../../components/createPost/MarkdownPage';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import MarkdownPage from '@/components/createPost/MarkdownPage';
+import { CreatePost } from '@/schema/createPostSchema';
+
+import { useState } from 'react';
+import { useCreatePost } from '@/_api/createPost/queries/useCreatePost';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { useCreatePost } from './_api/createPostAPI';
 // import { useSession } from 'next-auth/react'; // 일단 보류
-// create 이후에 또 zustand에 넣어야하나? .a
-
-const createPostSchema = z.object({
-  title: z.string().nonempty('title required'),
-  markdown: z.string().nonempty('content required'),
-});
-
-type CreatePost = z.infer<typeof createPostSchema>;
 
 export default function CreatePostPage() {
-  const [selectCategory, setSelectCategory] = useState<string>(''); // 이거 넘길땐 number로 형변환해서 넘기기
+  const [selectCategory, setSelectCategory] = useState<string>('');
 
+  //NOTE: method 정리하기
   const { mutate, isPending } = useCreatePost();
-  // const [title, setTitle] = useState<string>('');
-  // const [markdown, setMarkdown] = useState<string>('');
 
-  //hook-form
   const {
     register,
     handleSubmit,
@@ -80,8 +71,6 @@ export default function CreatePostPage() {
           <Input
             placeholder="Write your title"
             className="mb-2 w-full border border-gray-500 p-3 focus:outline-none"
-            // value={title}
-            // onChange={(e) => setTitle(e.target.value)}
             id="title"
             type="text"
             {...register('title', { required: 'Title is required' })}
@@ -110,8 +99,6 @@ export default function CreatePostPage() {
           <Textarea
             className="mb-4 h-[70vh] w-full rounded-md border border-gray-500"
             placeholder="Write your 💡 here."
-            // value={markdown}
-            // onChange={(e) => setMarkdown(e.target.value)}
             id="markdown"
             {...register('markdown', { required: ' Contents required' })}
             style={{ outline: 'none', boxShadow: 'none' }}

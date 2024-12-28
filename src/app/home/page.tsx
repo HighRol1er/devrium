@@ -1,36 +1,27 @@
 'use client';
 
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import PostCard from '../../components/home/PostCard';
+import { IPost } from '@/types/post';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchPosts } from './_api/fetchPost';
-import { useRef, useEffect } from 'react';
-import { IPost } from '@/store/post/postStore';
-import usePostStore from '@/store/post/postStore';
+import Link from 'next/link';
+import { useRef } from 'react';
+import PostCard from '../../components/home/PostCard';
+
+import { Loader } from 'lucide-react';
+import { getAllPosts } from '@/_api/home/getAllPosts';
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
       queryKey: ['posts'],
-      queryFn: fetchPosts,
+      queryFn: getAllPosts,
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
         const { currentPage, totalCount } = lastPage;
         return currentPage < totalCount ? currentPage + 1 : undefined;
       },
     });
-  // console.log(data); <genn>
-
-  const setPosts = usePostStore((state) => state.setPosts);
-
-  // 이부분 솔직히 필요 없을꺼같음 // why? 저장해서 뭐할건데 db에 저장이 되어 있는데.
-  useEffect(() => {
-    if (data?.pages) {
-      const allPosts = data.pages.flatMap((page) => page.posts);
-      setPosts(allPosts);
-    }
-  }, [data, setPosts]);
+  console.log(data);
 
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -49,6 +40,7 @@ export default function HomePage() {
 
     if (node) observer.current.observe(node);
   };
+  //NOTE: loading.tsx 만들어서 로딩 만들기
   if (isLoading) return <p>Loading posts...</p>;
 
   return (
@@ -72,14 +64,14 @@ export default function HomePage() {
                   ref={isLastPost ? lastPostRef : null}
                   className="post-item"
                 >
-                  <PostCard postId={post.id} />
+                  <PostCard post={post} />
                 </div>
               );
             })}
           </div>
         ))}
 
-        {isFetchingNextPage && <p>Loading more posts...</p>}
+        {isFetchingNextPage && <Loader className="animate-spin" />}
       </div>
     </>
   );

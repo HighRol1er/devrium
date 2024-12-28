@@ -1,13 +1,5 @@
 import { create } from 'zustand';
-import { Post } from '@prisma/client';
-
-export interface IPost extends Post {
-  user: {
-    name: string;
-    tagName: string | null;
-    image: string | null;
-  };
-}
+import { IPost } from '@/types/post';
 
 interface PostState {
   posts: IPost[];

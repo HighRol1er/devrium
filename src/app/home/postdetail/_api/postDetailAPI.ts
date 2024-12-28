@@ -1,4 +1,4 @@
-import { IPost } from '@/store/post/postStore';
+import { IPost } from '@/types/post';
 import { Comment } from '@prisma/client';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 

@@ -1,10 +1,10 @@
 'use client';
 
-import { useProfileStore } from '@/store/profile/profileStore';
 import { use, useEffect } from 'react';
-import { useFetchMyProfile } from '../_api/fetchUser';
-import ProfileCard from '../../../components/myProfile/ProfileCard';
-import ProfileSidebar from '../../../components/myProfile/ProfileSidebar';
+import { useProfileStore } from '@/store/profile/profileStore';
+import { useGetMyProfile } from '@/_api/myProfile/queries/useGetMyProfile';
+import ProfileSidebar from '@/components/myProfile/ProfileSidebar';
+import ProfileCard from '@/components/myProfile/ProfileCard';
 
 export default function MyProfilePage({
   params,
@@ -14,12 +14,12 @@ export default function MyProfilePage({
   const { userId } = use(params);
   //
 
-  const { data, isLoading, isError } = useFetchMyProfile(userId);
+  const { data, isLoading, isError } = useGetMyProfile(userId);
 
   const setProfile = useProfileStore((state) => state.setProfile);
   const setSideProfile = useProfileStore((state) => state.setSideProfile);
 
-  // 이거 userId 저장하는건 홈에 들어왔을 때 했어야했넹..
+  // NOTE:저장을 할꺼면 아예 로그인을 할 때 저장을 하게끔
   useEffect(() => {
     if (data) {
       setProfile({
@@ -31,7 +31,7 @@ export default function MyProfilePage({
         userId: data.id,
       });
       setSideProfile({
-        createdAt: data.createdAt, // Date를 string으로 변환
+        createdAt: data.createdAt,
         postCount: data.posts.length,
         commentCount: data.comments.length,
       });

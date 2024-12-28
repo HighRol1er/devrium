@@ -2,7 +2,7 @@ import { PenLine } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
 import { useProfileStore } from '@/store/profile/profileStore';
 
-export default function ProfileCardProps() {
+export default function ProfileCard() {
   const profile = useProfileStore((state) => state.profile);
 
   return (

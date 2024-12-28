@@ -4,11 +4,10 @@ import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { userId: string } }
 ) {
-  const { userId } = params;
-
+  const userId = params?.userId;
   if (!userId) {
     return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
   }

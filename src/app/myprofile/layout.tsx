@@ -1,6 +1,6 @@
 import LeftSidebar from '@/components/home/LeftSidebar';
-import RightSidebar from '../../components/home/RightSidebar';
-import ProfileCard from '../../components/myProfile/ProfileCard';
+// import RightSidebar from '../../components/home/RightSidebar';
+
 import Navbar from '@/components/common/Navbar';
 
 export default async function HomeLayout({

@@ -1,21 +1,15 @@
-import usePostStore from '@/store/post/postStore';
-import { MessageSquareMore, Share, ThumbsUp, User2 } from 'lucide-react';
+import { IPost } from '@/types/post';
+import { User2 } from 'lucide-react';
 import Link from 'next/link';
 import PostStats from './PostStats';
 
 // PostCard는 게시글의 본문 내용을 보여주는데 한 몇백자 까지만 보여주도록해야겠음.
 // postId: Interface로 만들어서 컨벤션
 // postCard Props
-
-export default function PostCard({ postId }: { postId: number }) {
-  const post = usePostStore((state) =>
-    state.posts.find((p) => p.id === postId)
-  );
-  // console.log('post user Image >>>', post?.user.image);
-
-  // post 없으면 error.tsx로 이동시키던가 해야할듯
-  if (!post) return null;
-
+interface PostCardProps {
+  post: IPost;
+}
+export default function PostCard({ post }: PostCardProps) {
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <Link href={`/home/postdetail/${post.id}`}>
@@ -35,7 +29,7 @@ export default function PostCard({ postId }: { postId: number }) {
             <User2 className="h-8 w-8 rounded-full border-b" />
           )}
 
-          <p className="font-semibold">{post?.user.tagName}</p>
+          <p className="font-semibold">{post?.user?.tagName}</p>
         </Link>
         <div className="mb-2 flex gap-1 text-sm">
           <span className="inline-block rounded-full bg-primary/20 px-3 py-1">
@@ -47,5 +41,6 @@ export default function PostCard({ postId }: { postId: number }) {
         <PostStats />
       </Link>
     </div>
+    // <div>hello from postcard</div>
   );
 }
