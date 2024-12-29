@@ -3,6 +3,7 @@ import { auth } from '@/app/lib/auth';
 import { createPostRequest } from '@/types/post';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 const prisma = new PrismaClient();
 
 /** Create Post
@@ -11,12 +12,15 @@ const prisma = new PrismaClient();
 export async function POST(request: NextRequest) {
   const { title, content, categoryId }: createPostRequest =
     await request.json();
+  console.log(title, content, categoryId);
   try {
     if (!title || !content || !categoryId) {
       return NextResponse.json({ error: 'Fields required' }, { status: 400 });
     }
     const session = await auth();
+    console.log(session);
     const userId = session?.user.id;
+    console.log(userId);
 
     const createPost = await prisma.post.create({
       data: {

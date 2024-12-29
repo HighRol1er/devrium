@@ -13,8 +13,8 @@ export default function Home() {
             Share your thinking.
           </h1>
           <p className="mb-6 text-lg md:text-xl">
-            Devrium is the worldwide SNS platform <br />
-            connet with Dev's round the world
+            Devrium is the worldwide DEV SNS platform <br />
+            connect with Dev's around the world
           </p>
           <div>
             <Button className="rounded-full bg-purple-600 px-6 py-5 font-semibold text-white hover:bg-purple-700">

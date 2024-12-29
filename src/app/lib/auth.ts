@@ -13,14 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     maxAge: 60 * 60 * 24,
   },
   callbacks: {
-    async jwt({
-      token,
-      user,
-    }: {
-      token: JWT;
-      user?: any;
-      account?: any;
-    }): Promise<JWT> {
+    async jwt({ token, user }: { token: JWT; user?: any }): Promise<JWT> {
       // 초기 로그인 시 사용자 정보를 토큰에 추가
       if (user) {
         token.id = user.id;
@@ -30,6 +23,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.tagName = user.tagName;
       }
       return token;
+    },
+    async session({ session, token }: any) {
+      // session에 userId 추가
+      if (token) {
+        session.user.id = token.id;
+      }
+      return session;
     },
   },
 });

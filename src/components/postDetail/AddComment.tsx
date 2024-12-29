@@ -1,19 +1,14 @@
-import { useCreateComment } from '@/app/home/postdetail/_api/postDetailAPI';
 import { Button } from '../ui/button';
 import { Textarea } from '../ui/textarea';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { z } from 'zod';
-import { title } from 'process';
 import { useProfileStore } from '@/store/profile/profileStore';
-
-export const commentSchema = z.object({
-  comment: z.string().nonempty('Comment is required'),
-});
-
-export type Comment = z.infer<typeof commentSchema>;
+import { Comment } from '@/schema/createCommentSchema';
+import { useCreateComment } from '@/_api/postDetail/queries/useCreateComment';
 
 export default function AddComment({ postId }: { postId: string }) {
+  // NOTE: 로그인 할 때 userId를 불러오려면 profile page를 한번 들렸다가 와야하는데 이 문제는 따로 해결을 해줘야겠다.
   const profile = useProfileStore((state) => state.profile);
+  console.log(profile);
   const { mutate, isPending } = useCreateComment();
 
   const {
