@@ -16,7 +16,7 @@ export default function ProfileCard() {
         <div>
           <h1 className="flex items-center text-2xl font-bold">
             {profile.name}
-            <PenLine className="ml-4 mt-2 size-5 hover:text-orange-500" />
+            <PenLine className="ml-4 mt-2 size-5 hover:text-red-400" />
           </h1>
           <p className="text-sm">@{profile.tagName}</p>
         </div>

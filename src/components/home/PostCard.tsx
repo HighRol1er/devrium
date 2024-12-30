@@ -10,8 +10,8 @@ interface PostCardProps {
   post: IPost;
 }
 export default function PostCard({ post }: PostCardProps) {
-  console.log(post.id);
-  console.log(typeof post.id);
+  // console.log(post.id);
+  // console.log(typeof post.id);
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <Link href={`/home/postdetail/${post.id}`}>

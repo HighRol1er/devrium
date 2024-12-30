@@ -4,14 +4,11 @@ import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 /** Like a post
- * Endpoint: POST /api/like/[postId]
+ * Endpoint: POST /api/like
  */
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { postId: string } }
-) {
-  const { postId } = params;
-  const { userId } = await req.json(); // 사용자 ID 받아오기 (로그인한 사용자)
+export async function POST(req: NextRequest) {
+  const { userId, postId }: { userId: string; postId: string } =
+    await req.json(); // 사용자 ID 받아오기 (로그인한 사용자)
 
   try {
     // 이미 좋아요를 눌렀는지 확인
@@ -44,12 +41,9 @@ export async function POST(
   }
 }
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { postId: string } }
-) {
-  const { postId } = params;
-  const { userId } = await req.json(); // 사용자 ID 받아오기 (로그인한 사용자)
+export async function DELETE(req: NextRequest) {
+  const { userId, postId }: { userId: string; postId: number } =
+    await req.json(); // 사용자 ID 받아오기 (로그인한 사용자)
 
   try {
     // 좋아요 레코드 삭제

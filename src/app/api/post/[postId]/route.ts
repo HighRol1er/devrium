@@ -24,6 +24,12 @@ export async function GET(
             user: true,
           },
         },
+        _count: {
+          select: {
+            comments: true, // 댓글 수
+            likes: true, // 좋아요 수
+          },
+        },
       },
     });
 

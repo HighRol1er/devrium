@@ -21,7 +21,7 @@ export default function PostContent({ data }: PostContentProps) {
       <div className="">
         <article className="mb-4 h-[50vh]">{data?.content}</article>
         <hr className="mb-4" />
-        <PostStats />
+        <PostStats statCount={data._count} />
       </div>
     </div>
   );

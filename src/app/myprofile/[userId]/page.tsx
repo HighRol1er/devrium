@@ -26,7 +26,7 @@ export default function MyProfilePage({
   useEffect(() => {
     if (data) {
       setProfile({
-        image: data.image || null,
+        image: data.image || '',
         name: data.name,
         tagName: data.tagName ?? '',
         follower: data.follower.length,
