@@ -13,7 +13,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     maxAge: 60 * 60 * 24,
   },
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: any }): Promise<JWT> {
+    async jwt({
+      token,
+      user,
+      trigger,
+      session,
+    }: {
+      token: JWT;
+      user?: any;
+      trigger?: string;
+      session?: any;
+    }): Promise<JWT> {
       // 초기 로그인 시 사용자 정보를 토큰에 추가
       if (user) {
         token.id = user.id;
@@ -21,6 +31,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.name = user.name;
         token.image = user.image;
         token.tagName = user.tagName;
+      }
+
+      // 사용자 정보가 수정될 때 토큰에 새 값을 추가
+      if (trigger === 'update' && session?.tagName) {
+        token.tagName = session.tagName;
       }
       return token;
     },

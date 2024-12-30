@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { patchTagName } from '@/services/setTagName/patchTagName';
+import { useSession } from 'next-auth/react';
 
 export default function SetTagNamePage({
   params,
@@ -17,6 +18,7 @@ export default function SetTagNamePage({
   params: { userId: string };
 }) {
   const router = useRouter();
+  const { update } = useSession(); // `update`를 가져옵니다.
 
   const {
     register,
@@ -31,8 +33,6 @@ export default function SetTagNamePage({
   const onSubmitTagName: SubmitHandler<TagName> = async (data) => {
     const tagName = data.name;
     const userId = params.userId;
-    // console.log('userId>>>', userId);
-    // console.log('tagName>>>', tagName);
     try {
       const response = await patchTagName(userId, tagName);
 
@@ -40,6 +40,11 @@ export default function SetTagNamePage({
 
       if (response) {
         console.log('Tag name updated successfully:', response);
+
+        // 토큰 재발행 요청 (trigger: 'update')
+        await update({ tagName });
+
+        // 성공적으로 처리되면 홈 화면으로 이동
         router.push('/home');
       }
     } catch (error) {

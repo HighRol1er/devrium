@@ -12,11 +12,11 @@ export async function middleware(req: NextRequest) {
     const redirectUrl = new URL('/', req.url);
     return NextResponse.redirect(redirectUrl);
   }
-  // //
-  // if (!token.tagName) {
-  //   const redirectUrl = new URL(`/set-tagname/${token.id}`, req.url);
-  //   return NextResponse.redirect(redirectUrl);
-  // }
+
+  if (!token.tagName) {
+    const redirectUrl = new URL(`/set-tagname/${token.id}`, req.url);
+    return NextResponse.redirect(redirectUrl);
+  }
 
   // 세션이 있으면 요청을 계속 진행
   return NextResponse.next();
