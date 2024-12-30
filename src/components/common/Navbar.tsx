@@ -4,11 +4,10 @@ import Link from 'next/link';
 
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
-import { AuthModal } from './AuthModal';
+import AuthModal from './AuthModal';
 import Avatar from './Avatar';
 import { ThemeToggle } from './ThemeToggle';
-// import { signOut } from '@/app/lib/auth';
-import { validateUser } from '@/app/lib/authSession';
+import { validateUser } from '@/lib/authSession';
 
 export default async function Navbar() {
   const session = await validateUser();

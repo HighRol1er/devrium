@@ -1,9 +1,8 @@
-import { auth } from '@/app/lib/auth';
+import { auth } from '@/lib/auth';
 // import { createPostRequest } from '@/app/utils/schema/postSchema';
 import { createPostRequest } from '@/types/post';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
 const prisma = new PrismaClient();
 
 /** Create Post

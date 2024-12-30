@@ -11,13 +11,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import MarkdownPage from '@/components/createPost/MarkdownPage';
+import MarkdownPage from '@/components/write/MarkdownPage';
 import { CreatePost } from '@/schema/createPostSchema';
 
 import { useState } from 'react';
-import { useCreatePost } from '@/_api/createPost/queries/useCreatePost';
+import { useCreatePost } from '@/_api/write/queries/useCreatePost';
 import { SubmitHandler, useForm } from 'react-hook-form';
-// import { useSession } from 'next-auth/react'; // 일단 보류
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');

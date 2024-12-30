@@ -47,7 +47,7 @@ export default function HomePage() {
     <>
       <div className="grid">
         <Button className="w-40 justify-self-end">
-          <Link href="/home/createpost">Create Post</Link>
+          <Link href="/home/write">Create Post</Link>
         </Button>
 
         {data?.pages.map((page, pageIndex) => (

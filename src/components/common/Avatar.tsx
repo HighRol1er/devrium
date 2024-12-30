@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import { User } from 'next-auth';
-import { signOut } from '@/app/lib/auth';
+import { signOut } from '@/lib/auth';
 // interface AvatarProps {
 //   imageUrl: string;
 //   tagName: string | null;

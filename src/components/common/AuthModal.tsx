@@ -8,9 +8,9 @@ import {
 import Image from 'next/image';
 import Logo from '@/public/logo.png';
 import { GitHubAuthButton, GoogleAuthButton } from './SubmitBtn';
-import { signIn } from '@/app/lib/auth';
+import { signIn } from '@/lib/auth';
 
-export function AuthModal() {
+export default function AuthModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -26,7 +26,6 @@ export function AuthModal() {
         <div className="mt-5 flex flex-col gap-3">
           <form
             action={async () => {
-              // inline server action
               'use server';
               await signIn('google');
             }}

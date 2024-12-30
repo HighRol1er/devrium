@@ -1,4 +1,4 @@
-import LeftSidebar from '@/components/home/LeftSidebar';
+import LeftSidebar from '@/components/layout/LeftSidebar';
 // import RightSidebar from '../../components/home/RightSidebar';
 
 import Navbar from '@/components/common/Navbar';

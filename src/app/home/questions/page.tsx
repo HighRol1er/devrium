@@ -11,7 +11,6 @@ const fetchCreatePost = async (
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${token}`, // 토큰이 필요한 경우 헤더에 포함시킬 수 있습니다.
     },
     body: JSON.stringify({
       title,
