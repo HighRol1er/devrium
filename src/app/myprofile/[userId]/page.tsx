@@ -5,6 +5,8 @@ import { useProfileStore } from '@/store/profile/profileStore';
 import { useGetMyProfile } from '@/_api/myProfile/queries/useGetMyProfile';
 import ProfileSidebar from '@/components/myProfile/ProfileSidebar';
 import ProfileCard from '@/components/myProfile/ProfileCard';
+import PostCard from '@/components/home/PostCard';
+import MyPost from '@/components/myProfile/MyPost';
 
 export default function MyProfilePage({
   params,
@@ -15,6 +17,7 @@ export default function MyProfilePage({
   //
 
   const { data, isLoading, isError } = useGetMyProfile(userId);
+  // console.log(data);
 
   const setProfile = useProfileStore((state) => state.setProfile);
   const setSideProfile = useProfileStore((state) => state.setSideProfile);
@@ -47,9 +50,7 @@ export default function MyProfilePage({
       <div className="flex min-h-screen justify-center gap-2 pr-2">
         <div className="w-full border-r bg-muted/40 p-6 shadow-md">
           <ProfileCard />
-          {/* {data?.posts.map((post: Post) => (
-            <PostCard key={post.id} {...post} />
-          ))} */}
+          {data?.posts.map((post) => <MyPost key={post.id} post={post} />)}
         </div>
         <ProfileSidebar />
       </div>

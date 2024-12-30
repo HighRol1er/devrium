@@ -56,6 +56,5 @@ export default function PostCard({ post }: PostCardProps) {
         <PostStats />
       </Link>
     </div>
-    // <div>hello from postcard</div>
   );
 }
