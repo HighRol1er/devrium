@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
     console.log(session);
     const userId = session?.user.id;
     console.log(userId);
+    // 세션이 없는거에 대한 에러처리
 
     const createPost = await prisma.post.create({
       data: {

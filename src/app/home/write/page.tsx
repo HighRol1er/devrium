@@ -15,7 +15,7 @@ import MarkdownPage from '@/components/write/MarkdownPage';
 import { CreatePost } from '@/schema/createPostSchema';
 
 import { useState } from 'react';
-import { useCreatePost } from '@/_api/write/queries/useCreatePost';
+import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function CreatePostPage() {

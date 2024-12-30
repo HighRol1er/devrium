@@ -12,7 +12,6 @@ export default function CommentList({ data }: CommentListProps) {
     <>
       <div>
         <h2 className="mb-3 font-semibold">Comments</h2>
-        {/* 댓글 달리는 곳 */}
         <div className="mb-2 border-l-4 p-3 shadow-md">
           {comments.length > 0 ? (
             comments.map((comment) => (

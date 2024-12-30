@@ -1,13 +1,20 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useGetPostDetail } from '@/_api/postDetail/queries/useGetPostDetail';
-import PostContent from '@/components/postDetail/PostContent';
-import CommentList from '@/components/postDetail/CommentList';
-import AddComment from '@/components/postDetail/AddComment';
+import { useSearchParams } from 'next/navigation';
+import { useGetPostDetail } from '@/services/postDetail/queries/useGetPostDetail';
+import PostContent from '@/components/post/PostContent';
+import CommentList from '@/components/post/CommentList';
+import AddComment from '@/components/post/AddComment';
+import { useSelectedLayoutSegments } from 'next/navigation';
 
 export default function PostDetailPage() {
+  const segments = useSelectedLayoutSegments();
+  console.log('segments >>>', segments);
   const params = useParams();
+  const searchParams = useSearchParams();
+  const search = searchParams.get('');
+  console.log(search);
   const postId = params?.id;
   if (typeof postId !== 'string') {
     return <div>Invalid post ID</div>; // 적절한 에러 처리

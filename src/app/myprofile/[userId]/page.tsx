@@ -2,7 +2,7 @@
 
 import { use, useEffect } from 'react';
 import { useProfileStore } from '@/store/profile/profileStore';
-import { useGetMyProfile } from '@/_api/myProfile/queries/useGetMyProfile';
+import { useGetMyProfile } from '@/services/myProfile/queries/useGetMyProfile';
 import ProfileSidebar from '@/components/myProfile/ProfileSidebar';
 import ProfileCard from '@/components/myProfile/ProfileCard';
 import PostCard from '@/components/home/PostCard';

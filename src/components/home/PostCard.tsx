@@ -60,3 +60,6 @@ export default function PostCard({ post }: PostCardProps) {
     </div>
   );
 }
+
+// const CATEGORY = { 1: 'Coderium', 2: 'Question',} as const
+// CATEGORY[categoryId]

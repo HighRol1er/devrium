@@ -8,7 +8,7 @@ import { IPost } from '@/types/post';
 import { Button } from '@/components/ui/button';
 import PostCard from '@/components/home/PostCard';
 
-import { getAllPosts } from '@/_api/home/getAllPosts';
+import { getAllPosts } from '@/services/home/getAllPosts';
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =

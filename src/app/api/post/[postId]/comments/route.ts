@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
  */
 export async function POST(req: NextRequest) {
   const { userId, content, postId }: CommentRequestDto = await req.json();
-
+  //NOTE: validate
   try {
     // 새로운 댓글을 게시글에 추가
     const newComment = await prisma.comment.create({

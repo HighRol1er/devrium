@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { patchTagName } from '@/_api/setTagName/patchTagName';
+import { patchTagName } from '@/services/setTagName/patchTagName';
 
 export default function SetTagNamePage({
   params,
@@ -31,8 +31,8 @@ export default function SetTagNamePage({
   const onSubmitTagName: SubmitHandler<TagName> = async (data) => {
     const tagName = data.name;
     const userId = params.userId;
-    console.log('userId>>>', userId);
-    console.log('tagName>>>', tagName);
+    // console.log('userId>>>', userId);
+    // console.log('tagName>>>', tagName);
     try {
       const response = await patchTagName(userId, tagName);
 
