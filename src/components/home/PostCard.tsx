@@ -10,6 +10,8 @@ interface PostCardProps {
   post: IPost;
 }
 export default function PostCard({ post }: PostCardProps) {
+  console.log(post.id);
+  console.log(typeof post.id);
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <Link href={`/home/postdetail/${post.id}`}>
@@ -53,8 +55,8 @@ export default function PostCard({ post }: PostCardProps) {
         </div>
         <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>
         <p className="mb-4">{post?.content}</p>
-        <PostStats />
       </Link>
+      <PostStats statCount={post._count} />
     </div>
   );
 }

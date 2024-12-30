@@ -68,6 +68,12 @@ export async function GET(request: NextRequest) {
             image: true,
           },
         },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
       },
     });
 
@@ -77,8 +83,15 @@ export async function GET(request: NextRequest) {
 
     const totalCount = await prisma.post.count();
 
+    // 게시물 응답에 좋아요 수, 댓글 수 포함
+    const responsePosts = posts.map((post) => ({
+      ...post,
+      likesCount: post._count.likes,
+      commentsCount: post._count.comments,
+    }));
+
     return NextResponse.json({
-      posts,
+      posts: responsePosts,
       totalCount: Math.ceil(totalCount / pageSize),
       currentPage: page,
     });

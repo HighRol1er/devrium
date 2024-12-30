@@ -11,6 +11,7 @@ export async function GET(
   { params }: { params: { postId: string } }
 ) {
   const { postId } = params;
+  console.log(postId);
 
   try {
     // 게시물의 댓글 수와 좋아요 수 조회

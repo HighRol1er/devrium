@@ -7,6 +7,10 @@ export interface IPost extends Post {
     image: string | null;
   };
   comments: IComment[];
+  _count: {
+    comments: number;
+    likes: number;
+  };
 }
 
 export interface createPostRequest {
