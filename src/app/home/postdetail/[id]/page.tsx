@@ -16,8 +16,6 @@ export default function PostDetailPage() {
 
   const comments = data?.comments || [];
 
-  // console.log(data);
-
   return (
     <div className="mx-auto flex min-h-screen w-full flex-col items-center">
       <div className="w-full max-w-3xl items-center rounded-md p-4">
