@@ -31,22 +31,17 @@ export default function SetTagNamePage({
   const onSubmitTagName: SubmitHandler<TagName> = async (data) => {
     const tagName = data.name;
     const userId = params.userId;
+    console.log('userId>>>', userId);
+    console.log('tagName>>>', tagName);
     try {
-      const response = patchTagName(userId, tagName);
+      const response = await patchTagName(userId, tagName);
 
-      // try {
-      //   const response = await fetch(
-      //     `${BASE_URL}/api/user/set-tag/${params.userId}`,
-      //     {
-      //       method: 'PATCH',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify({ tagName: data.name }),
-      //     }
-      //   );
       console.log(response); // NOTE: Toast Fn required
-      router.push('/home');
+
+      if (response) {
+        console.log('Tag name updated successfully:', response);
+        router.push('/home');
+      }
     } catch (error) {
       console.log(error);
     }

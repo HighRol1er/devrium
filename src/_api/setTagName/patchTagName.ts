@@ -1,13 +1,14 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
 
 export const patchTagName = async (userId: string, tagName: string) => {
-  const response = await fetch(`${BASE_URL}/api/user/set-tag/${userId}`, {
+  const response = await fetch(`${BASE_URL}/api/user/${userId}/tagname`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ tagName: tagName }),
   });
+
   if (!response.ok) {
     console.error('Failed to set tag name');
   }

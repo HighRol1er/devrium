@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!token.tagName) {
-    const redirectUrl = new URL('/set-tagname', req.url);
+    const redirectUrl = new URL(`/set-tagname/${token.id}`, req.url);
     return NextResponse.redirect(redirectUrl);
   }
 

@@ -1,4 +1,4 @@
-import { auth } from '@/app/lib/auth';
+import { auth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { UpdatePostRequestDto } from '../type';

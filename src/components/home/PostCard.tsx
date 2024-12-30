@@ -33,7 +33,22 @@ export default function PostCard({ post }: PostCardProps) {
         </Link>
         <div className="mb-2 flex gap-1 text-sm">
           <span className="inline-block rounded-full bg-primary/20 px-3 py-1">
-            {post?.categoryId}
+            {(() => {
+              switch (post?.categoryId) {
+                case 1:
+                  return 'Coderium';
+                case 2:
+                  return 'Question';
+                case 3:
+                  return 'Crew';
+                case 4:
+                  return 'Reference';
+                case 5:
+                  return 'Meme';
+                default:
+                  return 'Unknown';
+              }
+            })()}
           </span>
         </div>
         <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>

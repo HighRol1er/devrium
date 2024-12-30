@@ -1,13 +1,13 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { IPost } from '@/types/post';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import Link from 'next/link';
 import { useRef } from 'react';
-import PostCard from '../../components/home/PostCard';
-
+import Link from 'next/link';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { Loader } from 'lucide-react';
+import { IPost } from '@/types/post';
+import { Button } from '@/components/ui/button';
+import PostCard from '@/components/home/PostCard';
+
 import { getAllPosts } from '@/_api/home/getAllPosts';
 
 export default function HomePage() {
