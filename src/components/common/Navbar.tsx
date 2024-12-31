@@ -2,12 +2,11 @@ import Logo from '@/public/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
 import AuthModal from './AuthModal';
 import Avatar from './Avatar';
 import { ThemeToggle } from './ThemeToggle';
 import { validateUser } from '@/lib/authSession';
+import SearchBar from './SearchBar';
 
 export default async function Navbar() {
   const session = await validateUser();
@@ -21,10 +20,7 @@ export default async function Navbar() {
           <span className="text-primary">Dev'</span>rium
         </h4>
       </Link>
-      <div className="relative flex">
-        <Input placeholder="Search" className="pl-10" />
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-500" />
-      </div>
+      <SearchBar />
       <div className="flex gap-2">
         {session ? (
           <Avatar

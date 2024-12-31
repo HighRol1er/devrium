@@ -18,4 +18,8 @@ export interface IUser extends User {
   categories: Category[];
   likes: Like[];
   saved: Saved[];
+  _count: {
+    comments: number;
+    posts: number;
+  };
 }
