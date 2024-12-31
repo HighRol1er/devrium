@@ -1,45 +1,24 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { Loader } from 'lucide-react';
 import { IPost } from '@/types/post';
 import { Button } from '@/components/ui/button';
 import PostCard from '@/components/home/PostCard';
 
-import { getAllPosts } from '@/services/home/getAllPosts';
+import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
+import { useObserver } from '@/hooks/useObserver';
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteQuery({
-      queryKey: ['posts'],
-      queryFn: getAllPosts,
-      initialPageParam: 1,
-      getNextPageParam: (lastPage) => {
-        const { currentPage, totalCount } = lastPage;
-        return currentPage < totalCount ? currentPage + 1 : undefined;
-      },
-    });
-  console.log(data);
+    useGetAllPost();
 
-  const observer = useRef<IntersectionObserver | null>(null);
+  const { lastElementRef } = useObserver({
+    isFetchingNextPage: isFetchingNextPage,
+    hasNextPage: hasNextPage || false,
+    fetchNextPage,
+  });
 
-  const lastPostRef = (node: HTMLElement | null) => {
-    if (isFetchingNextPage) return;
-    if (observer.current) observer.current.disconnect();
-
-    observer.current = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasNextPage) {
-          fetchNextPage();
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (node) observer.current.observe(node);
-  };
   //NOTE: loading.tsx 만들어서 로딩 만들기
   if (isLoading) return <p>Loading posts...</p>;
 
@@ -61,7 +40,7 @@ export default function HomePage() {
               return (
                 <div
                   key={post.id}
-                  ref={isLastPost ? lastPostRef : null}
+                  ref={isLastPost ? lastElementRef : null}
                   className="post-item"
                 >
                   <PostCard post={post} />
