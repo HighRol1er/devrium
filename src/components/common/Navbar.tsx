@@ -11,7 +11,7 @@ import { validateUser } from '@/lib/authSession';
 
 export default async function Navbar() {
   const session = await validateUser();
-  console.log(session);
+  // console.log(session);
 
   return (
     <div className="mx-auto flex h-14 max-w-full items-center justify-between border-b bg-muted/40 px-4 py-5 sm:px-6 lg:px-8">

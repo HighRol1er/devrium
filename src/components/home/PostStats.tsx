@@ -4,7 +4,7 @@ import { likePost } from '@/services/likePost/likePost';
 import { useProfileStore } from '@/store/profile/profileStore';
 import { MessageSquareMore, Share, ThumbsUp } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useSelectedLayoutSegments } from 'next/navigation';
+// import { useSelectedLayoutSegments } from 'next/navigation';
 
 interface PostStatsProps {
   statCount: {
@@ -17,8 +17,8 @@ export default function PostStats({ statCount }: PostStatsProps) {
   // tanstackquery로
   const pathname = usePathname();
   const postId = pathname.split('/').pop();
-  const segments = useSelectedLayoutSegments();
-  console.log('segments >>> ', segments);
+  // const segments = useSelectedLayoutSegments();
+  // console.log('segments >>> ', segments);
 
   const profile = useProfileStore((state) => state.profile);
   const userId = profile.userId;

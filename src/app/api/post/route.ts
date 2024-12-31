@@ -38,27 +38,25 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/** Get all posts (Category X)
- * End point(GET): api/post
- */
-// export async function GET() {
-//   try {
-//     const posts = await prisma.post.findMany();
-
-//     return NextResponse.json(posts, { status: 200 });
-//   } catch (error) {
-//     console.error('Error get posts');
-//     return NextResponse.json({ error: 'Failed get posts' }, { status: 500 });
-//   }
-// }
-
 export async function GET(request: NextRequest) {
+  // const { pathname } = new URL(request.url);
+  // console.log('pathname >>>', pathname);
   const { searchParams } = new URL(request.url);
+  // console.log('searchParams >>>', searchParams);
+
+  // const categoryName = pathname.split('/api/')[1]?.split('/post')[0] || null;
+  // console.log('categoryName >>> ', categoryName);
   const page = parseInt(searchParams.get('page') ?? '1', 10);
   const pageSize = parseInt(searchParams.get('pageSize') ?? '3', 10);
 
   try {
+    // 카테고리 필터 조건 생성
+    // const categoryFilter = categoryName
+    //   ? { category: { name: categoryName } } // 카테고리가 있는 경우 조인 조건 추가
+    //   : {}; // 전체를 가져오는 경우
+
     const posts = await prisma.post.findMany({
+      // where: categoryFilter,
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: 'desc' },
@@ -74,6 +72,9 @@ export async function GET(request: NextRequest) {
             likes: true,
             comments: true,
           },
+        },
+        category: {
+          select: { name: true },
         },
       },
     });

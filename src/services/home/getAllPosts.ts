@@ -1,8 +1,6 @@
 import { IPost } from '@/types/post';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { BASE_URL } from '@/shared/constant/baseUrl';
 
-// NOTE:이거 util interface로 분리하기
 interface FetchPostsResponse {
   posts: IPost[];
   totalCount: number;
