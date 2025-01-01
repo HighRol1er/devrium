@@ -6,8 +6,8 @@ export const useCreateComment = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ postId, content, userId }: CommentRequestDto) =>
-      createComment({ postId, content, userId }),
+    mutationFn: ({ postId, content }: CommentRequestDto) =>
+      createComment({ postId, content }),
     onSuccess: () => {
       console.log('successfully create comment');
       queryClient.invalidateQueries({ queryKey: ['postDetail'] });

@@ -1,7 +1,6 @@
 import { Comment, User } from '@prisma/client';
 
 export interface CommentRequestDto {
-  userId: string;
   content: string;
   postId: string;
 }

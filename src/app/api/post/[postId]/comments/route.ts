@@ -1,6 +1,7 @@
 import { CommentRequestDto } from '@/types/comment';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
+import { validateUser } from '@/lib/authSession';
 
 const prisma = new PrismaClient();
 
@@ -10,13 +11,28 @@ const prisma = new PrismaClient();
  * Endpoint: POST /api/post/[postId]/comments
  */
 export async function POST(req: NextRequest) {
-  const { userId, content, postId }: CommentRequestDto = await req.json();
-  //NOTE: validate
+  const { content, postId }: CommentRequestDto = await req.json();
+  const session = await validateUser();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: 'not available session' },
+      { status: 500 }
+    );
+  }
+  if (!session.user.id) {
+    return NextResponse.json(
+      { error: 'not available session' },
+      { status: 500 }
+    );
+  }
+  const userId = session?.user.id;
+
   try {
     // 새로운 댓글을 게시글에 추가
     const newComment = await prisma.comment.create({
       data: {
-        userId,
+        userId: userId,
         postId: Number(postId),
         content,
       },

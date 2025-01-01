@@ -13,7 +13,6 @@ export default function MyProfilePage({
   params: Promise<{ userId: string }>;
 }) {
   const { userId } = use(params);
-  //
 
   const { data, isLoading, isError } = useGetMyProfile(userId);
   console.log(data);
@@ -21,7 +20,7 @@ export default function MyProfilePage({
   const setProfile = useProfileStore((state) => state.setProfile);
   const setSideProfile = useProfileStore((state) => state.setSideProfile);
 
-  // NOTE:저장을 할꺼면 아예 로그인을 할 때 저장을 하게끔
+  // NOTE:저장을 할꺼면 아예 로그인을 할 때 저장을 하게끔 + 내 session이랑 일치할때랑 아닐 떄 구분 필요
   useEffect(() => {
     if (data) {
       setProfile({
@@ -49,7 +48,7 @@ export default function MyProfilePage({
       <div className="flex min-h-screen justify-center gap-2 pr-2">
         <div className="w-full border-r bg-muted/40 p-6 shadow-md">
           <ProfileCard />
-          {data?.posts.map((post) => <MyPost key={post.id} post={post} />)}
+          {data?.posts.map((post: any) => <MyPost key={post.id} post={post} />)}
         </div>
         <ProfileSidebar />
       </div>
