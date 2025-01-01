@@ -4,6 +4,7 @@ import { User } from 'lucide-react';
 interface UserCardProps {
   data: IUser;
 }
+// NOTE:follow 기능 넣기
 
 export default function UserCard({ data }: UserCardProps) {
   const score = data._count.comments + data._count.posts;

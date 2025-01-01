@@ -10,7 +10,6 @@ import { IUser } from '@/types/user';
  */
 export default function TopUsers() {
   const { data, isLoading } = useGetAllUsers();
-  console.log(data);
 
   if (isLoading) return <div>Loading...</div>;
   return (

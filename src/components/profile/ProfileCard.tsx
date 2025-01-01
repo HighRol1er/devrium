@@ -1,6 +1,7 @@
 import { PenLine } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
 import { useProfileStore } from '@/store/profile/profileStore';
+import FollowButton from './FollowButton';
 
 export default function ProfileCard() {
   const profile = useProfileStore((state) => state.profile);
@@ -21,9 +22,12 @@ export default function ProfileCard() {
           <p className="text-sm">@{profile.tagName}</p>
         </div>
       </div>
-      <div className="ml-4 flex gap-2 text-sm font-semibold opacity-50">
-        <div>Follwers {profile.follower}</div>
-        <div>Follwing {profile.following}</div>
+      <div className="ml-4 flex items-center gap-2">
+        <div className="flex gap-2 text-sm font-semibold opacity-50">
+          <div>Follwers {profile.follower}</div>
+          <div>Follwing {profile.following}</div>
+        </div>
+        <FollowButton />
       </div>
       <div className="mb-6 rounded-lg border-b p-4">
         <h2 className="mb-4 text-xl font-semibold">Overview</h2>

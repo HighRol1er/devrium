@@ -8,7 +8,7 @@ interface IButtonGroupProps {
 export default function ButtonGroup({ userId }: IButtonGroupProps) {
   return (
     <>
-      <Link href={`/myprofile/${userId}`}>
+      <Link href={`/profile/${userId}`}>
         <Button
           variant="ghost"
           className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
@@ -17,7 +17,7 @@ export default function ButtonGroup({ userId }: IButtonGroupProps) {
         </Button>
       </Link>
 
-      <Link href={`/myprofile/${userId}/comments`}>
+      <Link href={`/profile/${userId}/comments`}>
         <Button
           variant="ghost"
           className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
@@ -26,7 +26,7 @@ export default function ButtonGroup({ userId }: IButtonGroupProps) {
         </Button>
       </Link>
 
-      <Link href={`/myprofile/${userId}/bookmark`}>
+      <Link href={`/profile/${userId}/bookmark`}>
         <Button
           variant="ghost"
           className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"

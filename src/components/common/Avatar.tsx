@@ -40,7 +40,7 @@ export default function Avatar({ image, id }: User) {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild>
-              <Link href={`/myprofile/${id}`}>Profile</Link>
+              <Link href={`/profile/${id}`}>Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
           </DropdownMenuGroup>

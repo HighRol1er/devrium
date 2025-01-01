@@ -16,7 +16,7 @@ export default function PostCard({ post }: PostCardProps) {
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <Link href={`/home/post/${post.id}`}>
         <Link
-          href={`/myprofile/${post.userId}`} // 수정 필요 myProfile이 아니라 해당 게시물을 올린 userId의 프로필로 이동
+          href={`/profile/${post.userId}`} // 수정 필요 myProfile이 아니라 해당 게시물을 올린 userId의 프로필로 이동
           className="mb-2 flex items-center space-x-2"
         >
           {post.user?.image ? (

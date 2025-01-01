@@ -2,11 +2,11 @@
 
 import { use, useEffect } from 'react';
 import { useProfileStore } from '@/store/profile/profileStore';
-import { useGetMyProfile } from '@/services/myProfile/queries/useGetMyProfile';
-import ProfileSidebar from '@/components/myProfile/ProfileSidebar';
-import ProfileCard from '@/components/myProfile/ProfileCard';
+import { useGetMyProfile } from '@/services/profile/queries/useGetMyProfile';
+import ProfileSidebar from '@/components/profile/ProfileSidebar';
+import ProfileCard from '@/components/profile/ProfileCard';
 import PostCard from '@/components/home/PostCard';
-import MyPost from '@/components/myProfile/MyPost';
+import MyPost from '@/components/profile/MyPost';
 
 export default function MyProfilePage({
   params,
