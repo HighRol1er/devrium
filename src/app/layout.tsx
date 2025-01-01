@@ -34,10 +34,10 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           // defaultTheme="system"
-          // enableSystem
-          disableTransitionOnChange
+          enableSystem
+          // disableTransitionOnChange
         >
           <SessionProvider>
             <TanStackProvider>{children}</TanStackProvider>

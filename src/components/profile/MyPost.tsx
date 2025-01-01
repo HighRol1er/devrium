@@ -1,26 +1,27 @@
-import { User2 } from 'lucide-react';
 import Link from 'next/link';
 import PostStats from '../home/PostStats';
+import { IPost } from '@/types/post';
 
 interface MyPostProps {
-  post: {
-    id: number;
-    userId: string;
-    image: string | null;
-    categoryId: number | null;
-    title: string;
-    content: string;
-    createdAt: Date;
-    updatedAt: Date;
-    user?: {
-      image: string | null;
-      tagName: string;
-    };
-  };
+  // post: {
+  //   id: number;
+  //   userId: string;
+  //   image: string | null;
+  //   categoryId: number | null;
+  //   title: string;
+  //   content: string;
+  //   createdAt: Date;
+  //   updatedAt: Date;
+  //   user?: {
+  //     image: string | null;
+  //     tagName: string;
+  //   };
+  // };
+  post: IPost;
 }
 
 export default function MyPost({ post }: MyPostProps) {
-  console.log(post);
+  // console.log(post);
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
       <Link href={`/home/postdetail/${post.id}`}>
@@ -46,7 +47,7 @@ export default function MyPost({ post }: MyPostProps) {
         </div>
         <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>
         <p className="mb-4">{post?.content}</p>
-        <PostStats />
+        <PostStats statCount={post._count} />
       </Link>
     </div>
   );

@@ -1,12 +1,11 @@
 'use client';
 
-import { use, useEffect } from 'react';
-import { useProfileStore } from '@/store/profile/profileStore';
-import { useGetMyProfile } from '@/services/profile/queries/useGetMyProfile';
-import ProfileSidebar from '@/components/profile/ProfileSidebar';
-import ProfileCard from '@/components/profile/ProfileCard';
-import PostCard from '@/components/home/PostCard';
 import MyPost from '@/components/profile/MyPost';
+import ProfileCard from '@/components/profile/ProfileCard';
+import ProfileSidebar from '@/components/profile/ProfileSidebar';
+import { useGetMyProfile } from '@/services/profile/queries/useGetMyProfile';
+import { useProfileStore } from '@/store/profile/profileStore';
+import { use, useEffect } from 'react';
 
 export default function MyProfilePage({
   params,
@@ -17,7 +16,7 @@ export default function MyProfilePage({
   //
 
   const { data, isLoading, isError } = useGetMyProfile(userId);
-  // console.log(data);
+  console.log(data);
 
   const setProfile = useProfileStore((state) => state.setProfile);
   const setSideProfile = useProfileStore((state) => state.setSideProfile);
