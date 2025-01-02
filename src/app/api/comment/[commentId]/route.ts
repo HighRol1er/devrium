@@ -1,3 +1,4 @@
+import { validateUser } from '@/lib/authSession';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -42,7 +43,23 @@ export async function DELETE(
   { params }: { params: { commentId: string } }
 ) {
   const { commentId } = params;
+  console.log('commentId>>>', commentId);
+  const { userId } = await req.json();
+  console.log(userId);
 
+  const session = await validateUser();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: 'Not available session' },
+      { status: 400 }
+    );
+  }
+  const sessionId = session.user.id;
+
+  if (sessionId !== userId) {
+    return NextResponse.json({ error: 'Not available id' }, { status: 400 });
+  }
   try {
     // 댓글 삭제
     await prisma.comment.delete({

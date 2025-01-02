@@ -5,6 +5,11 @@ export interface CommentRequestDto {
   postId: string;
 }
 
+export interface DeleteCommentRequestDto {
+  commentId: string;
+  userId: string;
+}
+
 export interface IComment extends Comment {
   user: {
     name: string;

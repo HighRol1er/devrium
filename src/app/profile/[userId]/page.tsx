@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
 export default function ProfilePage() {
+  // const [category, setCategory] = useState("comment") // true면 comment만 보여주기?
   const params = useParams<{ userId: string }>();
   const session = useSession();
 

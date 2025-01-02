@@ -14,7 +14,7 @@ export const createComment = async ({
   });
 
   if (!response.ok) {
-    throw new Error('Failed to create comments');
+    throw new Error('Failed to create comment');
   }
   return response.json();
 };

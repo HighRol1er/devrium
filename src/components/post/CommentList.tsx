@@ -1,5 +1,5 @@
 import { IPost } from '@/types/post';
-import { User } from 'lucide-react';
+import CommentItem from './CommentItem';
 
 interface CommentListProps {
   data?: IPost;
@@ -12,34 +12,10 @@ export default function CommentList({ data }: CommentListProps) {
     <>
       <div>
         <h2 className="mb-3 font-semibold">Comments</h2>
-        <div className="mb-2 border-l-4 p-3 shadow-md">
+        <div className="flex flex-col gap-4 border-l-4 p-3 shadow-md">
           {comments.length > 0 ? (
             comments.map((comment) => (
-              <div key={comment.id}>
-                <div className="mb-2 flex gap-2">
-                  {comment.user.image ? (
-                    <img
-                      src={comment.user.image}
-                      alt={comment.user.name}
-                      className="size-8 rounded-full"
-                    />
-                  ) : (
-                    <User />
-                  )}
-                  <div className="flex flex-col">
-                    <span className="text-sm font-semibold">
-                      {comment.user.name}
-                    </span>
-                    <span className="text-[12px] font-semibold text-gray-400">
-                      @{comment.user.tagName}
-                    </span>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600">{comment.content}</p>
-                <span className="text-xs text-gray-400">
-                  {new Date(comment.createdAt).toLocaleString()}
-                </span>
-              </div>
+              <CommentItem key={comment.id} comment={comment} />
             ))
           ) : (
             <p className="text-gray-500">

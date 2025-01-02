@@ -11,7 +11,7 @@ export const getAllPosts = async ({
   pageParam = 1,
 }): Promise<FetchPostsResponse> => {
   const response = await fetch(
-    `${BASE_URL}/api/post?page=${pageParam}&pageSize=3`
+    `${BASE_URL}/api/post?page=${pageParam}&pageSize=3` //&categoryId=1
   );
 
   if (!response.ok) {

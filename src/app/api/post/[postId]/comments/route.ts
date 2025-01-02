@@ -17,14 +17,11 @@ export async function POST(req: NextRequest) {
   if (!session) {
     return NextResponse.json(
       { error: 'not available session' },
-      { status: 500 }
+      { status: 400 }
     );
   }
   if (!session.user.id) {
-    return NextResponse.json(
-      { error: 'not available session ' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'not available id' }, { status: 400 });
   }
   const userId = session.user.id;
 
