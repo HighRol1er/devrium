@@ -25,7 +25,7 @@ export default function AddComment({ postId }: { postId: string }) {
     const comment = data.comment;
     console.log(postId);
     mutate(
-      { content: comment, postId: postId, userId: profile.userId },
+      { content: comment, postId: postId },
       {
         onSuccess: () => {
           alert('Comment created successfully!');
@@ -44,7 +44,7 @@ export default function AddComment({ postId }: { postId: string }) {
         <form onSubmit={handleSubmit(onSubmitComment)}>
           <Textarea
             placeholder="Be Gentle!!"
-            className="mb-4 h-24"
+            className="mb-4 mt-4 h-24"
             id="comment"
             {...register('comment', { required: 'Comment field is empty' })}
           />

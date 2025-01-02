@@ -10,7 +10,7 @@ export default function MyPost({ post }: MyPostProps) {
   // console.log(post);
   return (
     <div className="mb-4 rounded-lg p-4 shadow-md">
-      <Link href={`/home/postdetail/${post.id}`}>
+      <Link href={`/home/post/${post.id}`}>
         <div className="mb-2 flex gap-1 text-sm">
           <span className="inline-block rounded-full bg-primary/20 px-3 py-1">
             {(() => {
