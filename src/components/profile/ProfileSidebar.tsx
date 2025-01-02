@@ -1,13 +1,15 @@
-import Image from 'next/image';
 import JsLogo from '@/public/js-logo.webp';
-import TsLogo from '@/public/ts-logo.webp';
 import NextLogo from '@/public/next-logo.svg';
-import { useProfileStore } from '@/store/profile/profileStore';
+import TsLogo from '@/public/ts-logo.webp';
+import { IUser } from '@/types/user';
+import Image from 'next/image';
 
-export default function ProfileSidebar() {
-  const sideProfile = useProfileStore((state) => state.sideProfile);
+interface ProfileSidebarProps {
+  data: IUser;
+}
 
-  const formattedCreatedAt = new Date(sideProfile.createdAt)
+export default function ProfileSidebar({ data }: ProfileSidebarProps) {
+  const formattedCreatedAt = new Date(data.createdAt)
     .toLocaleDateString('en-CA')
     .replace(/-/g, ' ');
 
@@ -18,8 +20,8 @@ export default function ProfileSidebar() {
       </div>
       <div className="mt-4">
         <div className="mb-4 grid-rows-2 text-sm">
-          <p>{sideProfile.postCount} Post</p>
-          <p>{sideProfile.commentCount} Comment</p>
+          <p>{data.posts.length} Post</p>
+          <p>{data.comments.length} Comment</p>
           <p className="flex gap-2">
             <span className="font-semibold">Joined </span>
             {formattedCreatedAt}

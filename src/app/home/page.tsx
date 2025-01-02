@@ -8,8 +8,12 @@ import PostCard from '@/components/home/PostCard';
 
 import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 import { useObserver } from '@/hooks/useObserver';
+// import { useSession } from 'next-auth/react';
 
 export default function HomePage() {
+  // const session = useSession();
+  // console.log('session>>>', session);
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useGetAllPost();
 

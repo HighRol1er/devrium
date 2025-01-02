@@ -22,11 +22,11 @@ export async function POST(req: NextRequest) {
   }
   if (!session.user.id) {
     return NextResponse.json(
-      { error: 'not available session' },
+      { error: 'not available session ' },
       { status: 500 }
     );
   }
-  const userId = session?.user.id;
+  const userId = session.user.id;
 
   try {
     // 새로운 댓글을 게시글에 추가

@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { userId: string } }
-) {
-  const userId = params?.userId;
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const userId = searchParams.get('userId'); // 쿼리 매개변수에서 userId 가져오기
+  console.log('userId', userId);
+
   if (!userId) {
     return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
   }

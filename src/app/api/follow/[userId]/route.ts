@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
+import { validateUser } from '@/lib/authSession';
 
 const prisma = new PrismaClient();
 
@@ -12,7 +13,16 @@ export async function POST(
 ) {
   const { userId } = params; // 팔로우할 사용자 ID
   console.log(userId);
-  const { followerId } = await req.json(); // 팔로우하는 사용자 ID
+
+  const session = await validateUser();
+
+  if (!session || !session.user?.id) {
+    return NextResponse.json(
+      { error: 'User is not authenticated or does not exist' },
+      { status: 401 } // 인증 문제는 401
+    );
+  }
+  const followerId = session.user.id;
   console.log(followerId);
   if (followerId === userId) {
     return NextResponse.json(
@@ -65,7 +75,16 @@ export async function DELETE(
   { params }: { params: { userId: string } }
 ) {
   const { userId } = params; // 언팔로우할 사용자 ID
-  const { followerId } = await req.json(); // 팔로우 취소하는 사용자 ID
+  // const { followerId } = await req.json(); // 팔로우 취소하는 사용자 ID
+  const session = await validateUser();
+
+  if (!session || !session.user?.id) {
+    return NextResponse.json(
+      { error: 'User is not authenticated or does not exist' },
+      { status: 401 } // 인증 문제는 401
+    );
+  }
+  const followerId = session.user.id;
 
   try {
     // 팔로우 관계가 존재하는지 확인
