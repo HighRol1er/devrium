@@ -2,10 +2,10 @@
 
 import { likePost } from '@/services/likePost/likePost';
 import { useProfileStore } from '@/store/profile/profileStore';
-import { MessageSquareMore, Share, ThumbsUp, Trash2 } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-import { Button } from '../ui/button';
+import { MessageSquareMore, Share, ThumbsUp } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
+import DeleteBtn from '../post/DeleteBtn';
 
 // import { useSelectedLayoutSegments } from 'next/navigation';
 
@@ -20,6 +20,7 @@ export default function PostStats({ statCount }: PostStatsProps) {
   const session = useSession();
   const pathname = usePathname();
   const postId = pathname.split('/').pop();
+
   const isHomePostPath = pathname.startsWith('/home/post/');
 
   const profile = useProfileStore((state) => state.profile);
@@ -56,11 +57,8 @@ export default function PostStats({ statCount }: PostStatsProps) {
           </button>
         </div>
         <div>
-          {session.data?.user.id === profile.userId && isHomePostPath && (
-            <Button variant="destructive">
-              <Trash2 />
-              Delete Post
-            </Button>
+          {session.data?.user.id !== profile.userId && isHomePostPath && (
+            <DeleteBtn postId={postId} />
           )}
         </div>
       </div>

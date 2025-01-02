@@ -77,6 +77,7 @@ export default function CreatePostPage() {
           />
           {errors.title && <span>{errors.title.message}</span>}
           <div className="mb-2 flex justify-end">
+            {/**NOTE: component 시키기 */}
             <Select
               value={selectCategory}
               onValueChange={(value) => setSelectCategory(value)}

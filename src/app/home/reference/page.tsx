@@ -19,7 +19,7 @@ export default function CoderiumPage() {
     fetchNextPage,
   });
   console.log(data);
-
+  // error , ui(skeletion), 최적화
   //NOTE: loading.tsx 만들어서 로딩 만들기
   if (isLoading) return <p>Loading posts...</p>;
 

@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
-import { useGetPostDetail } from '@/services/postDetail/queries/useGetPostDetail';
+import { useGetPostDetail } from '@/services/post/queries/useGetPostDetail';
 import PostContent from '@/components/post/PostContent';
 import CommentList from '@/components/post/CommentList';
 import AddComment from '@/components/post/AddComment';

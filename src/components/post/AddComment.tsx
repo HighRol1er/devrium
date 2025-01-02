@@ -3,7 +3,7 @@ import { Textarea } from '../ui/textarea';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useProfileStore } from '@/store/profile/profileStore';
 import { Comment } from '@/schema/createCommentSchema';
-import { useCreateComment } from '@/services/postDetail/queries/useCreateComment';
+import { useCreateComment } from '@/services/post/queries/useCreateComment';
 
 export default function AddComment({ postId }: { postId: string }) {
   // NOTE: 로그인 할 때 userId를 불러오려면 profile page를 한번 들렸다가 와야하는데 이 문제는 따로 해결을 해줘야겠다.

@@ -1,7 +1,7 @@
 import { IUser } from '@/types/user';
 import { PenLine, User } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
-import FollowButton from './FollowButton';
+import FollowBtn from './FollowBtn';
 import { useSession } from 'next-auth/react';
 
 interface ProfileCardProps {
@@ -40,7 +40,7 @@ export default function ProfileCard({ data }: ProfileCardProps) {
           <div>Follwing {data.following.length}</div>
         </div>
         {data.id !== session.data?.user.id && (
-          <FollowButton userId={data.id} followerList={data.follower} />
+          <FollowBtn userId={data.id} followerList={data.follower} />
         )}
       </div>
       <div className="mb-6 rounded-lg border-b p-4">

@@ -13,10 +13,7 @@ interface FollowButtonProps {
   followerList: Follower[];
 }
 
-export default function FollowButton({
-  userId,
-  followerList,
-}: FollowButtonProps) {
+export default function FollowBtn({ userId, followerList }: FollowButtonProps) {
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
 
   const session = useSession();
