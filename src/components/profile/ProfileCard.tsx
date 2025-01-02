@@ -2,12 +2,15 @@ import { IUser } from '@/types/user';
 import { PenLine, User } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
 import FollowButton from './FollowButton';
+import { useSession } from 'next-auth/react';
 
 interface ProfileCardProps {
   data: IUser;
 }
 
 export default function ProfileCard({ data }: ProfileCardProps) {
+  const session = useSession();
+
   return (
     <>
       <div className="mb-6 flex items-center gap-4">
@@ -24,7 +27,9 @@ export default function ProfileCard({ data }: ProfileCardProps) {
         <div>
           <h1 className="flex items-center text-2xl font-bold">
             {data.name}
-            <PenLine className="ml-4 mt-2 size-5 hover:text-red-400" />
+            {data.id === session.data?.user.id && (
+              <PenLine className="ml-4 mt-2 size-5 hover:text-red-400" />
+            )}
           </h1>
           <p className="text-sm">@{data.tagName}</p>
         </div>
@@ -34,7 +39,9 @@ export default function ProfileCard({ data }: ProfileCardProps) {
           <div>Follwers {data.follower.length}</div>
           <div>Follwing {data.following.length}</div>
         </div>
-        <FollowButton userId={data.id} />
+        {data.id !== session.data?.user.id && (
+          <FollowButton userId={data.id} followerList={data.follower} />
+        )}
       </div>
       <div className="mb-6 rounded-lg border-b p-4">
         <h2 className="mb-4 text-xl font-semibold">Overview</h2>

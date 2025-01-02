@@ -3,20 +3,6 @@ import PostStats from '../home/PostStats';
 import { IPost } from '@/types/post';
 
 interface MyPostProps {
-  // post: {
-  //   id: number;
-  //   userId: string;
-  //   image: string | null;
-  //   categoryId: number | null;
-  //   title: string;
-  //   content: string;
-  //   createdAt: Date;
-  //   updatedAt: Date;
-  //   user?: {
-  //     image: string | null;
-  //     tagName: string;
-  //   };
-  // };
   post: IPost;
 }
 

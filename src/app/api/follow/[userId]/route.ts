@@ -36,8 +36,10 @@ export async function POST(
     const existingFollow = await prisma.follow.findUnique({
       where: {
         followingId_followedById: {
-          followingId: userId,
-          followedById: followerId,
+          // followingId: userId,
+          // followedById: followerId,
+          followingId: followerId,
+          followedById: userId,
         },
       },
     });
@@ -52,8 +54,10 @@ export async function POST(
     // 팔로우 관계 생성
     const newFollow = await prisma.follow.create({
       data: {
-        followingId: userId,
-        followedById: followerId,
+        // followingId: userId,
+        // followedById: followerId,
+        followingId: followerId,
+        followedById: userId,
       },
     });
 
@@ -91,8 +95,10 @@ export async function DELETE(
     const existingFollow = await prisma.follow.findUnique({
       where: {
         followingId_followedById: {
-          followingId: userId,
-          followedById: followerId,
+          // followingId: userId,
+          // followedById: followerId,
+          followingId: followerId,
+          followedById: userId,
         },
       },
     });
@@ -108,8 +114,10 @@ export async function DELETE(
     await prisma.follow.delete({
       where: {
         followingId_followedById: {
-          followingId: userId,
-          followedById: followerId,
+          // followingId: userId,
+          // followedById: followerId,
+          followingId: followerId,
+          followedById: userId,
         },
       },
     });
