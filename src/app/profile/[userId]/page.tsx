@@ -4,6 +4,8 @@ import MyCommentCard from '@/components/profile/MyCommentCard';
 import MyPost from '@/components/profile/MyPost';
 import ProfileCard from '@/components/profile/ProfileCard';
 import ProfileSidebar from '@/components/profile/ProfileSidebar';
+import ProfileSkeleton from '@/components/profile/skeleton/ProfileSkeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useGetMyProfile } from '@/services/profile/queries/useGetMyProfile';
 import { useProfileCategoryStore } from '@/store/profileCategory/useProfileStore';
 import { useParams } from 'next/navigation';
@@ -20,8 +22,9 @@ export default function ProfilePage() {
   }, [category]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <ProfileSkeleton />;
   }
+
   if (!data) {
     return <div>data not exist</div>;
   }
