@@ -7,8 +7,6 @@ interface DeleteBtnProps {
 }
 
 export default function DeleteBtn({ postId }: DeleteBtnProps) {
-  console.log(postId);
-
   const onClickDeletePost = async () => {
     if (!postId) {
       throw new Error('post not exist');

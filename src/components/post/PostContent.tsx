@@ -6,6 +6,7 @@ interface PostContentProps {
 }
 
 export default function PostContent({ data }: PostContentProps) {
+  console.log(data);
   return (
     <div className="max-w-3xl">
       <div className="mb-4 flex items-center">
@@ -21,7 +22,7 @@ export default function PostContent({ data }: PostContentProps) {
       <div className="">
         <article className="mb-4 h-[50vh]">{data?.content}</article>
         <hr className="mb-4" />
-        <PostStats statCount={data._count} />
+        <PostStats statCount={data._count} userId={data.userId} />
       </div>
     </div>
   );

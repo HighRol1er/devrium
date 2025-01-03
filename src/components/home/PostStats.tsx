@@ -14,17 +14,17 @@ interface PostStatsProps {
     comments: number;
     likes: number;
   };
+  userId: string;
 }
 
-export default function PostStats({ statCount }: PostStatsProps) {
+export default function PostStats({ statCount, userId }: PostStatsProps) {
   const session = useSession();
   const pathname = usePathname();
   const postId = pathname.split('/').pop();
+  console.log(postId);
+  console.log(userId);
 
   const isHomePostPath = pathname.startsWith('/home/post/');
-
-  const profile = useProfileStore((state) => state.profile);
-  const userId = profile.userId;
 
   const onClickLikePost = async () => {
     if (!userId || !postId) {
@@ -57,7 +57,7 @@ export default function PostStats({ statCount }: PostStatsProps) {
           </button>
         </div>
         <div>
-          {session.data?.user.id !== profile.userId && isHomePostPath && (
+          {session.data?.user.id !== userId && isHomePostPath && (
             <DeleteBtn postId={postId} />
           )}
         </div>
