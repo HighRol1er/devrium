@@ -1,39 +1,38 @@
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { useProfileCategoryStore } from '@/store/profileCategory/useProfileStore';
 
 interface IButtonGroupProps {
   userId: string;
 }
 
 export default function ButtonGroup({ userId }: IButtonGroupProps) {
+  const { setCategory } = useProfileCategoryStore();
+
   return (
     <>
-      <Link href={`/profile/${userId}`}>
-        <Button
-          variant="ghost"
-          className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
-        >
-          Posts
-        </Button>
-      </Link>
+      <Button
+        onClick={() => setCategory('posts')}
+        variant="ghost"
+        className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
+      >
+        Posts
+      </Button>
 
-      <Link href={`/profile/${userId}/comments`}>
-        <Button
-          variant="ghost"
-          className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
-        >
-          Comments
-        </Button>
-      </Link>
+      <Button
+        onClick={() => setCategory('comments')}
+        variant="ghost"
+        className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
+      >
+        Comments
+      </Button>
 
-      <Link href={`/profile/${userId}/bookmark`}>
-        <Button
-          variant="ghost"
-          className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
-        >
-          Bookmark
-        </Button>
-      </Link>
+      <Button
+        onClick={() => setCategory('bookmark')}
+        variant="ghost"
+        className="font-semibold hover:underline hover:decoration-primary hover:decoration-2"
+      >
+        Bookmark
+      </Button>
     </>
   );
 }
