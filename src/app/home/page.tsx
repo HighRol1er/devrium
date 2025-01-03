@@ -1,19 +1,16 @@
 'use client';
 
-import Link from 'next/link';
-import { Loader } from 'lucide-react';
-import { IPost } from '@/types/post';
-import { Button } from '@/components/ui/button';
 import PostCard from '@/components/home/PostCard';
+import { Button } from '@/components/ui/button';
+import { IPost } from '@/types/post';
+import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
-import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
+import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
 import { useObserver } from '@/hooks/useObserver';
-// import { useSession } from 'next-auth/react';
+import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 
 export default function HomePage() {
-  // const session = useSession();
-  // console.log('session>>>', session);
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useGetAllPost();
 
@@ -23,8 +20,8 @@ export default function HomePage() {
     fetchNextPage,
   });
 
-  //NOTE: loading.tsx 만들어서 로딩 만들기
-  if (isLoading) return <p>Loading posts...</p>;
+  // NOTE:Skeleton
+  if (isLoading) return <HomeSkeletonUi />;
 
   return (
     <>
@@ -54,7 +51,7 @@ export default function HomePage() {
           </div>
         ))}
 
-        {isFetchingNextPage && <Loader className="animate-spin" />}
+        {isFetchingNextPage && <Loader2 className="animate-spin" />}
       </div>
     </>
   );
