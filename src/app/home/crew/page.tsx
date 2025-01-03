@@ -1,13 +1,13 @@
 'use client';
 
 import PostCard from '@/components/home/PostCard';
+import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
 import { Button } from '@/components/ui/button';
+import { useObserver } from '@/hooks/useObserver';
+import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 import { IPost } from '@/types/post';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
-
-import { useObserver } from '@/hooks/useObserver';
-import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 
 export default function CoderiumPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
@@ -20,8 +20,7 @@ export default function CoderiumPage() {
   });
   console.log(data);
 
-  //NOTE: loading.tsx 만들어서 로딩 만들기
-  if (isLoading) return <p>Loading posts...</p>;
+  if (isLoading) return <HomeSkeletonUi />;
 
   return (
     <>

@@ -6,11 +6,11 @@ import { useGetPostDetail } from '@/services/post/queries/useGetPostDetail';
 import PostContent from '@/components/post/PostContent';
 import CommentList from '@/components/post/CommentList';
 import AddComment from '@/components/post/AddComment';
-import { useSelectedLayoutSegments } from 'next/navigation';
+// import { useSelectedLayoutSegments } from 'next/navigation';
 
 export default function PostDetailPage() {
-  const segments = useSelectedLayoutSegments();
-  console.log('segments >>>', segments);
+  // const segments = useSelectedLayoutSegments();
+  // console.log('segments >>>', segments);
   const params = useParams();
   const searchParams = useSearchParams();
   const search = searchParams.get('');

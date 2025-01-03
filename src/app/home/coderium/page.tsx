@@ -1,6 +1,7 @@
 'use client';
 
 import PostCard from '@/components/home/PostCard';
+import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
 import { Button } from '@/components/ui/button';
 import { useObserver } from '@/hooks/useObserver';
 import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
@@ -19,9 +20,7 @@ export default function CoderiumPage() {
   });
   console.log(data);
 
-  //NOTE: loading.tsx 만들어서 로딩 만들기
-  // FIX:뭔가 이상함 게시글을 다 못불러온다.
-  if (isLoading) return <p>Loading posts...</p>;
+  if (isLoading) return <HomeSkeletonUi />;
 
   return (
     <>
