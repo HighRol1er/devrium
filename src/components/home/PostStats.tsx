@@ -1,7 +1,6 @@
 'use client';
 
 import { likePost } from '@/services/likePost/likePost';
-import { useProfileStore } from '@/store/profile/profileStore';
 import { MessageSquareMore, Share, ThumbsUp } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
@@ -14,15 +13,13 @@ interface PostStatsProps {
     comments: number;
     likes: number;
   };
-  userId: string;
+  userId?: string;
 }
 
 export default function PostStats({ statCount, userId }: PostStatsProps) {
   const session = useSession();
   const pathname = usePathname();
   const postId = pathname.split('/').pop();
-  console.log(postId);
-  console.log(userId);
 
   const isHomePostPath = pathname.startsWith('/home/post/');
 

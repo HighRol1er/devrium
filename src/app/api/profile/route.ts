@@ -26,7 +26,15 @@ export async function GET(request: NextRequest) {
             },
           },
         },
-        comments: true,
+        comments: {
+          include: {
+            post: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
         likes: true,
         follower: true,
         following: true,
