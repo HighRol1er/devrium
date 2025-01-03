@@ -54,7 +54,7 @@ export default function PostStats({ statCount, userId }: PostStatsProps) {
           </button>
         </div>
         <div>
-          {session.data?.user.id !== userId && isHomePostPath && (
+          {session.data?.user.id === userId && isHomePostPath && (
             <DeleteBtn postId={postId} />
           )}
         </div>

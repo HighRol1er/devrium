@@ -15,6 +15,7 @@ import { ForwardRefExoticComponent, RefAttributes } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useSession } from 'next-auth/react';
 
 interface IAppProps {
   id: number;
@@ -25,61 +26,64 @@ interface IAppProps {
   >;
 }
 
-export const leftMenu: IAppProps[] = [
-  {
-    id: 0,
-    name: 'Home',
-    href: '/home',
-    icon: HomeIcon,
-  },
-
-  {
-    id: 1,
-    name: 'Bookmark',
-    href: '/home/bookmark',
-    icon: Bookmark,
-  },
-
-  {
-    id: 2,
-    name: 'Top Users',
-    href: '/home/topusers',
-    icon: Trophy,
-  },
-  {
-    id: 3,
-    name: 'Coderium',
-    href: '/home/coderium',
-    icon: SquareTerminal,
-  },
-  {
-    id: 4,
-    name: 'Questions',
-    href: '/home/questions',
-    icon: MessageCircleCode,
-  },
-  {
-    id: 5,
-    name: 'Crew',
-    href: '/home/crew',
-    icon: UsersRound,
-  },
-  {
-    id: 6,
-    name: 'Reference',
-    href: '/home/reference',
-    icon: SquareLibrary,
-  },
-  {
-    id: 7,
-    name: 'Meme',
-    href: '/home/meme',
-    icon: Bot,
-  },
-];
-
 export function LeftSidebarMenu() {
   const pathname = usePathname();
+  const session = useSession();
+  const userId = session.data?.user.id;
+
+  const leftMenu: IAppProps[] = [
+    {
+      id: 0,
+      name: 'Home',
+      href: '/home',
+      icon: HomeIcon,
+    },
+
+    {
+      id: 1,
+      name: 'Bookmark',
+      href: `/profile/${userId}`,
+      icon: Bookmark,
+    },
+
+    {
+      id: 2,
+      name: 'Top Users',
+      href: '/home/topusers',
+      icon: Trophy,
+    },
+    {
+      id: 3,
+      name: 'Coderium',
+      href: '/home/coderium',
+      icon: SquareTerminal,
+    },
+    {
+      id: 4,
+      name: 'Questions',
+      href: '/home/questions',
+      icon: MessageCircleCode,
+    },
+    {
+      id: 5,
+      name: 'Crew',
+      href: '/home/crew',
+      icon: UsersRound,
+    },
+    {
+      id: 6,
+      name: 'Reference',
+      href: '/home/reference',
+      icon: SquareLibrary,
+    },
+    {
+      id: 7,
+      name: 'Meme',
+      href: '/home/meme',
+      icon: Bot,
+    },
+  ];
+
   return (
     <>
       {leftMenu.map((menu) => (
