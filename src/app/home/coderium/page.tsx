@@ -1,17 +1,16 @@
 'use client';
 
-import Link from 'next/link';
-import { Loader } from 'lucide-react';
-import { IPost } from '@/types/post';
-import { Button } from '@/components/ui/button';
 import PostCard from '@/components/home/PostCard';
-
-import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
+import { Button } from '@/components/ui/button';
 import { useObserver } from '@/hooks/useObserver';
+import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
+import { IPost } from '@/types/post';
+import { Loader } from 'lucide-react';
+import Link from 'next/link';
 
 export default function CoderiumPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost();
+    useGetAllPost(1);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

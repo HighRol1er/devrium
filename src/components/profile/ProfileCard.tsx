@@ -15,7 +15,7 @@ export default function ProfileCard({ data }: ProfileCardProps) {
     <>
       <div className="mb-6 flex items-center gap-4">
         {!data.image ? (
-          <User />
+          <User className="size-16" />
         ) : (
           <img
             src={data.image}

@@ -40,15 +40,25 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
+  console.log(searchParams);
 
   const page = parseInt(searchParams.get('page') ?? '1', 10);
   const pageSize = parseInt(searchParams.get('pageSize') ?? '3', 10);
-
+  const categoryId = searchParams.get('categoryId')
+    ? parseInt(searchParams.get('categoryId') as string, 10)
+    : undefined;
+  console.log(categoryId);
+  /** categoryId가 undefined이면 모든 게시물을 가져오고
+   *  값이 있을 경우에는 해당 categoryId에 맞는 게시물만 불러오게 된다.
+   */
   try {
     const posts = await prisma.post.findMany({
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: 'desc' },
+      where: {
+        categoryId: categoryId || undefined,
+      },
       include: {
         user: {
           select: {

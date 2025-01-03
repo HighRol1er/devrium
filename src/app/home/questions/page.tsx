@@ -11,7 +11,7 @@ import { useObserver } from '@/hooks/useObserver';
 
 export default function QuestionPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost();
+    useGetAllPost(2);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

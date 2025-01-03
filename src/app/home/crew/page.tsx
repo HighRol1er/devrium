@@ -11,7 +11,7 @@ import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 
 export default function CoderiumPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost();
+    useGetAllPost(3);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

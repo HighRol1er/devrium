@@ -1,5 +1,5 @@
-import LeftSidebar from '@/components/layout/LeftSidebar';
 import Navbar from '@/components/common/Navbar';
+import LeftSidebar from '@/components/layout/LeftSidebar';
 
 export default async function HomeLayout({
   children,

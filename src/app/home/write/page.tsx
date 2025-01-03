@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -8,14 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import MarkdownPage from '@/components/write/MarkdownPage';
 import { CreatePost } from '@/schema/createPostSchema';
 
-import { useState } from 'react';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function CreatePostPage() {

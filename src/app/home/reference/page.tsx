@@ -11,7 +11,7 @@ import { useObserver } from '@/hooks/useObserver';
 
 export default function CoderiumPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost();
+    useGetAllPost(4);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

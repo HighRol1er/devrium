@@ -7,11 +7,12 @@ interface FetchPostsResponse {
   currentPage: number;
 }
 
-export const getAllPosts = async ({
-  pageParam = 1,
-}): Promise<FetchPostsResponse> => {
+export const getAllPosts = async (
+  categoryId?: number,
+  pageParam = 1
+): Promise<FetchPostsResponse> => {
   const response = await fetch(
-    `${BASE_URL}/api/post?page=${pageParam}&pageSize=3` //&categoryId=1
+    `${BASE_URL}/api/post?categoryId=${categoryId}&page=${pageParam}&pageSize=3`
   );
 
   if (!response.ok) {

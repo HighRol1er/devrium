@@ -52,7 +52,11 @@ export default function PostCard({ post }: PostCardProps) {
           </span>
         </div>
         <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>
-        <p className="mb-4">{post?.content}</p>
+        <p className="mb-4">
+          {post?.content.length > 150
+            ? `${post.content.substring(0, 150)} ...`
+            : post?.content}
+        </p>
       </Link>
       <PostStats statCount={post._count} userId={post.userId} />
     </div>
