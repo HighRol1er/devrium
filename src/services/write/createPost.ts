@@ -1,4 +1,5 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
+import { requestOptions } from '../fetch/requestOption';
 
 export interface CreatePostDto {
   title: string;
@@ -11,13 +12,10 @@ export const createPost = async ({
   content,
   categoryId,
 }: CreatePostDto) => {
-  const response = await fetch(`${BASE_URL}/api/post`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ title, content, categoryId }),
-  });
+  const response = await fetch(
+    `${BASE_URL}/api/post`,
+    requestOptions('POST', { title, content, categoryId })
+  );
 
   if (!response.ok) {
     throw new Error('Failed to create post');

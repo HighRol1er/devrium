@@ -1,5 +1,6 @@
 import { IPost } from '@/types/post';
 import { BASE_URL } from '@/shared/constant/baseUrl';
+import { requestOptions } from '../fetch/requestOption';
 
 interface FetchPostsResponse {
   posts: IPost[];
@@ -12,7 +13,8 @@ export const getAllPosts = async (
   pageParam = 1
 ): Promise<FetchPostsResponse> => {
   const response = await fetch(
-    `${BASE_URL}/api/post?categoryId=${categoryId}&page=${pageParam}&pageSize=3`
+    `${BASE_URL}/api/post?categoryId=${categoryId}&page=${pageParam}&pageSize=3`,
+    requestOptions('GET')
   );
 
   if (!response.ok) {

@@ -1,10 +1,12 @@
 import { IUser } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
-import { getMyProfile } from '../getMyProfile';
+import { getProfile } from '../getMyProfile';
+import { commonQueryOptions } from '@/utils/tanstack-query/commonQueryOptions';
 
-export const useGetMyProfile = (userId: string) => {
+export const useGetProfile = (userId: string) => {
   return useQuery<IUser>({
     queryKey: ['profile', userId],
-    queryFn: () => getMyProfile(userId),
+    queryFn: () => getProfile(userId),
+    ...commonQueryOptions,
   });
 };

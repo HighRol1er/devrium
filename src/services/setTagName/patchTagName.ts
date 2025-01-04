@@ -1,13 +1,11 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
+import { requestOptions } from '../fetch/requestOption';
 
 export const patchTagName = async (userId: string, tagName: string) => {
-  const response = await fetch(`${BASE_URL}/api/user/${userId}/tagname`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ tagName: tagName }),
-  });
+  const response = await fetch(
+    `${BASE_URL}/api/user/${userId}/tagname`,
+    requestOptions('PATCH', { tagName })
+  );
 
   if (!response.ok) {
     console.error('Failed to set tag name');

@@ -5,14 +5,14 @@ import MyPost from '@/components/profile/MyPost';
 import ProfileCard from '@/components/profile/ProfileCard';
 import ProfileSidebar from '@/components/profile/ProfileSidebar';
 import ProfileSkeleton from '@/components/profile/skeleton/ProfileSkeleton';
-import { useGetMyProfile } from '@/services/profile/queries/useGetMyProfile';
+import { useGetProfile } from '@/services/profile/queries/useGetMyProfile';
 import { useProfileCategoryStore } from '@/store/profileCategory/useProfileStore';
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function ProfilePage() {
   const params = useParams<{ userId: string }>();
-  const { data, isLoading, isError } = useGetMyProfile(params.userId);
+  const { data, isLoading, isError } = useGetProfile(params.userId);
 
   const { category } = useProfileCategoryStore();
   console.log(data);

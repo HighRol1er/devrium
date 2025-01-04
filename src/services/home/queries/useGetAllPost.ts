@@ -1,3 +1,4 @@
+import { commonQueryOptions } from '@/utils/tanstack-query/commonQueryOptions';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getAllPosts } from '../getAllPosts';
 
@@ -10,5 +11,6 @@ export const useGetAllPost = (categoryId?: number) => {
       const { currentPage, totalCount } = lastPage;
       return currentPage < totalCount ? currentPage + 1 : undefined;
     },
+    ...commonQueryOptions,
   });
 };

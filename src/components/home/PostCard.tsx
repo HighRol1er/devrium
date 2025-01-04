@@ -27,8 +27,8 @@ export default function PostCard({ post }: PostCardProps) {
           <User2 className="h-8 w-8 rounded-full border-b" />
         )}
         <p className="font-semibold">{post?.user?.tagName}</p>
-        <div className="mb-2 flex gap-1 text-sm">
-          <Link href={`/home/post/${post.id}`} className="block">
+        <Link href={`/home/post/${post.id}`} className="block">
+          <div className="mb-2 flex gap-1 text-sm">
             <span className="inline-block rounded-full bg-primary/20 px-3 py-1">
               {(() => {
                 switch (post?.categoryId) {
@@ -47,14 +47,14 @@ export default function PostCard({ post }: PostCardProps) {
                 }
               })()}
             </span>
-          </Link>
-        </div>
-        <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>
-        <p className="mb-4">
-          {post?.content.length > 150
-            ? `${post.content.substring(0, 150)} ...`
-            : post?.content}
-        </p>
+          </div>
+          <h2 className="mb-2 text-lg font-bold">{post?.title}</h2>
+          <p className="mb-4">
+            {post?.content.length > 150
+              ? `${post.content.substring(0, 150)} ...`
+              : post?.content}
+          </p>
+        </Link>
       </div>
       <div>
         <PostStats statCount={post._count} userId={post.userId} />
