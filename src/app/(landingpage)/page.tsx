@@ -1,12 +1,11 @@
-import Navbar from '@/components/common/Navbar';
+// import Navbar from '@/components/common/Navbar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-
+      {/* <Navbar /> */}
       <div className="flex h-screen items-center justify-center bg-gradient-to-r from-gray-900 to-purple-800 text-white">
         <div className="px-4 text-center">
           <h1 className="mb-6 text-5xl font-bold md:text-6xl">
