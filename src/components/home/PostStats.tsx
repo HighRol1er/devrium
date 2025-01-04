@@ -1,7 +1,7 @@
 'use client';
 
 import { likePost } from '@/services/likePost/likePost';
-import { MessageSquareMore, Share, ThumbsUp } from 'lucide-react';
+import { Bookmark, MessageSquareMore, Share, ThumbsUp } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import DeleteBtn from '../post/DeleteBtn';
@@ -41,16 +41,19 @@ export default function PostStats({ statCount, userId }: PostStatsProps) {
             onClick={onClickLikePost}
             className="flex gap-1 hover:text-blue-500"
           >
-            <ThumbsUp className="size-4" />
+            <ThumbsUp className="size-5" />
             <p>{statCount?.likes}</p>
           </button>
           <button className="flex gap-1 hover:text-blue-500">
-            <MessageSquareMore className="size-4" />
+            <MessageSquareMore className="size-5" />
             <p>{statCount?.comments}</p>
           </button>
           <button className="flex gap-1 hover:text-blue-500">
-            <Share className="size-4" />
+            <Share className="size-5" />
             <p>Share</p>
+          </button>
+          <button className="flex gap-1 hover:text-yellow-500">
+            <Bookmark className="size-5" />
           </button>
         </div>
         <div>

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useObserver } from '@/hooks/useObserver';
 import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 import { IPost } from '@/types/post';
-import { Loader } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CoderiumPage() {
@@ -26,7 +26,7 @@ export default function CoderiumPage() {
     <>
       <div className="grid">
         <Button className="w-40 justify-self-end">
-          <Link href="/home/write">Create Post</Link>
+          <Link href="/home/write"> Create Post</Link>
         </Button>
 
         {data?.pages.map((page, pageIndex) => (
@@ -52,7 +52,7 @@ export default function CoderiumPage() {
           </div>
         ))}
 
-        {isFetchingNextPage && <Loader className="animate-spin" />}
+        {isFetchingNextPage && <Loader2 className="animate-spin" />}
       </div>
     </>
   );

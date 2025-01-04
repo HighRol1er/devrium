@@ -1,6 +1,6 @@
 import { Trash2 } from 'lucide-react';
 import { Button } from '../ui/button';
-import { deletePost } from '@/services/post/deletePost';
+import { deletePost } from '@/services/post/postService';
 
 interface DeleteBtnProps {
   postId: string | undefined;
