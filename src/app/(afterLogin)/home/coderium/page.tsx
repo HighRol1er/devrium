@@ -32,7 +32,7 @@ export default function CoderiumPage() {
         {data?.pages.map((page, pageIndex) => (
           <div key={pageIndex} className="post-page">
             {page.posts
-              .filter((post: IPost) => post.categoryId === 1)
+              // .filter((post: IPost) => post.categoryId === 1)
               .map((post: IPost, postIndex: number) => {
                 // 현재가 마지막 페이지인지 체크
                 const isLastPost =

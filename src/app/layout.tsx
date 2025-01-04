@@ -6,6 +6,7 @@ import { TanStackProvider } from '@/providers/TanStackProvider';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import Footer from '@/components/common/Footer';
+import Navbar from '@/components/common/Navbar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,18 +33,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          // defaultTheme="system"
-          enableSystem
-          // disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SessionProvider>
-            <TanStackProvider>{children}</TanStackProvider>
+            <TanStackProvider>
+              {/* <Navbar /> */}
+              {children}
+              <Footer />
+            </TanStackProvider>
           </SessionProvider>
         </ThemeProvider>
-        <Footer />
       </body>
     </html>
   );
