@@ -39,12 +39,13 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  // console.log(searchParams);
 
   const page = parseInt(searchParams.get('page') ?? '1', 10);
   const pageSize = parseInt(searchParams.get('pageSize') ?? '3', 10);
-  const categoryId = searchParams.get('categoryId')
-    ? parseInt(searchParams.get('categoryId') as string, 10)
+
+  const categoryIdParam = searchParams.get('categoryId');
+  const categoryId = categoryIdParam
+    ? parseInt(categoryIdParam, 10)
     : undefined;
 
   /**
@@ -52,13 +53,13 @@ export async function GET(request: NextRequest) {
    * 값이 있을 경우에는 해당 categoryId에 맞는 게시물만 불러오게 된다.
    */
   try {
+    const where = categoryId ? { categoryId } : {};
+
     const posts = await prisma.post.findMany({
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: 'desc' },
-      where: {
-        categoryId: categoryId || undefined,
-      },
+      where,
       include: {
         user: {
           select: {

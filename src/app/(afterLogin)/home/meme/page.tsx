@@ -19,7 +19,7 @@ export default function CoderiumPage() {
     hasNextPage: hasNextPage || false,
     fetchNextPage,
   });
-  console.log(data);
+  // console.log(data);
 
   if (isLoading) return <HomeSkeletonUi />;
 

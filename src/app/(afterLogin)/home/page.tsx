@@ -15,7 +15,7 @@ export default function HomePage() {
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,
-    hasNextPage: hasNextPage || false,
+    hasNextPage: hasNextPage,
     fetchNextPage,
   });
 
@@ -31,7 +31,7 @@ export default function HomePage() {
 
         {data?.pages.map((page, pageIndex) => (
           <div key={pageIndex} className="post-page">
-            {page.posts.map((post: IPost, postIndex: number) => {
+            {page.posts.map((post, postIndex) => {
               // 현재가 마지막 페이지인지 체크
               const isLastPost =
                 pageIndex === data.pages.length - 1 &&
