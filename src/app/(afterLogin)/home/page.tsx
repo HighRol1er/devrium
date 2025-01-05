@@ -1,14 +1,13 @@
 'use client';
 
 import PostCard from '@/components/home/PostCard';
+import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
 import { Button } from '@/components/ui/button';
+import { useObserver } from '@/hooks/useObserver';
+import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 import { IPost } from '@/types/post';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
-
-import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
-import { useObserver } from '@/hooks/useObserver';
-import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =

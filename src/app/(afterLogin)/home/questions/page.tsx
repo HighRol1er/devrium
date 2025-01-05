@@ -8,10 +8,11 @@ import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 import { IPost } from '@/types/post';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
+import { POST_CATEGORY } from '@/shared/constant/postCategory';
 
 export default function QuestionPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost(2);
+    useGetAllPost(POST_CATEGORY.QUESTIONS);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

@@ -8,10 +8,10 @@ import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
 import { IPost } from '@/types/post';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
-
+import { POST_CATEGORY } from '@/shared/constant/postCategory';
 export default function CoderiumPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost(4);
+    useGetAllPost(POST_CATEGORY.REFERENCE);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

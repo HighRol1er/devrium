@@ -12,22 +12,24 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import Link from 'next/link';
-import { User } from 'next-auth';
 import { signOut } from '@/lib/auth';
-// interface AvatarProps {
-//   imageUrl: string;
-//   tagName: string | null;
-//   id: string;
-// }
-export default function Avatar({ image, id }: User) {
+import Link from 'next/link';
+import fallbackImage from '@/public/logo.png';
+
+export default function Avatar({
+  image,
+  id,
+}: {
+  image: string | null | undefined;
+  id: string | undefined;
+}) {
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
             <img
-              src={image ?? undefined}
+              src={image ?? fallbackImage.src}
               alt="Profile image"
               width={20}
               height={20}

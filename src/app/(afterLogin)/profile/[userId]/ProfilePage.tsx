@@ -7,21 +7,12 @@ import ProfileSidebar from '@/components/profile/ProfileSidebar';
 import ProfileSkeleton from '@/components/profile/skeleton/ProfileSkeleton';
 import { useGetProfile } from '@/services/profile/queries/useGetMyProfile';
 import { useProfileCategoryStore } from '@/store/profileCategory/useProfileStore';
-import { useParams } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function ProfilePage({ userId }: { userId: string }) {
-  const params = useParams<{ userId: string }>();
-
   const { data, isLoading, isError } = useGetProfile(userId);
-  // const { data, isLoading, isError } = useGetProfile(params.userId);
 
   const { category } = useProfileCategoryStore();
   console.log(data);
-
-  useEffect(() => {
-    console.log(category);
-  }, [category]);
 
   if (isLoading) {
     return <ProfileSkeleton />;

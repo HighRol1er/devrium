@@ -5,13 +5,14 @@ import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
 import { Button } from '@/components/ui/button';
 import { useObserver } from '@/hooks/useObserver';
 import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
+import { POST_CATEGORY } from '@/shared/constant/postCategory';
 import { IPost } from '@/types/post';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CoderiumPage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost(3);
+    useGetAllPost(POST_CATEGORY.CREW);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

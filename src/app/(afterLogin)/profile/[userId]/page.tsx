@@ -17,6 +17,9 @@ export default async function Page({ params }: { params: { userId: string } }) {
     queryFn: () => getProfile(userId),
   });
 
+  const cachedData = queryClient.getQueryData([PROFILE, userId]);
+  console.log('SSR Fetched Data:', cachedData);
+
   return (
     // Neat! Serialization is now as easy as passing props.
     // HydrationBoundary is a Client Component, so hydration will happen there.

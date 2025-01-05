@@ -14,14 +14,15 @@ export default function PostContent({ data }: PostContentProps) {
   console.log(data);
   return (
     <div className="max-w-3xl">
-      <div className="mb-4 flex items-center">
+      <h1 className="mb-2 text-2xl font-bold">{data.title}</h1>
+      <div className="mb-4 flex">
         <img
           src={data?.user.image as string}
           className="mr-3 h-10 w-10 rounded-full"
         />
-        <div>
-          <h2 className="text-xl font-semibold">{data?.title}</h2>
-          <p className="text-sm text-gray-400">{data?.user.name}</p>
+        <div className="flex flex-col">
+          <span className="font-semibold">{data?.user.name}</span>
+          <span className="text-sm text-gray-400">{data?.user.tagName}</span>
         </div>
       </div>
       <div className="">
