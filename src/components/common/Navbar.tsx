@@ -10,8 +10,6 @@ import { ThemeToggle } from './ThemeToggle';
 
 export default async function Navbar() {
   const session = await validateUser();
-  console.log(session);
-  console.log(session?.user.image);
 
   if (!session) {
     return <div>error</div>;

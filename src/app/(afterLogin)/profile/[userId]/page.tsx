@@ -7,8 +7,12 @@ import {
 } from '@tanstack/react-query';
 import ProfilePage from './ProfilePage';
 
-export default async function Page({ params }: { params: { userId: string } }) {
-  const { userId } = await params;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}) {
+  const userId = (await params).userId;
 
   const queryClient = new QueryClient();
 
@@ -17,8 +21,8 @@ export default async function Page({ params }: { params: { userId: string } }) {
     queryFn: () => getProfile(userId),
   });
 
-  const cachedData = queryClient.getQueryData([PROFILE, userId]);
-  console.log('SSR Fetched Data:', cachedData);
+  // const cachedData = queryClient.getQueryData([PROFILE, userId]);
+  // console.log('SSR Fetched Data:', cachedData);
 
   return (
     // Neat! Serialization is now as easy as passing props.

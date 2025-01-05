@@ -5,7 +5,6 @@ import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
 import { Button } from '@/components/ui/button';
 import { useObserver } from '@/hooks/useObserver';
 import { useGetAllPost } from '@/services/home/queries/useGetAllPost';
-import { IPost } from '@/types/post';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
