@@ -18,7 +18,7 @@ export const getAllPosts = async (
     url += `&categoryId=${categoryId}`;
   }
 
-  const response = await fetch(url, requestOptions('GET'));
+  const response = await fetch(url, requestOptions());
 
   if (!response.ok) {
     throw new Error('Failed to get posts');

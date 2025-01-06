@@ -11,9 +11,12 @@ export function getCategoryByName(name: string) {
   );
 }
 
-// Ex_
-// const category = getCategoryById(1);
-// console.log(category); // { id: 1, name: 'coderium' }
-
-// const category = getCategoryByName('coderium');
-// console.log(category); // { id: 1, name: 'coderium' }
+/**
+ * Ex_
+ * const category = getCategoryById(1);
+ * console.log(category); // { id: 1, name: 'coderium' }
+ *
+ * const category = getCategoryByName('coderium');
+ * console.log(category); // { id: 1, name: 'coderium' }
+ *
+ * */

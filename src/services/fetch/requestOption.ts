@@ -6,9 +6,28 @@ export enum HttpContentType {
   JSON = 'application/json',
 }
 
-type RequestOption = 'GET' | 'DELETE' | 'POST' | 'PUT' | 'PATCH';
+export enum HttpMethod {
+  GET = 'GET',
+  DELETE = 'DELETE',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+}
 
-export const requestOptions = (method: RequestOption, body?: object) => ({
+// type RequestOption = 'GET' | 'DELETE' | 'POST' | 'PUT' | 'PATCH';
+
+// export const requestOptions = (method: RequestOption, body?: object) => ({
+//   method,
+//   headers: {
+//     [HttpHeader.CONTENT_TYPE]: HttpContentType.JSON,
+//   },
+//   ...(body && { body: JSON.stringify(body) }),
+// });
+
+export const requestOptions = (
+  method: HttpMethod = HttpMethod.GET,
+  body?: object
+) => ({
   method,
   headers: {
     [HttpHeader.CONTENT_TYPE]: HttpContentType.JSON,

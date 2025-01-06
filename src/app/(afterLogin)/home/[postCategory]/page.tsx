@@ -1,5 +1,5 @@
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { prefetchGetAllPosts } from '../usePrefetch';
+import { prefetchGetAllPosts } from './usePrefetch';
 import { getCategoryByName } from '@/utils/postCategoryUtil';
 import PostCategoryPage from './PostCategoryPage';
 import { redirect } from 'next/navigation';

@@ -33,7 +33,6 @@ export default function PostStats({ statCount, userId }: PostStatsProps) {
   };
 
   return (
-    // <div className="mb-2 space-x-4 text-sm text-gray-400">
     <>
       <div className="flex w-full items-center justify-between">
         <div className="flex space-x-4 text-sm text-gray-400">

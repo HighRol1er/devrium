@@ -2,12 +2,12 @@ import { DeleteCommentRequestDto } from '@/types/comment';
 import { BASE_URL } from '@/shared/constant/baseUrl';
 import { CommentRequestDto } from '@/types/comment';
 import { IPost } from '@/types/post';
-import { requestOptions } from '@/services/fetch/requestOption';
+import { HttpMethod, requestOptions } from '@/services/fetch/requestOption';
 
 export const getPostDetail = async (postId: string): Promise<IPost> => {
   const response = await fetch(
     `${BASE_URL}/api/post/${postId}`,
-    requestOptions('GET')
+    requestOptions()
   );
 
   if (!response.ok) {
@@ -20,7 +20,7 @@ export const getPostDetail = async (postId: string): Promise<IPost> => {
 export const deletePost = async (postId: string): Promise<void> => {
   const response = await fetch(
     `${BASE_URL}/api/post/${postId}`,
-    requestOptions('DELETE')
+    requestOptions(HttpMethod.DELETE)
   );
 
   if (!response.ok) {
@@ -34,7 +34,7 @@ export const createComment = async ({
 }: CommentRequestDto): Promise<void> => {
   const response = await fetch(
     `${BASE_URL}/api/post/${postId}/comments`,
-    requestOptions('POST', { content, postId })
+    requestOptions(HttpMethod.POST, { content, postId })
   );
 
   if (!response.ok) {
@@ -47,9 +47,11 @@ export const deleteComment = async ({
   commentId,
   userId,
 }: DeleteCommentRequestDto): Promise<void> => {
+  const url = `${BASE_URL}/api/comment/${commentId}`;
+
   const response = await fetch(
-    `${BASE_URL}/api/comment/${commentId}`,
-    requestOptions('DELETE', { userId })
+    url,
+    requestOptions(HttpMethod.DELETE, { userId })
   );
 
   if (!response.ok) {
