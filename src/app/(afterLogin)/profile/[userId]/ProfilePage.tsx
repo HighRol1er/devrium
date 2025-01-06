@@ -7,9 +7,12 @@ import ProfileSidebar from '@/components/profile/ProfileSidebar';
 import ProfileSkeleton from '@/components/profile/skeleton/ProfileSkeleton';
 import { useGetProfile } from '@/services/profile/queries/useGetMyProfile';
 import { useProfileCategoryStore } from '@/store/profileCategory/useProfileStore';
+import { QueryClient } from '@tanstack/react-query';
 
 export default function ProfilePage({ userId }: { userId: string }) {
   const { data, isLoading, isError } = useGetProfile(userId);
+
+  // const testData = QueryClient.getQueryData(queryKey)
 
   const { category } = useProfileCategoryStore();
   console.log(data);
