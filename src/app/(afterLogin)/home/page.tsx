@@ -20,7 +20,6 @@ export default function HomePage() {
     fetchNextPage,
   });
 
-  // NOTE:Skeleton
   if (isLoading) return <HomeSkeletonUi />;
 
   return (

@@ -11,16 +11,18 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import CategorySelectTrigger from '@/components/write/CategorySelectTrigger';
 import MarkdownPage from '@/components/write/MarkdownPage';
-import { CreatePost } from '@/schema/createPostSchema';
-
+import { useToast } from '@/hooks/use-toast';
+import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
-
+  const { toast } = useToast();
   //NOTE: method 정리하기
   const { mutate, isPending } = useCreatePost();
 
@@ -30,6 +32,7 @@ export default function CreatePostPage() {
     watch,
     formState: { errors },
   } = useForm<CreatePost>({
+    resolver: zodResolver(createPostSchema),
     defaultValues: {
       title: '',
       markdown: '',
@@ -40,11 +43,11 @@ export default function CreatePostPage() {
 
   const onSubmitPost: SubmitHandler<CreatePost> = async (data) => {
     const categoryId = Number(selectCategory);
-    console.log(data);
-    console.log(categoryId);
 
     if (!categoryId) {
-      console.log('select category'); // toast처리
+      toast({
+        description: 'Select a category.',
+      });
       return;
     }
 
@@ -53,6 +56,7 @@ export default function CreatePostPage() {
       {
         onSuccess: () => {
           alert('Post created successfully!');
+          // NOTE: redirect 작성한 게시글로?
         },
         onError: (error) => {
           console.error('Error creating post:', error);
@@ -67,17 +71,23 @@ export default function CreatePostPage() {
       {/* Left section */}
       <div className="w-full pr-4 md:w-1/2">
         <form onSubmit={handleSubmit(onSubmitPost)}>
+          {errors.title && (
+            <span className="ml-2 text-xs font-semibold text-red-500">
+              {errors.title.message}
+            </span>
+          )}
           <Input
             placeholder="Write your title"
             className="mb-2 w-full border border-gray-500 p-3 focus:outline-none"
             id="title"
             type="text"
-            {...register('title', { required: 'Title is required' })}
+            {...register('title', { required: 'Title required!!' })}
             style={{ outline: 'none', boxShadow: 'none' }}
           />
-          {errors.title && <span>{errors.title.message}</span>}
+
           <div className="mb-2 flex justify-end">
             {/**NOTE: component 시키기 */}
+            {/* <CategorySelectTrigger value /> */}
             <Select
               value={selectCategory}
               onValueChange={(value) => setSelectCategory(value)}
@@ -96,15 +106,29 @@ export default function CreatePostPage() {
               </SelectContent>
             </Select>
           </div>
-          <Textarea
-            className="mb-4 h-[70vh] w-full rounded-md border border-gray-500"
-            placeholder="Write your 💡 here."
-            id="markdown"
-            {...register('markdown', { required: ' Contents required' })}
-            style={{ outline: 'none', boxShadow: 'none' }}
-          />
-          {errors.markdown && <span>{errors.markdown.message}</span>}
-          <Button className="w-full rounded-md bg-primary/80 px-4 py-2 font-semibold text-white transition duration-150 hover:bg-primary focus:outline-none">
+          <div>
+            {errors.markdown && (
+              <span className="ml-2 text-xs font-semibold text-red-500">
+                {errors.markdown.message}
+              </span>
+            )}
+            <Textarea
+              className="mb-4 h-[70vh] w-full rounded-md border border-gray-500"
+              placeholder="Write your 💡 here."
+              id="markdown"
+              {...register('markdown', { required: ' Contents required' })}
+              style={{ outline: 'none', boxShadow: 'none' }}
+            />
+          </div>
+
+          <Button
+            className={`w-full rounded-md px-4 py-2 font-semibold text-white transition duration-150 ${
+              isPending
+                ? 'cursor-not-allowed bg-gray-400'
+                : 'bg-primary/80 hover:bg-primary'
+            }`}
+            disabled={isPending}
+          >
             Creativity
           </Button>
         </form>

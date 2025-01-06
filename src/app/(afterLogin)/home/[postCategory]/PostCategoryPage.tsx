@@ -40,7 +40,7 @@ export default function PostCategoryPage(
   }
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetAllPost(currentCategory?.id);
+    useGetAllPost(currentCategory.id);
 
   const { lastElementRef } = useObserver({
     isFetchingNextPage: isFetchingNextPage,

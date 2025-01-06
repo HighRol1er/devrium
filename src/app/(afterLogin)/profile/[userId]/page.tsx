@@ -1,5 +1,5 @@
-import { getProfile } from '@/services/profile/getMyProfile';
-import { PROFILE } from '@/services/profile/queries/useGetMyProfile';
+import { getProfile } from '@/services/profile/getProfile';
+import { PROFILE } from '@/services/profile/queries/useGetProfile';
 import {
   dehydrate,
   HydrationBoundary,

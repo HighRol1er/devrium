@@ -1,6 +1,6 @@
 import { IUser } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
-import { getProfile } from '../getMyProfile';
+import { getProfile } from '../getProfile';
 
 /** Query key */
 export const PROFILE = 'profile';
