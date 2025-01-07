@@ -19,11 +19,11 @@ import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
   const { toast } = useToast();
-  //NOTE: method 정리하기
   const { mutate, isPending } = useCreatePost();
 
   const {
@@ -55,12 +55,16 @@ export default function CreatePostPage() {
       { title: data.title, content: data.markdown, categoryId },
       {
         onSuccess: () => {
-          alert('Post created successfully!');
-          // NOTE: redirect 작성한 게시글로?
+          toast({
+            description: 'Post created successfully.',
+          });
         },
         onError: (error) => {
           console.error('Error creating post:', error);
-          alert('Failed to create post. Please try again.');
+          alert();
+          toast({
+            description: 'Failed to create post. Please try again.',
+          });
         },
       }
     );
@@ -120,17 +124,17 @@ export default function CreatePostPage() {
               style={{ outline: 'none', boxShadow: 'none' }}
             />
           </div>
-
-          <Button
-            className={`w-full rounded-md px-4 py-2 font-semibold text-white transition duration-150 ${
-              isPending
-                ? 'cursor-not-allowed bg-gray-400'
-                : 'bg-primary/80 hover:bg-primary'
-            }`}
-            disabled={isPending}
-          >
-            Creativity
-          </Button>
+          {isPending ? (
+            <Button className="w-full rounded-md px-4 py-2 font-semibold text-white transition duration-150">
+              <Loader2 className="animate-spin" />
+            </Button>
+          ) : (
+            <Button
+              className={`w-full rounded-md px-4 py-2 font-semibold text-white transition duration-150`}
+            >
+              Creativity
+            </Button>
+          )}
         </form>
       </div>
 

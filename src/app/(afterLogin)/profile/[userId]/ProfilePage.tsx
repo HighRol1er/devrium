@@ -27,6 +27,13 @@ export default function ProfilePage({ userId }: { userId: string }) {
 
   if (!profileData) {
     return <div>data not exist</div>;
+    // 데이터가 없을 때 처리는 에러랑 별개다 << 중요!
+
+    // isError정도로만 분기가 필요하면 그거대로 처리
+    // status error를 사용할 수도 있음.
+
+    // return null 시도해보기
+    // suspense loading.tsx
   }
 
   return (

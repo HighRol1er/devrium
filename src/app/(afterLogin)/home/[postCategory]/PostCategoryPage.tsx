@@ -30,7 +30,7 @@ export default function PostCategoryPage(
   if (!currentCategory) {
     return <div></div>;
   }
-  // // 잘못된 카테고리 처리
+  // 잘못된 카테고리 처리
   if (
     !Object.values(POST_CATEGORY).some(
       (category) => category.name === currentCategory.name
