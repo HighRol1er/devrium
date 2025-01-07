@@ -1,11 +1,11 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
-import { requestOptions } from '../fetch/requestOption';
+import { HttpMethod, requestOptions } from '../fetch/requestOption';
 
 /* userId : 팔로우할 유저 */
 export const followUser = async ({ userId }: { userId: string }) => {
   const response = await fetch(
     `${BASE_URL}/api/follow/${userId}`,
-    requestOptions('POST')
+    requestOptions(HttpMethod.POST)
   );
 
   if (!response.ok) {
@@ -16,7 +16,7 @@ export const followUser = async ({ userId }: { userId: string }) => {
 export const unFollowUser = async ({ userId }: { userId: string }) => {
   const response = await fetch(
     `${BASE_URL}/api/follow/${userId}`,
-    requestOptions('DELETE')
+    requestOptions(HttpMethod.DELETE)
   );
 
   if (!response.ok) {

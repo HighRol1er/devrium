@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
-import { requestOptions } from '../fetch/requestOption';
+import { HttpMethod, requestOptions } from '../fetch/requestOption';
 
 export interface CreatePostDto {
   title: string;
@@ -12,9 +12,11 @@ export const createPost = async ({
   content,
   categoryId,
 }: CreatePostDto) => {
+  const url = `${BASE_URL}/api/post`;
+
   const response = await fetch(
-    `${BASE_URL}/api/post`,
-    requestOptions('POST', { title, content, categoryId })
+    url,
+    requestOptions(HttpMethod.POST, { title, content, categoryId })
   );
 
   if (!response.ok) {

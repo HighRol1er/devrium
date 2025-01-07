@@ -6,22 +6,23 @@ import { useGetPostDetail } from '@/services/post/queries/useGetPostDetail';
 import PostContent from '@/components/post/PostContent';
 import CommentList from '@/components/post/CommentList';
 import AddComment from '@/components/post/AddComment';
-// import { useSelectedLayoutSegments } from 'next/navigation';
+
+/**
+ * NOTE: 여기도 prefetching하고 catch-all segment써서 해야겠다.
+ *
+ */
 
 export default function PostDetailPage() {
-  // const segments = useSelectedLayoutSegments();
-  // console.log('segments >>>', segments);
   const params = useParams();
-  const searchParams = useSearchParams();
-  const search = searchParams.get('');
-  console.log(search);
+  // console.log(params);
+
   const postId = params?.id;
   if (typeof postId !== 'string') {
-    return <div>Invalid post ID</div>; // 적절한 에러 처리
+    return <div>Invalid post ID</div>;
   }
   const { data, isLoading, isError } = useGetPostDetail(postId);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="mx-auto flex min-h-screen w-full flex-col items-center">

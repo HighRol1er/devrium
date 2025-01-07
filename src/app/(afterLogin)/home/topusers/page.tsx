@@ -18,7 +18,7 @@ export default function TopUsers() {
         <div className="mb-4 w-[200px]">
           <SearchBar />
         </div>
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:text-sm lg:grid-cols-4">
           {data?.map((user: IUser) => <UserCard key={user.id} data={user} />)}
         </div>
       </div>

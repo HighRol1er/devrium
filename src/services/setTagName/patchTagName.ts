@@ -1,10 +1,12 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
-import { requestOptions } from '../fetch/requestOption';
+import { HttpMethod, requestOptions } from '../fetch/requestOption';
 
 export const patchTagName = async (userId: string, tagName: string) => {
+  const url = `${BASE_URL}/api/user/${userId}/tagname`;
+
   const response = await fetch(
-    `${BASE_URL}/api/user/${userId}/tagname`,
-    requestOptions('PATCH', { tagName })
+    url,
+    requestOptions(HttpMethod.PATCH, { tagName })
   );
 
   if (!response.ok) {

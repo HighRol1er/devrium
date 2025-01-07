@@ -2,7 +2,7 @@ import { IPost } from '@/types/post';
 import { BASE_URL } from '@/shared/constant/baseUrl';
 import { requestOptions } from '../fetch/requestOption';
 
-interface GetPostsResponse {
+export interface GetPostsResponse {
   posts: IPost[];
   totalCount: number;
   currentPage: number;
@@ -18,11 +18,10 @@ export const getAllPosts = async (
     url += `&categoryId=${categoryId}`;
   }
 
-  const response = await fetch(url, requestOptions('GET'));
+  const response = await fetch(url, requestOptions());
 
   if (!response.ok) {
     throw new Error('Failed to get posts');
   }
-
   return response.json();
 };

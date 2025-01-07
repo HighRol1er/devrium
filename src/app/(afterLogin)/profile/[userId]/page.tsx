@@ -1,5 +1,5 @@
-import { getProfile } from '@/services/profile/getMyProfile';
-import { PROFILE } from '@/services/profile/queries/useGetMyProfile';
+import { getProfile } from '@/services/profile/getProfile';
+import { PROFILE } from '@/services/profile/queries/useGetProfile';
 import {
   dehydrate,
   HydrationBoundary,
@@ -32,3 +32,9 @@ export default async function Page({
     </HydrationBoundary>
   );
 }
+
+// prefetching한 데이터를 넘겨주는 작업이 어디서 일어나는걸가?
+// queryclient에서 일어나는거 같긴한데 공식문서 좀 읽어보자.
+// NOTE: GPT의 설명 링크 https://chatgpt.com/share/677a7460-9064-8000-9546-b401dbd4ef45
+// 가은님 멘토링 시간에 여쭤봐야지.
+// 설명이 맞다면 velog에 정리할 것

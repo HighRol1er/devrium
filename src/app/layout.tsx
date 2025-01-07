@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/providers/ThemeProvider';
 import Footer from '@/components/common/Footer';
 import Navbar from '@/components/common/Navbar';
 import TanStackProvider from '@/providers/TanStackProvider';
+import { Toaster } from '@/components/ui/toaster';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,6 +29,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // seo 향상을 위해서 <main>를 써ㅝ야하나?
   return (
     <html lang="en">
       <body
@@ -38,6 +40,7 @@ export default function RootLayout({
             <TanStackProvider>
               <Navbar />
               {children}
+              <Toaster />
               <Footer />
             </TanStackProvider>
           </SessionProvider>

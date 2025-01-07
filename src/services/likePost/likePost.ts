@@ -1,10 +1,12 @@
 import { BASE_URL } from '@/shared/constant/baseUrl';
-import { requestOptions } from '../fetch/requestOption';
+import { HttpMethod, requestOptions } from '../fetch/requestOption';
 
 export const likePost = async (userId: string, postId: string) => {
+  const url = `${BASE_URL}/api/like`;
+
   const response = await fetch(
-    `${BASE_URL}/api/like`,
-    requestOptions('POST', { userId, postId })
+    url,
+    requestOptions(HttpMethod.POST, { userId, postId })
   );
 
   if (!response.ok) {
