@@ -6,7 +6,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import Image from 'next/image';
-import Logo from '@/public/logo.png';
+import Logo from '../../../public/logo.png';
 import { GitHubAuthButton, GoogleAuthButton } from './SubmitBtn';
 import { signIn } from '@/lib/auth';
 

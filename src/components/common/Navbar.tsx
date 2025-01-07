@@ -1,7 +1,6 @@
-import Logo from '@/public/logo.png';
+import Logo from '../../../public/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { validateUser } from '@/lib/authSession';
 import AuthModal from './AuthModal';
 import Avatar from './Avatar';
