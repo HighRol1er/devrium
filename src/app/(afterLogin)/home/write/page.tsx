@@ -1,28 +1,28 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import CategorySelectTrigger from '@/components/write/CategorySelectTrigger';
-import MarkdownPage from '@/components/write/MarkdownPage';
 import { useToast } from '@/hooks/use-toast';
 import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { useCallback, useState, useMemo } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+const MarkdownPage = dynamic(() => import('@/components/write/MarkdownPage'));
+const SubmitBtn = dynamic(() => import('@/components/write/SubmitBtn'));
+const CategorySelectTrigger = dynamic(
+  () => import('@/components/write/CategorySelectTrigger')
+);
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
+
+  const handleCategoryChange = useCallback((value: string) => {
+    setSelectCategory(value);
+  }, []);
+
   const { toast } = useToast();
   const { mutate, isPending } = useCreatePost();
 
@@ -90,25 +90,10 @@ export default function CreatePostPage() {
           />
 
           <div className="mb-2 flex justify-end">
-            {/**NOTE: component 시키기 */}
-            {/* <CategorySelectTrigger value /> */}
-            <Select
+            <CategorySelectTrigger
               value={selectCategory}
-              onValueChange={(value) => setSelectCategory(value)}
-            >
-              <SelectTrigger className="w-[120px]">
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="1">Coderium</SelectItem>
-                  <SelectItem value="2">Question</SelectItem>
-                  <SelectItem value="3">Crew</SelectItem>
-                  <SelectItem value="4">Reference</SelectItem>
-                  <SelectItem value="5">Meme</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+              onValueChange={handleCategoryChange}
+            />
           </div>
           <div>
             {errors.markdown && (
@@ -124,17 +109,7 @@ export default function CreatePostPage() {
               style={{ outline: 'none', boxShadow: 'none' }}
             />
           </div>
-          {isPending ? (
-            <Button className="w-full rounded-md px-4 py-2 font-semibold text-white transition duration-150">
-              <Loader2 className="animate-spin" />
-            </Button>
-          ) : (
-            <Button
-              className={`w-full rounded-md px-4 py-2 font-semibold text-white transition duration-150`}
-            >
-              Creativity
-            </Button>
-          )}
+          <SubmitBtn isPending={isPending} />
         </form>
       </div>
 

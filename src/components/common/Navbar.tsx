@@ -10,10 +10,6 @@ import { ThemeToggle } from './ThemeToggle';
 export default async function Navbar() {
   const session = await validateUser();
 
-  if (!session) {
-    return <div>error</div>;
-  }
-
   return (
     <div className="mx-auto flex h-14 max-w-full items-center justify-between border-b bg-muted/40 px-4 py-5 sm:px-6 lg:px-8">
       <Link href="/" className="flex items-center gap-2">

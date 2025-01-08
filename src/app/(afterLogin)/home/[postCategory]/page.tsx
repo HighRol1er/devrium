@@ -3,7 +3,6 @@ import { prefetchGetAllPosts } from './usePrefetch';
 import { getCategoryByName } from '@/utils/postCategoryUtil';
 import PostCategoryPage from './PostCategoryPage';
 import { redirect } from 'next/navigation';
-import { POSTS } from '@/services/home/queries/useGetAllPost';
 
 export default async function Page({
   params,
