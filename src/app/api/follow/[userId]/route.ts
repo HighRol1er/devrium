@@ -9,9 +9,9 @@ const prisma = new PrismaClient();
  */
 export async function POST(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
-  const { userId } = params; // 팔로우할 사용자 ID
+  const { userId } = await params; // 팔로우할 사용자 ID
   console.log(userId);
 
   const session = await validateUser();
@@ -76,9 +76,9 @@ export async function POST(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
-  const { userId } = params; // 언팔로우할 사용자 ID
+  const { userId } = await params; // 언팔로우할 사용자 ID
   // const { followerId } = await req.json(); // 팔로우 취소하는 사용자 ID
   const session = await validateUser();
 
@@ -140,9 +140,9 @@ export async function DELETE(
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
-  const { userId } = params; // 팔로우한 사용자 ID
+  const { userId } = await params; // 팔로우한 사용자 ID
 
   try {
     // 팔로우한 사용자 목록 조회

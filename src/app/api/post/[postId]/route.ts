@@ -7,9 +7,9 @@ const prisma = new PrismaClient();
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { postId: string } }
+  { params }: { params: Promise<{ postId: string }> }
 ) {
-  const { postId } = params;
+  const { postId } = await params;
   const id = Number(postId);
 
   try {
@@ -53,9 +53,9 @@ export async function GET(
  */
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { postId: string } }
+  { params }: { params: Promise<{ postId: string }> }
 ) {
-  const { postId } = params;
+  const { postId } = await params;
   console.log(postId, typeof postId);
   const { updateTitle, updateContent, updateCategoryId }: UpdatePostRequestDto =
     await req.json();
@@ -92,9 +92,9 @@ export async function PUT(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { postId: string } }
+  { params }: { params: Promise<{ postId: string }> }
 ) {
-  const { postId } = params;
+  const { postId } = await params;
 
   const id = Number(postId);
 

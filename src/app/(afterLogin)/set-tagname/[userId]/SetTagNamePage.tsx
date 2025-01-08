@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import Logo from '@/public/logo.png';
+import Logo from '../../../../../public/logo.png';
 import { TagName } from '@/schema/tagNameSchema';
 import { patchTagName } from '@/services/setTagName/patchTagName';
 import { useSession } from 'next-auth/react';

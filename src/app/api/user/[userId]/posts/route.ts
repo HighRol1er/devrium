@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
-  const { userId } = params;
+  const { userId } = await params;
 
   try {
     // 유저가 작성한 게시글 조회

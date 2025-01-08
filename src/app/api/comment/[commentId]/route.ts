@@ -9,9 +9,9 @@ const prisma = new PrismaClient();
  */
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Promise<{ commentId: string }> }
 ) {
-  const { commentId } = params;
+  const { commentId } = await params;
   const { content } = await req.json();
 
   try {
@@ -40,9 +40,9 @@ export async function PUT(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Promise<{ commentId: string }> }
 ) {
-  const { commentId } = params;
+  const { commentId } = await params;
   console.log('commentId>>>', commentId);
   const { userId } = await req.json();
   console.log(userId);
