@@ -7,7 +7,7 @@ import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
-import { useCallback, useState, useMemo } from 'react';
+import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 const MarkdownPage = dynamic(() => import('@/components/write/MarkdownPage'));
