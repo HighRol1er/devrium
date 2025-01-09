@@ -2,8 +2,10 @@ import { IPost } from '@/types/post';
 import PostStats from '../home/PostStats';
 
 import ReactMarkdown from 'react-markdown';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import nord from 'react-syntax-highlighter/dist/esm/styles/prism/nord';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+// import nord from 'react-syntax-highlighter/dist/esm/styles/prism/nord';
 import remarkGfm from 'remark-gfm';
 
 interface PostContentProps {

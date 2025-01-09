@@ -1,7 +1,7 @@
 'use client';
 
 import PostCard from '@/components/home/PostCard';
-import HomeSkeletonUi from '@/components/home/skeleton/HomeSkeletonUi';
+import HomeSkeletonUi from '@/components/skeleton/HomeSkeletonUi';
 import { Button } from '@/components/ui/button';
 import { useObserver } from '@/hooks/useObserver';
 import { useGetAllPost } from '@/services/home/queries/useGetAllPost';

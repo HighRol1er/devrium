@@ -1,4 +1,4 @@
-import SetTagNamePage from './SetTagNamePage';
+import SetTagNamePage from '@/components/set-tagname/SetTagNamePage';
 
 export default async function Page({
   params,
