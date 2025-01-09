@@ -3,13 +3,13 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import Logo from '@/public/logo.png';
 import { TagName } from '@/schema/tagNameSchema';
 import { patchTagName } from '@/services/setTagName/patchTagName';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Logo from '../../../../../public/logo.png';
 
 export default function SetTagNamePage({ userId }: { userId: string }) {
   const router = useRouter();

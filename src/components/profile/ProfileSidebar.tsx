@@ -1,6 +1,6 @@
-import JsLogo from '@/public/js-logo.webp';
-import NextLogo from '@/public/next-logo.svg';
-import TsLogo from '@/public/ts-logo.webp';
+import JsLogo from '@/assets/js-logo.webp';
+import NextLogo from '@/assets/next-logo.svg';
+import TsLogo from '@/assets/ts-logo.webp';
 import { IUser } from '@/types/user';
 import Image from 'next/image';
 

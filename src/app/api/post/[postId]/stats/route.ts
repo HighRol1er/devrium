@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { postId: string } }
+  { params }: { params: Promise<{ postId: string }> }
 ) {
-  const { postId } = params;
+  const { postId } = await params;
   console.log(postId);
 
   try {

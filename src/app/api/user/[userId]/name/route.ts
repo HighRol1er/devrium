@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
  */
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
-  const { userId } = params;
+  const { userId } = await params;
   const { name } = await req.json(); // name 받아오기
 
   try {

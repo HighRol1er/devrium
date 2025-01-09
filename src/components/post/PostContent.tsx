@@ -11,7 +11,7 @@ interface PostContentProps {
 }
 
 export default function PostContent({ data }: PostContentProps) {
-  console.log(data);
+  // console.log(data);
   return (
     <div className="max-w-3xl">
       <h1 className="mb-2 text-2xl font-bold">{data.title}</h1>

@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { signOut } from '@/lib/auth';
 import Link from 'next/link';
-import fallbackImage from '@/public/logo.png';
+import fallbackImage from '../../../public/logo.png';
 
 export default function Avatar({
   image,

@@ -1,7 +1,6 @@
-import Logo from '@/public/logo.png';
+import Logo from '../../../public/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { validateUser } from '@/lib/authSession';
 import AuthModal from './AuthModal';
 import Avatar from './Avatar';
@@ -10,10 +9,6 @@ import { ThemeToggle } from './ThemeToggle';
 
 export default async function Navbar() {
   const session = await validateUser();
-
-  if (!session) {
-    return <div>error</div>;
-  }
 
   return (
     <div className="mx-auto flex h-14 max-w-full items-center justify-between border-b bg-muted/40 px-4 py-5 sm:px-6 lg:px-8">

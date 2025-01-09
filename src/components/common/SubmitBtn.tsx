@@ -3,8 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { useFormStatus } from 'react-dom';
 import { Loader2 } from 'lucide-react';
-import GoogleLogo from '@/public/google.svg';
-import GitHubLogo from '@/public/github.svg';
+import GoogleLogo from '@/assets/google.svg';
+import GitHubLogo from '@/assets/github.svg';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 

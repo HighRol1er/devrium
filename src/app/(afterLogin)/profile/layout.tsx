@@ -1,4 +1,10 @@
 import LeftSidebar from '@/components/layout/LeftSidebar';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Devrium | profile',
+  description: 'Developer SNS Platform',
+};
 
 export default async function HomeLayout({
   children,
