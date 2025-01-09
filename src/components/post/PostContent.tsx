@@ -18,6 +18,7 @@ export default function PostContent({ data }: PostContentProps) {
       <div className="mb-4 flex">
         <img
           src={data?.user.image as string}
+          alt="user profile"
           className="mr-3 h-10 w-10 rounded-full"
         />
         <div className="flex flex-col">
