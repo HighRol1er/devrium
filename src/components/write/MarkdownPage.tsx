@@ -1,7 +1,9 @@
-import ReactMarkdown from 'react-markdown';
+import dynamic from 'next/dynamic';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import nord from 'react-syntax-highlighter/dist/esm/styles/prism/nord';
 import remarkGfm from 'remark-gfm';
+
+const ReactMarkdown = dynamic(() => import('react-markdown'), { ssr: false });
 
 export default function MarkdownPage({ markdown }: { markdown: string }) {
   return (

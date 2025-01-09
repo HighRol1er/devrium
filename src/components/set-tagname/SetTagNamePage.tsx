@@ -9,7 +9,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Logo from '../../../../../public/logo.png';
+import Logo from '../../../public/logo.png';
 
 export default function SetTagNamePage({ userId }: { userId: string }) {
   const router = useRouter();
