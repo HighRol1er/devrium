@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Developer SNS Platform',
 };
 
-export default async function HomeLayout({
+export default async function ProfileLayout({
   children,
 }: {
   children: React.ReactNode;
