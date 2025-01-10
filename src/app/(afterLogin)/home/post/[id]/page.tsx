@@ -1,16 +1,15 @@
 'use client';
 
-import AddComment from '@/components/post/AddComment';
-import CommentList from '@/components/post/CommentList';
+// import AddComment from '@/components/post/AddComment';
+// import CommentList from '@/components/post/CommentList';
 import PostContent from '@/components/post/PostContent';
 import { SEO } from '@/lib/seo/SEO';
 import { useGetPostDetail } from '@/services/post/queries/useGetPostDetail';
+import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 
-/**
- * NOTE: 여기도 prefetching하고 catch-all segment써서 해야겠다.
- *
- */
+const AddComment = dynamic(() => import('@/components/post/AddComment'));
+const CommentList = dynamic(() => import('@/components/post/CommentList'));
 
 export default function PostDetailPage() {
   const params = useParams();

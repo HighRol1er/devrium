@@ -4,7 +4,7 @@ import MyCommentCard from '@/components/profile/MyCommentCard';
 import MyPost from '@/components/profile/MyPost';
 import ProfileCard from '@/components/profile/ProfileCard';
 import ProfileSidebar from '@/components/profile/ProfileSidebar';
-import ProfileSkeleton from '@/components/profile/skeleton/ProfileSkeleton';
+import ProfileSkeleton from '@/components/skeleton/ProfileSkeleton';
 import { useGetProfile } from '@/services/profile/queries/useGetProfile';
 import { useProfileCategoryStore } from '@/store/profileCategory/useProfileStore';
 

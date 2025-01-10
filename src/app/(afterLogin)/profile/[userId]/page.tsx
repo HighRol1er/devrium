@@ -5,7 +5,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import ProfilePage from './ProfilePage';
+import ProfilePage from '@/components/profile/ProfilePage';
 
 export default async function Page({
   params,

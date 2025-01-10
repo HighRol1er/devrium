@@ -15,7 +15,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomeLayout({
+export default async function PostCategoryLayout({
   children,
 }: {
   children: React.ReactNode;

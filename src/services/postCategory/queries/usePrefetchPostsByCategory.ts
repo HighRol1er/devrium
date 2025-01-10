@@ -3,7 +3,7 @@ import { POSTS } from '@/services/home/queries/useGetAllPost';
 import { QueryClient } from '@tanstack/react-query';
 
 /** SSR에서 Infinite Query를 prefetch하기 위한 함수 */
-export const prefetchGetAllPosts = async (categoryId?: number) => {
+export const prefetchPostsByCategory = async (categoryId?: number) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({

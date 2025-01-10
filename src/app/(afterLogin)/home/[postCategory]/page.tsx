@@ -1,8 +1,8 @@
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { prefetchGetAllPosts } from './usePrefetch';
 import { getCategoryByName } from '@/utils/postCategoryUtil';
-import PostCategoryPage from './PostCategoryPage';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { redirect } from 'next/navigation';
+import PostCategoryPage from '@/components/postCategory/PostCategoryPage';
+import { prefetchPostsByCategory } from '@/services/postCategory/queries/usePrefetchPostsByCategory';
 
 export default async function Page({
   params,
@@ -16,7 +16,7 @@ export default async function Page({
     redirect('/home');
   }
 
-  const queryClient = await prefetchGetAllPosts(currentCategory.id);
+  const queryClient = await prefetchPostsByCategory(currentCategory.id);
 
   // const cachedData = queryClient.getQueryData([POSTS, currentCategory.id]);
   // console.log('SSR Fetched Data:', cachedData);

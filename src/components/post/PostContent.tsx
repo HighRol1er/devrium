@@ -1,10 +1,11 @@
 import { IPost } from '@/types/post';
-import PostStats from '../home/PostStats';
-
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import nord from 'react-syntax-highlighter/dist/esm/styles/prism/nord';
 import remarkGfm from 'remark-gfm';
+import PostStats from '../home/PostStats';
+import dynamic from 'next/dynamic';
+
+const ReactMarkdown = dynamic(() => import('react-markdown'), { ssr: false });
 
 interface PostContentProps {
   data: IPost;
@@ -18,6 +19,7 @@ export default function PostContent({ data }: PostContentProps) {
       <div className="mb-4 flex">
         <img
           src={data?.user.image as string}
+          alt="user profile"
           className="mr-3 h-10 w-10 rounded-full"
         />
         <div className="flex flex-col">
