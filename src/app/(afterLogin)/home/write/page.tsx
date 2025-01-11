@@ -3,22 +3,23 @@
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/lib/supabase';
 import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import MarkdownPreview from '@/components/write/MarkdownPreview';
 
-const MarkdownPage = dynamic(() => import('@/components/write/MarkdownPage'));
 const SubmitBtn = dynamic(() => import('@/components/write/SubmitBtn'));
-
 const CategorySelectTrigger = dynamic(
   () => import('@/components/write/CategorySelectTrigger')
 );
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>('');
 
   const handleCategoryChange = useCallback((value: string) => {
     setSelectCategory(value);
@@ -53,7 +54,12 @@ export default function CreatePostPage() {
     }
 
     mutate(
-      { title: data.title, content: data.markdown, categoryId },
+      {
+        title: data.title,
+        content: data.markdown,
+        categoryId,
+        image: imageUrl,
+      },
       {
         onSuccess: () => {
           toast({
@@ -69,6 +75,40 @@ export default function CreatePostPage() {
         },
       }
     );
+  };
+
+  const uploadImage = async (file: File) => {
+    const filePath = `${Date.now()}_${file.name}`;
+    const { data, error } = await supabase.storage
+      .from('post') // 이미지 버킷
+      .upload(filePath, file);
+
+    if (error) {
+      console.error('업로드 실패:', error.message);
+      return null;
+    }
+    // Public URL 생성
+    const { data: publicUrlData } = supabase.storage
+      .from('post')
+      .getPublicUrl(filePath);
+
+    return publicUrlData?.publicUrl || null;
+  };
+
+  // 드래그 앤 드롭 이벤트 처리
+  const handleFileDrop = async (e: React.DragEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    console.log(file);
+    if (file && file.type.startsWith('image/')) {
+      // 파일을 Supabase에 업로드하고 URL을 받아오기
+      const uploadedUrl = await uploadImage(file);
+      // set
+      if (uploadedUrl) {
+        setImageUrl(uploadedUrl); // Supabase에서 반환된 이미지 URL 삽입
+      }
+      return uploadedUrl;
+    }
   };
 
   return (
@@ -106,6 +146,7 @@ export default function CreatePostPage() {
               className="mb-4 h-[70vh] w-full rounded-md border border-gray-500"
               placeholder="Write your 💡 here."
               id="markdown"
+              onDrop={handleFileDrop}
               {...register('markdown', { required: ' Contents required' })}
               style={{ outline: 'none', boxShadow: 'none' }}
             />
@@ -116,7 +157,7 @@ export default function CreatePostPage() {
 
       {/* Right section */}
       <div className="hidden h-[80vh] w-1/2 rounded-md border p-5 pl-4 shadow-lg md:block">
-        <MarkdownPage markdown={markdownContents} />
+        <MarkdownPreview markdownText={markdownContents} imageUrl={imageUrl} />
       </div>
     </div>
   );

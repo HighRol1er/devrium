@@ -4,6 +4,7 @@ import nord from 'react-syntax-highlighter/dist/esm/styles/prism/nord';
 import remarkGfm from 'remark-gfm';
 import PostStats from '../home/PostStats';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 const ReactMarkdown = dynamic(() => import('react-markdown'), { ssr: false });
 
@@ -12,7 +13,7 @@ interface PostContentProps {
 }
 
 export default function PostContent({ data }: PostContentProps) {
-  // console.log(data);
+  console.log(data);
   return (
     <div className="max-w-3xl">
       <h1 className="mb-2 text-2xl font-bold">{data.title}</h1>
@@ -29,6 +30,22 @@ export default function PostContent({ data }: PostContentProps) {
       </div>
       <div className="">
         <article className="mb-4 h-[50vh]">
+          <div>
+            {!data.image ? (
+              <div></div>
+            ) : (
+              <div className="flex justify-center">
+                <Image
+                  src={data.image}
+                  alt="Preview"
+                  width={300}
+                  height={300}
+                  className="flex h-auto w-full max-w-[300px]"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+            )}
+          </div>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{

@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
  * End point(POST) : api/post
  */
 export async function POST(request: NextRequest) {
-  const { title, content, categoryId }: createPostRequest =
+  const { title, content, categoryId, image }: createPostRequest =
     await request.json();
   console.log(title, content, categoryId);
   try {
@@ -16,10 +16,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Fields required' }, { status: 400 });
     }
     const session = await auth();
-    console.log(session);
     const userId = session?.user.id;
-    console.log(userId);
-    // 세션이 없는거에 대한 에러처리
 
     const createPost = await prisma.post.create({
       data: {
@@ -27,6 +24,7 @@ export async function POST(request: NextRequest) {
         content,
         userId: userId as string,
         categoryId,
+        image,
       },
     });
 

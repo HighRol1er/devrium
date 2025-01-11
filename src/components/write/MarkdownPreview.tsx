@@ -1,23 +1,46 @@
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import nord from 'react-syntax-highlighter/dist/esm/styles/prism/nord';
 import remarkGfm from 'remark-gfm';
 
 const ReactMarkdown = dynamic(() => import('react-markdown'), { ssr: false });
 
-export default function MarkdownPage({ markdown }: { markdown: string }) {
+interface MarkdownPreviewProps {
+  markdownText: string;
+  imageUrl: string;
+}
+
+export default function MarkdownPreview({
+  markdownText,
+  imageUrl,
+}: MarkdownPreviewProps) {
   return (
     <div>
+      {!imageUrl ? (
+        <div></div>
+      ) : (
+        <div className="flex justify-center">
+          <Image
+            src={imageUrl}
+            alt="Preview"
+            width={300}
+            height={300}
+            className="flex h-auto w-full max-w-[300px]"
+            style={{ objectFit: 'contain' }} // 이미지를 비율대로 맞추기
+          />
+        </div>
+      )}
+
       <div className="text-sm">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
             code({ className, children }) {
-              // const match = /language-(\w+)/.exec(className || '');
               const match = /language-(\w+)/.exec(className || '');
-              const codeContent = String(children || '').trim(); // 빈 값이나 undefined를 방지
+              const codeContent = String(children || '').trim();
 
-              if (!codeContent) return null; // 내용이 없다면 렌더링하지 않음
+              if (!codeContent) return null;
               const cleanedContent = codeContent.replace(/\n\s*\n/g, '\n');
               return match ? (
                 // 코드 (```)
@@ -77,7 +100,7 @@ export default function MarkdownPage({ markdown }: { markdown: string }) {
             },
           }}
         >
-          {markdown
+          {markdownText
             .replace(/\n/gi, '\n\n')
             .replace(/\*\*/gi, '@$_%!^')
             .replace(/@\$_%!\^/gi, '**')

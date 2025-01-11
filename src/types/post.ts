@@ -17,4 +17,5 @@ export interface createPostRequest {
   title: string;
   content: string;
   categoryId: number;
+  image?: string;
 }

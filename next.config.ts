@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       'remark-gfm',
     ],
   },
+  images: {
+    // 외부 이미지를 허용할 도메인을 추가합니다.
+    domains: ['jxyqvxjpmdbpyrdattkk.supabase.co'],
+  },
 };
 
 // ⚠ Webpack is configured while Turbopack is not, which may cause problems.
