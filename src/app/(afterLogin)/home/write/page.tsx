@@ -3,7 +3,6 @@
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/lib/supabase';
 import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,6 +10,7 @@ import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import MarkdownPreview from '@/components/write/MarkdownPreview';
+import { uploadImage } from '@/utils/uploadImage';
 
 const SubmitBtn = dynamic(() => import('@/components/write/SubmitBtn'));
 const CategorySelectTrigger = dynamic(
@@ -77,35 +77,16 @@ export default function CreatePostPage() {
     );
   };
 
-  const uploadImage = async (file: File) => {
-    const filePath = `${Date.now()}_${file.name}`;
-    const { data, error } = await supabase.storage
-      .from('post') // 이미지 버킷
-      .upload(filePath, file);
-
-    if (error) {
-      console.error('업로드 실패:', error.message);
-      return null;
-    }
-    // Public URL 생성
-    const { data: publicUrlData } = supabase.storage
-      .from('post')
-      .getPublicUrl(filePath);
-
-    return publicUrlData?.publicUrl || null;
-  };
-
   // 드래그 앤 드롭 이벤트 처리
   const handleFileDrop = async (e: React.DragEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     console.log(file);
     if (file && file.type.startsWith('image/')) {
-      // 파일을 Supabase에 업로드하고 URL을 받아오기
+      // 파일 Supabase에 업로드 => url 받아오기
       const uploadedUrl = await uploadImage(file);
-      // set
       if (uploadedUrl) {
-        setImageUrl(uploadedUrl); // Supabase에서 반환된 이미지 URL 삽입
+        setImageUrl(uploadedUrl);
       }
       return uploadedUrl;
     }
