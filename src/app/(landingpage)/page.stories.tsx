@@ -4,6 +4,7 @@ import Page from './page';
 
 const meta = {
   component: Page,
+  tags: ['autodocs'],
 } satisfies Meta<typeof Page>;
 
 export default meta;
