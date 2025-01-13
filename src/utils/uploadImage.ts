@@ -17,3 +17,16 @@ export const uploadImage = async (file: File) => {
 
   return publicUrlData?.publicUrl || null;
 };
+
+export const deleteImage = async (imageUrl: string) => {
+  if (imageUrl) {
+    const fileName = imageUrl.split('/').pop();
+
+    const { data, error } = await supabase.storage
+      .from('post')
+      .remove([fileName!]);
+    console.log(data);
+    if (error) throw error;
+    return data;
+  }
+};

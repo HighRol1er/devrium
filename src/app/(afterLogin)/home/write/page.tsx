@@ -2,30 +2,30 @@
 
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import EscapeModal from '@/components/write/EscapeModal';
+import MarkdownPreview from '@/components/write/MarkdownPreview';
 import { useToast } from '@/hooks/use-toast';
 import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
+import { deleteImage, uploadImage } from '@/utils/uploadImage';
 import { zodResolver } from '@hookform/resolvers/zod';
-import dynamic from 'next/dynamic';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import MarkdownPreview from '@/components/write/MarkdownPreview';
-import { uploadImage } from '@/utils/uploadImage';
-
-const SubmitBtn = dynamic(() => import('@/components/write/SubmitBtn'));
-const CategorySelectTrigger = dynamic(
-  () => import('@/components/write/CategorySelectTrigger')
-);
+import SubmitBtn from '@/components/write/SubmitBtn';
+import { useRouter } from 'next/navigation';
+import CategorySelectTrigger from '@/components/write/CategorySelectTrigger';
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleCategoryChange = useCallback((value: string) => {
     setSelectCategory(value);
   }, []);
 
   const { toast } = useToast();
+  const router = useRouter();
   const { mutate, isPending } = useCreatePost();
 
   const {
@@ -77,7 +77,6 @@ export default function CreatePostPage() {
     );
   };
 
-  // 드래그 앤 드롭 이벤트 처리
   const handleFileDrop = async (e: React.DragEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -92,9 +91,30 @@ export default function CreatePostPage() {
     }
   };
 
+  const handleContinue = () => {
+    deleteImage(imageUrl); // 이미지 삭제
+    setShowModal(false); // 모달 닫기
+    // 뒤로가기 처리
+    // window.history.back();
+    router.back();
+  };
+
+  useEffect(() => {
+    window.history.pushState(null, '', window.location.href);
+    const handlePopState = () => {
+      console.log('popstate triggered');
+      setShowModal(true); // 뒤로가기 시 모달 띄우기
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   return (
     <div className="flex h-full w-full p-2">
-      {/* Left section */}
       <div className="w-full pr-4 md:w-1/2">
         <form onSubmit={handleSubmit(onSubmitPost)}>
           {errors.title && (
@@ -140,6 +160,9 @@ export default function CreatePostPage() {
       <div className="hidden h-[80vh] w-1/2 rounded-md border p-5 pl-4 shadow-lg md:block">
         <MarkdownPreview markdownText={markdownContents} imageUrl={imageUrl} />
       </div>
+
+      {/* Escape Modal */}
+      {showModal && <EscapeModal onContinue={handleContinue} />}
     </div>
   );
 }
