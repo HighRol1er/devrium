@@ -11,11 +11,15 @@ import {
 
 interface EscapeModalProps {
   onContinue: () => void;
+  showModal: boolean;
 }
 
-export default function EscapeModal({ onContinue }: EscapeModalProps) {
+export default function EscapeModal({
+  onContinue,
+  showModal,
+}: EscapeModalProps) {
   return (
-    <AlertDialog defaultOpen>
+    <AlertDialog defaultOpen={showModal}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

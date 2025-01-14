@@ -2,30 +2,30 @@
 
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import CategorySelectTrigger from '@/components/write/CategorySelectTrigger';
 import EscapeModal from '@/components/write/EscapeModal';
 import MarkdownPreview from '@/components/write/MarkdownPreview';
+import SubmitBtn from '@/components/write/SubmitBtn';
 import { useToast } from '@/hooks/use-toast';
+import { usePopState } from '@/hooks/usePopState';
 import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
-import { deleteImage, uploadImage } from '@/utils/uploadImage';
+import { uploadImage } from '@/utils/uploadImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import SubmitBtn from '@/components/write/SubmitBtn';
-import { useRouter } from 'next/navigation';
-import CategorySelectTrigger from '@/components/write/CategorySelectTrigger';
+// import { useRouter } from 'next/router';
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleCategoryChange = useCallback((value: string) => {
     setSelectCategory(value);
   }, []);
 
   const { toast } = useToast();
-  const router = useRouter();
+  const { showModal, setShowModal, onClickContinue } = usePopState(imageUrl);
   const { mutate, isPending } = useCreatePost();
 
   const {
@@ -91,19 +91,12 @@ export default function CreatePostPage() {
     }
   };
 
-  const handleContinue = () => {
-    deleteImage(imageUrl); // 이미지 삭제
-    setShowModal(false); // 모달 닫기
-    // 뒤로가기 처리
-    // window.history.back();
-    router.back();
-  };
-
   useEffect(() => {
-    window.history.pushState(null, '', window.location.href);
+    const a = window.history.pushState(null, '', window.location.href);
+    console.log(a);
     const handlePopState = () => {
       console.log('popstate triggered');
-      setShowModal(true); // 뒤로가기 시 모달 띄우기
+      setShowModal(true);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -162,7 +155,9 @@ export default function CreatePostPage() {
       </div>
 
       {/* Escape Modal */}
-      {showModal && <EscapeModal onContinue={handleContinue} />}
+      {showModal && (
+        <EscapeModal showModal={showModal} onContinue={onClickContinue} />
+      )}
     </div>
   );
 }
