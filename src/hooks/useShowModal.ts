@@ -1,7 +1,7 @@
 import { deleteImage } from '@/utils/uploadImage';
 import { useCallback, useState } from 'react';
 
-export const usePopState = (imageUrl: string) => {
+export const useShowModal = (imageUrl: string) => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const onClickContinue = useCallback(() => {

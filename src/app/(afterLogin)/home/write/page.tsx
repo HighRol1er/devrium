@@ -7,14 +7,13 @@ import EscapeModal from '@/components/write/EscapeModal';
 import MarkdownPreview from '@/components/write/MarkdownPreview';
 import SubmitBtn from '@/components/write/SubmitBtn';
 import { useToast } from '@/hooks/use-toast';
-import { usePopState } from '@/hooks/usePopState';
+import { useShowModal } from '@/hooks/useShowModal';
 import { CreatePost, createPostSchema } from '@/schema/createPostSchema';
 import { useCreatePost } from '@/services/write/queries/useCreatePost';
 import { uploadImage } from '@/utils/uploadImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-// import { useRouter } from 'next/router';
 
 export default function CreatePostPage() {
   const [selectCategory, setSelectCategory] = useState<string>('');
@@ -25,7 +24,7 @@ export default function CreatePostPage() {
   }, []);
 
   const { toast } = useToast();
-  const { showModal, setShowModal, onClickContinue } = usePopState(imageUrl);
+  const { showModal, setShowModal, onClickContinue } = useShowModal(imageUrl);
   const { mutate, isPending } = useCreatePost();
 
   const {
@@ -80,9 +79,8 @@ export default function CreatePostPage() {
   const handleFileDrop = async (e: React.DragEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
-    console.log(file);
+
     if (file && file.type.startsWith('image/')) {
-      // 파일 Supabase에 업로드 => url 받아오기
       const uploadedUrl = await uploadImage(file);
       if (uploadedUrl) {
         setImageUrl(uploadedUrl);
