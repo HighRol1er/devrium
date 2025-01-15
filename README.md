@@ -1,7 +1,10 @@
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/291a0310-4cfc-4268-b31a-24d847b89e11" width="200" height="200" alt="로고 이미지" />
+  <h1>Devrium</h1>
+  <p> 개발자들을 위한 SNS 플랫폼</p>
+</div>
 
-<img src="https://github.com/user-attachments/assets/7d5a7b83-622a-4e9a-b337-09f409645943.png" width="400" height="400"/>
-# Devrium
-개발자들을 위한 SNS 플랫폼 
+# 🛠️ Stack
 
 ### ✔️ Language & Framework
 
@@ -46,26 +49,35 @@ stackoverflow의 글쓰기 방식은 너무나도 불편 why? 제목 쓰고 이�
 # 기술 스택을 사용한 이유 
 Next.js SSR로 SNS 플랫폼에 잘 맞는 SSR (빠른 초기로딩, SEO최적화)
 
-# tailwindcss & shadcn/ui 
+### tailwindcss & shadcn/ui 
 shadcn/ui를 사용한 이유는 컴포넌트 복사 형식으로 어저구 뭐 분명 장점이 있겠지 .ㅇㅇ 내가 피룡한 것들만 가져오니깐 
 tailwind로 반응형 ui 쉽게 구현 가능하기 때문에
 
-# TanStack Query 
+### TanStack Query 
 Next는 기본적으로 캐싱 처리를 해줄 수 있지만 그외에 무한스크롤과 쿼리무효화 기능을 통해 서버 상태관리를 보다 효율적으로 관리하기 위해서 사용 
 
-# Auth.js 
+### Auth.js 
 - 간편한 소셜로그인 구현
 - supabase + prisma를 통한 세션 및 jwt 기능 구현
 
-# zustand 
+### zustand 
 카테고리 관리 및 로컬 상태관리를 위한 전역 상태 라이브러리 사용
 
-# react-hook-from & zod 
+###  react-hook-from & zod 
 Shadcn과의 궁합 좋음 (textarea)
 zod를 통한 타입 추출 및 가독성 좋은 폼 벨리데이션 구축을 위해 사용
 
-화면 구성 
+# 화면 구성 
+| Landing | Login |
+| - | - |
+|  ![landing](https://github.com/user-attachments/assets/69d31526-e57a-491e-8c50-982f9c5cdfa8) |![login](https://github.com/user-attachments/assets/147bb849-3425-4f6e-9bad-83dab18dab09)|
 
+| Home | Profile |
+| - | - |
+|![home](https://github.com/user-attachments/assets/e622de5d-dafa-4338-9dca-4d94b57ad336) | ![profile](https://github.com/user-attachments/assets/388497d9-f4b3-4f4d-8b56-d3a57feb3970)|
 
+| Post | Write |
+| - | - |
+| ![postdetail](https://github.com/user-attachments/assets/4ab8eafa-86ad-4b1b-a1b2-616bafe11473) | ![write](https://github.com/user-attachments/assets/82a03fce-54c4-40a6-8c31-20cec3b5c254) |
 
 
